@@ -34,24 +34,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2p-6Z-9oW">
-                                                    <rect key="frame" x="15" y="12" width="300" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdQ-2P-OS3">
-                                                    <rect key="frame" x="334.5" y="14.5" width="26.5" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2C-i2-lOd">
+                                                    <rect key="frame" x="15" y="11" width="345" height="22"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2p-6Z-9oW">
+                                                            <rect key="frame" x="0.0" y="0.0" width="172.5" height="22"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdQ-2P-OS3">
+                                                            <rect key="frame" x="172.5" y="0.0" width="172.5" height="22"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="pdQ-2P-OS3" secondAttribute="trailing" constant="14" id="Tb3-V3-CHF"/>
-                                                <constraint firstItem="W2p-6Z-9oW" firstAttribute="centerY" secondItem="4ny-zz-kuJ" secondAttribute="centerY" id="ijf-Rk-xwv"/>
-                                                <constraint firstItem="W2p-6Z-9oW" firstAttribute="leading" secondItem="4ny-zz-kuJ" secondAttribute="leading" constant="15" id="mrY-bx-RpY"/>
-                                                <constraint firstItem="pdQ-2P-OS3" firstAttribute="centerY" secondItem="4ny-zz-kuJ" secondAttribute="centerY" id="xFb-y3-8Qx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="j2C-i2-lOd" secondAttribute="trailing" id="D28-9P-MA0"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="j2C-i2-lOd" secondAttribute="bottom" id="Eds-jW-mSY"/>
+                                                <constraint firstItem="j2C-i2-lOd" firstAttribute="leading" secondItem="4ny-zz-kuJ" secondAttribute="leadingMargin" id="rPu-Xw-SSf"/>
+                                                <constraint firstItem="j2C-i2-lOd" firstAttribute="top" secondItem="4ny-zz-kuJ" secondAttribute="topMargin" id="u2q-yg-a6f"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
