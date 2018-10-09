@@ -77,7 +77,7 @@ class TaskModel {
                     }
 
                     DispatchQueue.main.async {
-                        NotificationCenter.default.post(Notification(name: TaskModel.taskUpdatedNotification))
+                        NotificationCenter.default.post(name: TaskModel.taskUpdatedNotification, object: self)
                     }
                 }
             } catch let error as NSError {

@@ -21,7 +21,7 @@ class TaskListViewController: UIViewController, UITableViewDataSource {
         model.refresh()
 
         NotificationCenter.default.addObserver(forName: TaskModel.taskUpdatedNotification,
-                                               object: nil,
+                                               object: model,
                                                queue: nil) {
             _ in
             self.tableView.reloadData()
