@@ -34,7 +34,7 @@ class TaskModel {
 
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
 
-        let url = URL(string: "\(host)/tasks")
+        let url = URL(string: "\(host)/tasks?order=enddate.desc")
         let urlRequest = URLRequest(url: url!)
         //let task = URLSession.shared.dataTask(with: url!) {
         taskListDataTask = URLSession.shared.dataTask(with: urlRequest) {

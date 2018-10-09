@@ -37,7 +37,13 @@ class TaskListViewController: UIViewController, UITableViewDataSource {
         cell.label.text = "Cell \(indexPath.row)"
 
         let task = model.tasks[indexPath.row]
-        cell.label.text = "\(task.name)"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy'\nat' hh:mm"
+        
+        cell.label.text = task.name
+        cell.date.text = dateFormatter.string(from: task.endDate)
+
         return cell
     }
 }

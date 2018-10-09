@@ -12,4 +12,5 @@ import UIKit
 
 class TaskCell : UITableViewCell {
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var date: UILabel!
 }
