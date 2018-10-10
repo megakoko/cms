@@ -22,14 +22,14 @@ class ClientViewController : UIViewController, UITableViewDataSource {
         model.load(id: id!)
 
         NotificationCenter.default.addObserver(forName: ClientModel.clientUpdateNotification,
-                                               object: nil,
+                                               object: model,
                                                queue: nil) {
             _ in
             self.reloadData()
         }
 
         NotificationCenter.default.addObserver(forName: ClientModel.clientRelationshipUpdateNotification,
-                                               object: nil,
+                                               object: model,
                                                queue: nil) {
             _ in
             self.tableView.reloadData()

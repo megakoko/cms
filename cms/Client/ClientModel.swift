@@ -63,7 +63,7 @@ class ClientModel {
             self.utr = jsonObject["utr"] as? String
 
             DispatchQueue.main.async {
-                NotificationCenter.default.post(Notification(name: ClientModel.clientUpdateNotification))
+                NotificationCenter.default.post(Notification(name: ClientModel.clientUpdateNotification, object: self, userInfo: nil))
             }
         }
         coreDataTask.resume()
@@ -95,7 +95,7 @@ class ClientModel {
             }
 
             DispatchQueue.main.async {
-                NotificationCenter.default.post(Notification(name: ClientModel.clientRelationshipUpdateNotification))
+                NotificationCenter.default.post(Notification(name: ClientModel.clientRelationshipUpdateNotification, object: self, userInfo: nil))
             }
         }
 
