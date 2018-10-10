@@ -9,17 +9,17 @@
 import Foundation
 import UIKit
 
-class ClientViewController : UIViewController {
-    private var model: ClientModel? = nil
+class ClientViewController : UIViewController, UITableViewDataSource {
+    private var model: ClientModel = ClientModel()
     var id: Int? = nil
 
     @IBOutlet weak var utrLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        model = ClientModel()
-        model?.load(id: id!)
+        model.load(id: id!)
 
         NotificationCenter.default.addObserver(forName: ClientModel.clientUpdateNotification,
                                                object: nil,
@@ -27,9 +27,29 @@ class ClientViewController : UIViewController {
             _ in
             self.reloadData()
         }
+
+        NotificationCenter.default.addObserver(forName: ClientModel.clientRelationshipUpdateNotification,
+                                               object: nil,
+                                               queue: nil) {
+            _ in
+            self.tableView.reloadData()
+        }
     }
 
     func reloadData() {
-        utrLabel.text = model?.utr
+        utrLabel.text = model.utr
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.relationships.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RelationshipCell", for: indexPath)
+
+        let relationship = model.relationships[indexPath.row]
+        cell.textLabel?.text = relationship.relatedClientName
+
+        return cell
     }
 }
