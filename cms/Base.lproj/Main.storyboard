@@ -179,6 +179,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="303" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <segue destination="0x2-Gj-ZGP" kind="show" id="Zgf-UP-ISX"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>

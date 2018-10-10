@@ -52,4 +52,17 @@ class ClientViewController : UIViewController, UITableViewDataSource {
 
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            print("No relationship selected")
+            return
+        }
+
+        let relationship = model.relationships[indexPath.row]
+
+        let clientViewController = segue.destination as! ClientViewController
+        clientViewController.id = relationship.relatedClientId
+        clientViewController.title = relationship.relatedClientName
+    }
 }
