@@ -41,4 +41,14 @@ class ClientListViewController : UITableViewController {
 
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = tableView.indexPathForSelectedRow
+
+        let client = model.clients[indexPath!.row]
+
+        let clientViewController = segue.destination as! ClientViewController
+        clientViewController.id = client.id
+        clientViewController.title = client.name
+    }
 }
