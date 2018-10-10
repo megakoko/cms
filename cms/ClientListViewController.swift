@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 class ClientListViewController : UITableViewController {
-    private var model = ClientModel()
+    private var model = ClientListModel()
 
     @IBAction func onTablePulledToRefresh(_ sender: UIRefreshControl) {
         model.refresh()
@@ -22,7 +22,7 @@ class ClientListViewController : UITableViewController {
 
         model.refresh()
 
-        NotificationCenter.default.addObserver(forName: ClientModel.clientListUpdateNotification, object: nil, queue: nil) {
+        NotificationCenter.default.addObserver(forName: ClientListModel.clientListUpdateNotification, object: nil, queue: nil) {
             _ in
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()

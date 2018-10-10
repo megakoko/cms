@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ClientModel {
+class ClientListModel {
     static let clientListUpdateNotification = Notification.Name("clientListUpdateNotification")
 
     struct Client {
@@ -72,7 +72,7 @@ class ClientModel {
             }
 
             DispatchQueue.main.async {
-                NotificationCenter.default.post(Notification(name: ClientModel.clientListUpdateNotification))
+                NotificationCenter.default.post(Notification(name: ClientListModel.clientListUpdateNotification))
             }
         }
 
