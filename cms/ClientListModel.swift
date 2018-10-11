@@ -11,8 +11,8 @@ import Foundation
 class ClientListModel {
     static let clientListUpdateNotification = Notification.Name("clientListUpdateNotification")
 
-    struct Client {
-        enum ClientType: String {
+    struct Client : Decodable {
+        enum ClientType: String, Decodable {
             case individual = "individual"
             case limitedCompany = "limitedCompany"
             case trust = "trust"
@@ -22,7 +22,7 @@ class ClientListModel {
         let id: Int
         let type: ClientType
         let name: String
-        let clientcode: String
+        let code: String
     }
 
 
@@ -52,23 +52,9 @@ class ClientListModel {
                 return
             }
 
-            guard let json = try! JSONSerialization.jsonObject(with: data!, options: []) as? [[String: Any]] else {
-                print("Failed to parse clients")
-                return
-            }
-
-            for jsonObject in json {
-                guard
-                    let id = jsonObject["id"] as? Int,
-                    let type = Client.ClientType(rawValue: jsonObject["type"] as? String ?? ""),
-                    let name = jsonObject["name"] as? String,
-                    let code = jsonObject["clientcode"] as? String
-                else {
-                    print("Failed to parse client")
-                    continue
-                }
-                let client = Client(id: id, type: type, name: name, clientcode: code)
-                self.clients.append(client)
+            let decoder = JSONDecoder()
+            if let clients = try? decoder.decode([Client].self, from: data!) {
+                self.clients = clients
             }
 
             DispatchQueue.main.async {

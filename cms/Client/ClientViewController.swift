@@ -37,7 +37,7 @@ class ClientViewController : UIViewController, UITableViewDataSource {
     }
 
     func reloadData() {
-        utrLabel.text = model.utr
+        utrLabel.text = model.client!.utr
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

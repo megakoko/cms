@@ -11,7 +11,7 @@ import Foundation
 class TaskModel {
     static let taskUpdatedNotification = Notification.Name("taskUpdatedNotification")
 
-    struct Task {
+    struct Task : Decodable{
         let id: Int
         let name: String
         let endDate: Date
@@ -34,7 +34,7 @@ class TaskModel {
 
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
 
-        let url = URL(string: "\(host)/tasks?order=enddate.desc")
+        let url = URL(string: "\(host)/tasks?order=endDate.desc")
         let urlRequest = URLRequest(url: url!)
         //let task = URLSession.shared.dataTask(with: url!) {
         taskListDataTask = URLSession.shared.dataTask(with: urlRequest) {
@@ -45,43 +45,23 @@ class TaskModel {
                 return
             }
 
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [[String: Any]] {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-
-                    for taskObject in json {
-                        guard let id = taskObject["id"] as? Int else {
-                            print("Failed to get id")
-                            continue
-                        }
-                        guard let name = taskObject["title"] as? String else {
-                            print("Failed to get name")
-                            continue
-                        }
-                        guard let endDateData = taskObject["enddate"] as? String else {
-                            print("Failed to get end date")
-                            continue
-                        }
-                        guard let endDate = dateFormatter.date(from: endDateData) else {
-                            print("Failed to parse end date");
-                            continue
-                        }
-
-
-                        let task = Task(id: id,
-                                        name: name,
-                                        endDate: endDate)
-
-                        self.tasks.append(task)
-                    }
-
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: TaskModel.taskUpdatedNotification, object: self)
-                    }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
+                guard let string = try? decoder.singleValueContainer().decode(String.self) else {
+                    return Date()
                 }
-            } catch let error as NSError {
-                print(error.localizedDescription)
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                return dateFormatter.date(from: string) ?? Date()
+            })
+
+            if let tasks = try? decoder.decode([Task].self, from: data!) {
+                self.tasks = tasks
+            }
+
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: TaskModel.taskUpdatedNotification, object: self)
             }
         }
 
