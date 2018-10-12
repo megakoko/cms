@@ -44,12 +44,11 @@ class TaskListViewController: UITableViewController {
         if task.endDate != nil && task.endDate! <= Date() {
             cell.detailTextLabel?.textColor = UIColor.red
         } else if task.endDateReminder != nil && task.endDateReminder! <= Date() {
-            cell.detailTextLabel?.textColor = UIColor.orange//(red: 0.8274510, green: 0.447, blue: 0.027, alpha: 1)
+            cell.detailTextLabel?.textColor = UIColor.orange
         } else {
             cell.detailTextLabel?.textColor = UIColor.black
         }
-
-
+        
         return cell
     }
 
