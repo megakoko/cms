@@ -17,6 +17,8 @@
 		DA6C1172216CD04A00DAD2D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6C1170216CD04A00DAD2D0 /* Main.storyboard */; };
 		DA6C1174216CD04B00DAD2D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA6C1173216CD04B00DAD2D0 /* Assets.xcassets */; };
 		DA6C1177216CD04B00DAD2D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6C1175216CD04B00DAD2D0 /* LaunchScreen.storyboard */; };
+		DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C152170751D004B1498 /* UserListViewController.swift */; };
+		DA7E6C182170752A004B1498 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C172170752A004B1498 /* User.swift */; };
 		DAAC4135216D0BB200D86848 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC4134216D0BB200D86848 /* TaskCell.swift */; };
 		DAAC4137216D0C7100D86848 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAC4136216D0C7100D86848 /* TaskModel.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		DA6C1173216CD04B00DAD2D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA6C1176216CD04B00DAD2D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA6C1178216CD04B00DAD2D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA7E6C152170751D004B1498 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		DA7E6C172170752A004B1498 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DAAC4134216D0BB200D86848 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		DAAC4136216D0C7100D86848 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,7 @@
 				DAAC4138216D0C7800D86848 /* Tasks */,
 				DA2A9665216E495A000AE7F1 /* Clients */,
 				DA2A966C216E5F4F000AE7F1 /* Client */,
+				DA7E6C14217074F7004B1498 /* Users */,
 				DA6C116A216CD04A00DAD2D0 /* AppDelegate.swift */,
 				DA6C1170216CD04A00DAD2D0 /* Main.storyboard */,
 				DA6C1173216CD04B00DAD2D0 /* Assets.xcassets */,
@@ -97,6 +102,15 @@
 				DA6C1178216CD04B00DAD2D0 /* Info.plist */,
 			);
 			path = cms;
+			sourceTree = "<group>";
+		};
+		DA7E6C14217074F7004B1498 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				DA7E6C172170752A004B1498 /* User.swift */,
+				DA7E6C152170751D004B1498 /* UserListViewController.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		DAAC4138216D0C7800D86848 /* Tasks */ = {
@@ -185,10 +199,12 @@
 				DA2A966B216E498D000AE7F1 /* ClientListViewController.swift in Sources */,
 				DAAC4137216D0C7100D86848 /* TaskModel.swift in Sources */,
 				DA2A966E216E5F66000AE7F1 /* ClientModel.swift in Sources */,
+				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
 				DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */,
 				DA6C116B216CD04A00DAD2D0 /* AppDelegate.swift in Sources */,
 				DA2A9667216E496E000AE7F1 /* ClientListModel.swift in Sources */,
 				DA6C116D216CD04A00DAD2D0 /* TaskListViewController.swift in Sources */,
+				DA7E6C182170752A004B1498 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
