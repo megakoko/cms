@@ -93,6 +93,7 @@ class ClientViewController : UITableViewController {
 
         if indexPath.section == (numberOfSections(in: tableView) - 1) {
             let relationship = model.relationships[indexPath.row]
+            cell.accessoryType = .disclosureIndicator
             cell.textView.text = relationship.relatedClientName
         } else {
             cell.selectionStyle = .none
