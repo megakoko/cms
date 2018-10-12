@@ -58,7 +58,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="gZw-Pj-yyN" kind="show" id="ZJT-Kc-894"/>
+                                    <segue destination="gZw-Pj-yyN" kind="show" id="ZJT-Kc-894">
+                                        <segue key="commit" inheritsFrom="parent" id="kO1-Nz-5WZ"/>
+                                        <segue key="preview" inheritsFrom="commit" id="ebF-hp-H6G"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -298,7 +301,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="09q-iA-pQ0" kind="show" id="gY3-E0-92N"/>
+                                    <segue destination="09q-iA-pQ0" kind="show" id="gY3-E0-92N">
+                                        <segue key="commit" inheritsFrom="parent" id="q7H-AK-V3F"/>
+                                        <segue key="preview" inheritsFrom="commit" id="l91-La-vMq"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -578,4 +584,8 @@
     <resources>
         <image name="first" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gY3-E0-92N"/>
+        <segue reference="ZJT-Kc-894"/>
+    </inferredMetricsTieBreakers>
 </document>
