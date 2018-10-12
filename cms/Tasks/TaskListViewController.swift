@@ -8,9 +8,7 @@
 
 import UIKit
 
-class TaskListViewController: UIViewController, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
-
+class TaskListViewController: UITableViewController {
     private let model = TaskModel()
 
     override func viewDidLoad() {
@@ -28,11 +26,11 @@ class TaskListViewController: UIViewController, UITableViewDataSource {
         }
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.tasks.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
 
         let task = model.tasks[indexPath.row]
