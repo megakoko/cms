@@ -12,11 +12,6 @@ class ClientModel {
     static let clientUpdateNotification = Notification.Name("clientUpdateNotification")
     static let clientRelationshipUpdateNotification = Notification.Name("clientRelationshipUpdateNotification")
 
-    enum Gender : String, Decodable {
-        case male = "male"
-        case female = "female"
-    }
-
     struct Relationship : Decodable {
         var relatedClientId: Int
         var relatedClientName: String
@@ -32,8 +27,8 @@ class ClientModel {
         var middleNames: String?
         var surname: String?
         var companyName: String?
-
-        var gender: Gender?
+        var phoneNumber: String?
+        var email: String?
     }
 
     private(set) var client: Client? = nil

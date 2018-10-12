@@ -536,14 +536,31 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RelationshipCell" id="Xqu-O1-dcq">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClientViewCell" id="Xqu-O1-dcq" customClass="ClientViewCell" customModule="cms" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xqu-O1-dcq" id="8w5-Hx-xJ7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FUa-nW-979">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="FUa-nW-979" secondAttribute="trailing" constant="16" id="4jl-8F-iJt"/>
+                                        <constraint firstItem="FUa-nW-979" firstAttribute="top" secondItem="8w5-Hx-xJ7" secondAttribute="top" id="Q8A-No-UNP"/>
+                                        <constraint firstItem="FUa-nW-979" firstAttribute="leading" secondItem="8w5-Hx-xJ7" secondAttribute="leading" constant="16" id="dLp-Rs-dWq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="FUa-nW-979" secondAttribute="bottom" id="XD9-G8-bau"/>
+                                </constraints>
                                 <connections>
+                                    <outlet property="textView" destination="FUa-nW-979" id="Wr9-aU-CI3"/>
                                     <segue destination="09q-iA-pQ0" kind="show" id="Rgh-qw-2x3"/>
                                 </connections>
                             </tableViewCell>

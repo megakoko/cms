@@ -13,7 +13,17 @@ class ClientViewController : UITableViewController {
     private var model: ClientModel = ClientModel()
     var id: Int? = nil
 
-    var data = [(String,String?)]()
+    struct Field {
+        init(description: String, data: String?, detectorTypes: UIDataDetectorTypes = UIDataDetectorTypes()) {
+            self.description = description
+            self.data = data
+            self.detectorTypes = detectorTypes
+        }
+        let description: String
+        let data: String?
+        let detectorTypes: UIDataDetectorTypes
+    }
+    var fields = [Field]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,34 +47,36 @@ class ClientViewController : UITableViewController {
     }
 
     func reloadData() {
-        data.removeAll()
+        fields.removeAll()
 
         if let client = model.client {
             let isPerson = (client.type == .individual)
 
-            data.append(("Client code", client.code))
+            fields.append(Field(description: "Client Code", data: client.code))
             if isPerson {
-                data.append(("First name", client.foreNames))
-                data.append(("Middle name", client.middleNames))
-                data.append(("Surname", client.surname))
+                fields.append(Field(description: "First name", data: client.foreNames))
+                fields.append(Field(description: "Middle name", data: client.middleNames))
+                fields.append(Field(description: "Surname", data: client.surname))
             } else {
-                data.append(("Company name", client.companyName))
+                fields.append(Field(description: "Company name", data: client.companyName))
             }
-            data.append(("UTR", client.utr))
+            fields.append(Field(description: "UTR", data: client.utr))
+            fields.append(Field(description: "Telephone", data: client.phoneNumber, detectorTypes: .phoneNumber))
+            fields.append(Field(description: "Email", data: client.email, detectorTypes: .link))
         }
 
         tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 + data.count
+        return 1 + fields.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == (numberOfSections(in: tableView) - 1) {
             return "Relationships"
         } else {
-            return data[section].0
+            return fields[section].description
         }
     }
 
@@ -77,14 +89,15 @@ class ClientViewController : UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RelationshipCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ClientViewCell", for: indexPath) as! ClientViewCell
 
         if indexPath.section == (numberOfSections(in: tableView) - 1) {
             let relationship = model.relationships[indexPath.row]
-            cell.textLabel?.text = relationship.relatedClientName
+            cell.textView.text = relationship.relatedClientName
         } else {
             cell.selectionStyle = .none
-            cell.textLabel?.text = data[indexPath.section].1
+            cell.textView.text = fields[indexPath.section].data
+            cell.textView.dataDetectorTypes = fields[indexPath.section].detectorTypes
         }
 
         return cell
