@@ -22,7 +22,7 @@ class ClientListModel {
         let id: Int
         let type: ClientType
         let name: String
-        let code: String
+        let code: String?
     }
 
 
@@ -42,9 +42,9 @@ class ClientListModel {
         clear()
 
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
-        let request = URLRequest(url: URL(string: "\(host)/clients")!)
-
-        clientDataTask = URLSession.shared.dataTask(with: request) {
+        let url = URL(string: "\(host)/clients")
+        
+        clientDataTask = URLSession.shared.dataTask(with: url!) {
             data, response, error in
 
             if error != nil {

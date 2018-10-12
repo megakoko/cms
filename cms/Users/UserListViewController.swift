@@ -54,13 +54,12 @@ class UserListViewController: UITableViewController {
                 let avatar: String
             }
 
-            if let avatarData = try? JSONDecoder().decode([AvatarData].self, from: data!) {
-                for d in avatarData {
-                    let base64 = Data(base64Encoded: d.avatar.replacingOccurrences(of: "\n", with: "", options: .literal, range: nil))
-                    print(d.avatar)
-                    if base64 != nil {
-                        let img = UIImage(data: base64!)
-                        self.avatars[d.userId] = img
+            if let avatarDataList = try? JSONDecoder().decode([AvatarData].self, from: data!) {
+                for avatarData in avatarDataList {
+                    let base64string = avatarData.avatar.replacingOccurrences(of: "\n", with: "", options: .literal, range: nil);
+                    if let base64 = Data(base64Encoded: base64string) {
+                        let img = UIImage(data: base64)
+                        self.avatars[avatarData.userId] = img
                     }
                 }
             }

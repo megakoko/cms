@@ -33,16 +33,18 @@ class TaskListViewController: UIViewController, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-        cell.label.text = "Cell \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
 
         let task = model.tasks[indexPath.row]
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy'\nat' hh:mm"
+        dateFormatter.dateFormat = "dd.MM.yyyy hh:mm"
         
-        cell.label.text = task.name
-        cell.date.text = dateFormatter.string(from: task.endDate)
+        cell.textLabel?.text = task.name
+        cell.detailTextLabel?.text = task.endDate == nil ? nil : (dateFormatter.string(from: task.endDate!))
+
+        let overDue = task.endDate != nil ? (task.endDate! > Date()) : false
+        cell.detailTextLabel?.textColor = overDue ? UIColor.red : UIColor.black
 
         return cell
     }

@@ -41,8 +41,9 @@ class ClientModel {
 
     func load(id: Int) {
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
-        let coreRequest = URLRequest(url: URL(string: "\(host)/client?id=eq.\(id)")!)
-        let coreDataTask = URLSession.shared.dataTask(with: coreRequest) {
+        let url = URL(string: "\(host)/client?id=eq.\(id)")!
+
+        let coreDataTask = URLSession.shared.dataTask(with: url) {
             data, response, error in
 
             if error != nil {
@@ -60,8 +61,8 @@ class ClientModel {
         }
         coreDataTask.resume()
 
-        let relationshipsRequest = URLRequest(url: URL(string: "\(host)/clientrelationship?clientId=eq.\(id)")!)
-        let relationshipsDataTask = URLSession.shared.dataTask(with: relationshipsRequest) {
+        let relationshipUrl = URL(string: "\(host)/clientrelationship?clientId=eq.\(id)")!
+        let relationshipsDataTask = URLSession.shared.dataTask(with: relationshipUrl) {
             data, response, error in
 
             if error != nil {
