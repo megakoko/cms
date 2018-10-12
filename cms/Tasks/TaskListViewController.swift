@@ -46,4 +46,12 @@ class TaskListViewController: UITableViewController {
 
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = tableView.indexPathForSelectedRow
+        let task = model.tasks[indexPath!.row]
+
+        let taskViewController = segue.destination as! TaskViewController
+        taskViewController.id = task.id
+    }
 }
