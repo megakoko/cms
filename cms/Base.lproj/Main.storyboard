@@ -118,9 +118,6 @@
                                                 <constraint firstItem="UOs-lh-aYS" firstAttribute="leading" secondItem="ABO-W5-sE3" secondAttribute="leading" constant="16" id="xI5-rF-iD4"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="gZw-Pj-yyN" kind="show" id="XNc-xv-cdF"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -292,7 +289,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQu-Pj-YV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2538.4000000000001" y="-292.80359820089956"/>
+            <point key="canvasLocation" x="2508" y="-288"/>
         </scene>
         <!--Clients-->
         <scene sceneID="PL1-hF-xIJ">
@@ -561,7 +558,10 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="textView" destination="FUa-nW-979" id="Wr9-aU-CI3"/>
-                                    <segue destination="09q-iA-pQ0" kind="show" id="Rgh-qw-2x3"/>
+                                    <segue destination="09q-iA-pQ0" kind="show" id="Rgh-qw-2x3">
+                                        <segue key="commit" inheritsFrom="parent" id="Cpt-sx-XZH"/>
+                                        <segue key="preview" inheritsFrom="commit" id="Gx3-Fn-po6"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

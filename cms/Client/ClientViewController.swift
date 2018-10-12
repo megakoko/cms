@@ -28,8 +28,10 @@ class ClientViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        model.load(id: id!)
-        reloadData()
+        if id != nil {
+            model.load(id: id!)
+            reloadData()
+        }
 
         NotificationCenter.default.addObserver(forName: ClientModel.clientUpdateNotification,
                                                object: model,
@@ -111,12 +113,11 @@ class ClientViewController : UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow else {
-            print("No relationship selected")
-            return
-        }
+        guard let cell = sender as? UITableViewCell else { return }
 
-        let relationship = model.relationships[indexPath.row]
+        let indexPath = tableView.indexPath(for: cell)
+
+        let relationship = model.relationships[indexPath!.row]
 
         let clientViewController = segue.destination as! ClientViewController
         clientViewController.id = relationship.relatedClientId

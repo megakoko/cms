@@ -53,7 +53,9 @@ class TaskListViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = tableView.indexPathForSelectedRow
+        guard let cell = sender as? UITableViewCell else { return }
+
+        let indexPath = tableView.indexPath(for: cell)
         let task = model.tasks[indexPath!.row]
 
         let taskViewController = segue.destination as! TaskViewController
