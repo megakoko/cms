@@ -15,6 +15,7 @@ class TaskModel {
         let id: Int
         let name: String
         let endDate: Date?
+        let endDateReminder: Date?
     }
 
     private(set) var tasks = [Task]()
