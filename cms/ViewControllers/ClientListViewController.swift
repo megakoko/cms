@@ -13,6 +13,10 @@ import UIKit
 class ClientListViewController : UITableViewController {
     private var clients = [Client]()
     private var clientDataTask: URLSessionDataTask? = nil
+    private var clientTypeDescriptions = [Client.ClientType.limitedCompany: "Company",
+                                          Client.ClientType.trust: "Trust",
+                                          Client.ClientType.partnership: "Partnership",
+                                          Client.ClientType.individual: "Individual"]
 
     @IBAction func onTablePulledToRefresh(_ sender: UIRefreshControl) {
         refreshData()
@@ -65,6 +69,7 @@ class ClientListViewController : UITableViewController {
 
         let client = clients[indexPath.row]
         cell.textLabel?.text = client.name
+        cell.detailTextLabel?.text = clientTypeDescriptions[client.type]! + (client.code == nil ? "" : (" — " + client.code!))
 
         return cell
     }
