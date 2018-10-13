@@ -292,7 +292,7 @@
                             <outlet property="delegate" destination="gZw-Pj-yyN" id="QQJ-WC-oL5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="kQK-1o-X1g"/>
+                    <navigationItem key="navigationItem" title="Task" largeTitleDisplayMode="never" id="kQK-1o-X1g"/>
                     <connections>
                         <outlet property="assigneeLabel" destination="Lin-oc-WUy" id="ung-bE-i83"/>
                         <outlet property="clientNameCell" destination="Ns8-Eg-C7A" id="nhQ-e7-t7c"/>
@@ -658,7 +658,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q7H-AK-V3F"/>
+        <segue reference="mmK-mC-GJF"/>
         <segue reference="ZJT-Kc-894"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
