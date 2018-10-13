@@ -16,6 +16,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kxb-yz-JPa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="jqA-QZ-2Vg" kind="relationship" relationship="rootViewController" id="xXq-Bw-wGT"/>
@@ -242,7 +243,7 @@
                                                     <rect key="frame" x="16" y="11" width="309" height="21"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -252,6 +253,7 @@
                                                 <constraint firstItem="uWQ-dB-zmx" firstAttribute="top" secondItem="8yw-iG-otB" secondAttribute="top" constant="11" id="a9W-Yr-4Zf"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="KWc-6n-lpi" appends="YES" id="Ew6-Ly-swk"/>
                                         </connections>
@@ -601,6 +603,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="APx-Nx-s9F">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="zAN-98-9az" kind="relationship" relationship="rootViewController" id="0se-3j-tp8"/>
