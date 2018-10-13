@@ -26,7 +26,13 @@ class ClientListModel {
     }
 
 
-    private(set) var clients = [Client]()
+    private(set) var clients = [Client]() {
+        didSet {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(Notification(name: ClientListModel.clientListUpdateNotification))
+            }
+        }
+    }
 
     private var clientDataTask: URLSessionDataTask? = nil
 
@@ -55,10 +61,6 @@ class ClientListModel {
             let decoder = JSONDecoder()
             if let clients = try? decoder.decode([Client].self, from: data!) {
                 self.clients = clients
-            }
-
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(Notification(name: ClientListModel.clientListUpdateNotification))
             }
         }
 

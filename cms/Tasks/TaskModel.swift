@@ -18,7 +18,13 @@ class TaskModel {
         let endDateReminder: Date?
     }
 
-    private(set) var tasks = [Task]()
+    private(set) var tasks = [Task]() {
+        didSet {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: TaskModel.taskUpdatedNotification, object: self)
+            }
+        }
+    }
 
     private var taskListDataTask: URLSessionDataTask?
 
@@ -48,10 +54,6 @@ class TaskModel {
             decoder.dateDecodingStrategy = .iso8601
             if let tasks = try? decoder.decode([Task].self, from: data!) {
                 self.tasks = tasks
-            }
-
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: TaskModel.taskUpdatedNotification, object: self)
             }
         }
 
