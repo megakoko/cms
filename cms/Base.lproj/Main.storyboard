@@ -13,8 +13,8 @@
             <objects>
                 <navigationController id="mVW-UE-rsJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Tasks" image="first" selectedImage="first" id="K83-g4-v22"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kxb-yz-JPa">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Kxb-yz-JPa">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -78,6 +78,7 @@
                     <tabBarItem key="tabBarItem" title="Tasks" image="first" selectedImage="first" id="Iit-LG-f75"/>
                     <navigationItem key="navigationItem" title="Tasks" id="LVh-jS-dUf"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Dlu-Ov-YpO">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle"/>
                         <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
@@ -291,6 +292,7 @@
                             <outlet property="delegate" destination="gZw-Pj-yyN" id="QQJ-WC-oL5"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="kQK-1o-X1g"/>
                     <connections>
                         <outlet property="assigneeLabel" destination="Lin-oc-WUy" id="ung-bE-i83"/>
                         <outlet property="clientNameCell" destination="Ns8-Eg-C7A" id="nhQ-e7-t7c"/>
@@ -402,6 +404,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Users" id="W1S-32-0ho"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mvv-hb-BBa">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                         <connections>
@@ -418,8 +421,8 @@
             <objects>
                 <navigationController id="fza-A4-ES1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Users" image="second" selectedImage="second" id="7cv-ed-orC"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6i8-zB-buC">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6i8-zB-buC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -539,7 +542,7 @@
             </objects>
             <point key="canvasLocation" x="756" y="2342"/>
         </scene>
-        <!--Client View Controller-->
+        <!--Title-->
         <scene sceneID="nvn-Qx-sRs">
             <objects>
                 <tableViewController id="09q-iA-pQ0" customClass="ClientViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
@@ -590,6 +593,7 @@
                             <outlet property="delegate" destination="09q-iA-pQ0" id="enJ-bs-pbH"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="CE6-IW-ffU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bnp-FR-FKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -600,8 +604,8 @@
             <objects>
                 <navigationController id="Zfy-IR-CwU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Clients" image="first" selectedImage="first" id="8O8-5y-r1h"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="APx-Nx-s9F">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="APx-Nx-s9F">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -638,7 +642,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l91-La-vMq"/>
+        <segue reference="q7H-AK-V3F"/>
         <segue reference="ZJT-Kc-894"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
