@@ -19,6 +19,10 @@ class UserListViewController: UITableViewController {
         reloadUsers()
     }
 
+    @IBAction func onTablePulledToRefresh(_ sender: Any) {
+        reloadUsers()
+    }
+
     func reloadUsers() {
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
         let coreRequest = URLRequest(url: URL(string: "\(host)/users")!)
@@ -36,6 +40,7 @@ class UserListViewController: UITableViewController {
 
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
             }
         }
         coreDataTask.resume()
@@ -54,17 +59,20 @@ class UserListViewController: UITableViewController {
                 let avatar: String
             }
 
+            
+            var avatars = [Int: UIImage]()
             if let avatarDataList = try? JSONDecoder().decode([AvatarData].self, from: data!) {
                 for avatarData in avatarDataList {
                     let base64string = avatarData.avatar.replacingOccurrences(of: "\n", with: "", options: .literal, range: nil);
                     if let base64 = Data(base64Encoded: base64string) {
                         let img = UIImage(data: base64)
-                        self.avatars[avatarData.userId] = img
+                        avatars[avatarData.userId] = img
                     }
                 }
             }
 
             DispatchQueue.main.async {
+                self.avatars = avatars
                 self.tableView.reloadData()
             }
         }
@@ -85,15 +93,4 @@ class UserListViewController: UITableViewController {
 
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

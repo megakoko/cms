@@ -23,8 +23,14 @@ class TaskListViewController: UITableViewController {
                                                queue: nil) {
             _ in
             self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
+
+    @IBAction func onTablePulledToRefresh(_ sender: Any) {
+        model.refresh()
+    }
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.tasks.count

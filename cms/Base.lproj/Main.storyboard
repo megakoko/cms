@@ -77,6 +77,14 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Tasks" id="Iit-LG-f75"/>
                     <navigationItem key="navigationItem" title="Tasks" id="LVh-jS-dUf"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Dlu-Ov-YpO">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
+                        <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="onTablePulledToRefresh:" destination="jqA-QZ-2Vg" eventType="valueChanged" id="4sN-ws-2Hc"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H82-un-2SB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -335,15 +343,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="qgg-0q-f7H">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <attributedString key="attributedTitle">
-                            <fragment content="Refresh clients...">
-                                <attributes>
-                                    <color key="NSColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" metaFont="smallSystem"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                        <attributedString key="attributedTitle"/>
                         <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="onTablePulledToRefresh:" destination="zAN-98-9az" eventType="valueChanged" id="XU3-fx-CVo"/>
@@ -399,6 +399,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Users" id="W1S-32-0ho"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mvv-hb-BBa">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="onTablePulledToRefresh:" destination="RgN-wG-hCG" eventType="valueChanged" id="fXB-YC-EQA"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m19-5r-hI9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -628,7 +635,7 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mmK-mC-GJF"/>
+        <segue reference="l91-La-vMq"/>
         <segue reference="ZJT-Kc-894"/>
     </inferredMetricsTieBreakers>
 </document>
