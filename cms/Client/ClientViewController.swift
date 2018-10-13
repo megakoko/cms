@@ -102,9 +102,6 @@ class ClientViewController : UITableViewController {
             cell.selectionStyle = .none
             cell.textView.text = fields[indexPath.section].data
             cell.textView.dataDetectorTypes = fields[indexPath.section].detectorTypes
-            if cell.textView.dataDetectorTypes != UIDataDetectorTypes() {
-                cell.textView.tintColor = navigationController?.navigationBar.tintColor
-            }
         }
 
         return cell
