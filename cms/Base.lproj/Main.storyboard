@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ki-zO-f52" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="-288"/>
+            <point key="canvasLocation" x="756" y="-507"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="r8G-lf-UjD">
@@ -80,7 +80,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H82-un-2SB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1708" y="-288"/>
+            <point key="canvasLocation" x="1708" y="-508"/>
         </scene>
         <!--Task-->
         <scene sceneID="0lN-uW-tsK">
@@ -223,17 +223,18 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Client Name" id="0nI-5f-JT0">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ns8-Eg-C7A">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Ns8-Eg-C7A">
                                         <rect key="frame" x="0.0" y="388" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ns8-Eg-C7A" id="8yw-iG-otB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWQ-dB-zmx">
-                                                    <rect key="frame" x="16" y="11" width="343" height="21"/>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWQ-dB-zmx">
+                                                    <rect key="frame" x="16" y="11" width="309" height="21"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -243,6 +244,9 @@
                                                 <constraint firstItem="uWQ-dB-zmx" firstAttribute="top" secondItem="8yw-iG-otB" secondAttribute="top" constant="11" id="a9W-Yr-4Zf"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="KWc-6n-lpi" appends="YES" id="Ew6-Ly-swk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -279,7 +283,9 @@
                     </tableView>
                     <connections>
                         <outlet property="assigneeLabel" destination="Lin-oc-WUy" id="ung-bE-i83"/>
+                        <outlet property="clientNameCell" destination="Ns8-Eg-C7A" id="nhQ-e7-t7c"/>
                         <outlet property="clientNameLabel" destination="uWQ-dB-zmx" id="Hrz-tk-bbt"/>
+                        <outlet property="clientNameTapGestureRecognizer" destination="KWc-6n-lpi" id="UsL-Fq-vp6"/>
                         <outlet property="endDateLabel" destination="hcG-d3-lxV" id="Asf-pi-8ai"/>
                         <outlet property="nameLabel" destination="UOs-lh-aYS" id="wkL-m4-bc8"/>
                         <outlet property="startDateLabel" destination="LjD-I0-l3x" id="Oka-Il-iTn"/>
@@ -288,8 +294,13 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQu-Pj-YV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="KWc-6n-lpi">
+                    <connections>
+                        <segue destination="09q-iA-pQ0" kind="show" id="mmK-mC-GJF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2508" y="-288"/>
+            <point key="canvasLocation" x="2538" y="-508"/>
         </scene>
         <!--Clients-->
         <scene sceneID="PL1-hF-xIJ">
@@ -341,7 +352,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgJ-H9-bSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1709" y="400"/>
+            <point key="canvasLocation" x="1708" y="400"/>
         </scene>
         <!--Users-->
         <scene sceneID="Y7g-iI-cks">
@@ -391,7 +402,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m19-5r-hI9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1715" y="1146"/>
+            <point key="canvasLocation" x="1708" y="1421"/>
         </scene>
         <!--Users-->
         <scene sceneID="J6h-br-YZC">
@@ -408,7 +419,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5II-cL-lbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="1146"/>
+            <point key="canvasLocation" x="756" y="1421"/>
         </scene>
         <!--Settings-->
         <scene sceneID="z2u-Bh-Rid">
@@ -517,7 +528,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UT-4a-nlf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="753" y="1862"/>
+            <point key="canvasLocation" x="756" y="2342"/>
         </scene>
         <!--Client View Controller-->
         <scene sceneID="nvn-Qx-sRs">
@@ -590,7 +601,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leL-5Y-Whs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="400"/>
+            <point key="canvasLocation" x="756" y="400"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -610,14 +621,14 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-321" y="400"/>
         </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gY3-E0-92N"/>
+        <segue reference="mmK-mC-GJF"/>
         <segue reference="ZJT-Kc-894"/>
     </inferredMetricsTieBreakers>
 </document>

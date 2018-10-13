@@ -15,6 +15,7 @@ class TaskViewController: UITableViewController {
         var endDate: Date?
         var startDate: Date?
         var clientName: String?
+        var clientId: Int?
         var assignee: String?
         var workDescription: String?
         var status: String?
@@ -30,8 +31,9 @@ class TaskViewController: UITableViewController {
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var assigneeLabel: UILabel!
     @IBOutlet weak var clientNameLabel: UILabel!
+    @IBOutlet weak var clientNameCell: UITableViewCell!
     @IBOutlet weak var workDescriptionLabel: UILabel!
-
+    @IBOutlet weak var clientNameTapGestureRecognizer: UITapGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +80,18 @@ class TaskViewController: UITableViewController {
         startDateLabel.text = task?.startDate != nil ? dateFormatter.string(from: (task?.startDate)!) : nil
         assigneeLabel.text = task?.assignee
         clientNameLabel.text = task?.clientName
+        clientNameCell.accessoryType = task?.clientId == nil ? .none : .disclosureIndicator
         workDescriptionLabel.text = task?.workDescription
+
+        if task?.clientId == nil {
+            clientNameTapGestureRecognizer.isEnabled = false
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let clientViewController = segue.destination as! ClientViewController
+
+        clientViewController.id = task?.clientId
+        clientViewController.title = task?.clientName
     }
 }
