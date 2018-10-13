@@ -12,7 +12,7 @@
         <scene sceneID="idU-aW-7HP">
             <objects>
                 <navigationController id="mVW-UE-rsJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tasks" id="K83-g4-v22"/>
+                    <tabBarItem key="tabBarItem" title="Tasks" image="first" selectedImage="first" id="K83-g4-v22"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kxb-yz-JPa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -75,7 +75,7 @@
                             <outlet property="delegate" destination="jqA-QZ-2Vg" id="K5D-CC-p4y"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Tasks" id="Iit-LG-f75"/>
+                    <tabBarItem key="tabBarItem" title="Tasks" image="first" selectedImage="first" id="Iit-LG-f75"/>
                     <navigationItem key="navigationItem" title="Tasks" id="LVh-jS-dUf"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Dlu-Ov-YpO">
                         <autoresizingMask key="autoresizingMask"/>
@@ -417,7 +417,7 @@
         <scene sceneID="J6h-br-YZC">
             <objects>
                 <navigationController id="fza-A4-ES1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Users" id="7cv-ed-orC"/>
+                    <tabBarItem key="tabBarItem" title="Users" image="second" selectedImage="second" id="7cv-ed-orC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6i8-zB-buC">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -599,7 +599,7 @@
         <scene sceneID="47G-Jh-cbn">
             <objects>
                 <navigationController id="Zfy-IR-CwU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Clients" image="first" id="8O8-5y-r1h"/>
+                    <tabBarItem key="tabBarItem" title="Clients" image="first" selectedImage="first" id="8O8-5y-r1h"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="APx-Nx-s9F">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -635,9 +635,10 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mmK-mC-GJF"/>
+        <segue reference="l91-La-vMq"/>
         <segue reference="ZJT-Kc-894"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
