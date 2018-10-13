@@ -12,25 +12,6 @@ class ClientModel {
     static let clientUpdateNotification = Notification.Name("clientUpdateNotification")
     static let clientRelationshipUpdateNotification = Notification.Name("clientRelationshipUpdateNotification")
 
-    struct Relationship : Decodable {
-        var relatedClientId: Int
-        var relatedClientName: String
-        var type: String
-    }
-
-    struct Client : Decodable {
-        var id: Int
-        var type: ClientListModel.Client.ClientType = .individual
-        var code: String?
-        var utr: String?
-        var foreNames: String?
-        var middleNames: String?
-        var surname: String?
-        var companyName: String?
-        var phoneNumber: String?
-        var email: String?
-    }
-
     private(set) var client: Client? = nil
     private(set) var relationships = [Relationship] ()
 

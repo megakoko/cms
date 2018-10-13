@@ -9,18 +9,6 @@
 import UIKit
 
 class TaskViewController: UITableViewController {
-    struct Task : Decodable {
-        var id: Int
-        var name: String
-        var endDate: Date?
-        var startDate: Date?
-        var clientName: String?
-        var clientId: Int?
-        var assignee: String?
-        var workDescription: String?
-        var status: String?
-    }
-
     var id: Int? = nil
 
     var task: Task? = nil

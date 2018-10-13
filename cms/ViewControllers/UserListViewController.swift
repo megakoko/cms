@@ -10,6 +10,8 @@ import UIKit
 
 class UserListViewController: UITableViewController {
     var users = [User] ()
+    var coreDataTask: URLSessionDataTask? = nil
+    var avatarDataTask: URLSessionDataTask? = nil
 
     var avatars = [Int: UIImage]()
 
@@ -24,9 +26,14 @@ class UserListViewController: UITableViewController {
     }
 
     func reloadUsers() {
+        if coreDataTask != nil {
+            coreDataTask?.cancel()
+            coreDataTask = nil
+        }
+
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
         let coreRequest = URLRequest(url: URL(string: "\(host)/users")!)
-        let coreDataTask = URLSession.shared.dataTask(with: coreRequest) {
+        coreDataTask = URLSession.shared.dataTask(with: coreRequest) {
             data, response, error in
 
             if error != nil {
@@ -43,10 +50,16 @@ class UserListViewController: UITableViewController {
                 self.tableView.refreshControl?.endRefreshing()
             }
         }
-        coreDataTask.resume()
+        coreDataTask?.resume()
+
+
+        if avatarDataTask != nil {
+            avatarDataTask?.cancel()
+            avatarDataTask = nil
+        }
 
         let avatarRequest = URLRequest(url: URL(string: "\(host)/avatars")!)
-        let avatarDataTask = URLSession.shared.dataTask(with: avatarRequest) {
+        avatarDataTask = URLSession.shared.dataTask(with: avatarRequest) {
             data, response, error in
 
             if error != nil {
@@ -76,7 +89,7 @@ class UserListViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        avatarDataTask.resume()
+        avatarDataTask?.resume()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

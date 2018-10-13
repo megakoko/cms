@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 
 class ClientViewController : UITableViewController {
-    private var model: ClientModel = ClientModel()
     var id: Int? = nil
 
-    struct Field {
+    private var client: Client? = nil
+    private var relationships = [Relationship] ()
+
+    private struct Field {
         init(description: String, data: String?, detectorTypes: UIDataDetectorTypes = UIDataDetectorTypes()) {
             self.description = description
             self.data = data
@@ -23,35 +25,65 @@ class ClientViewController : UITableViewController {
         let data: String?
         let detectorTypes: UIDataDetectorTypes
     }
-    var fields = [Field]()
+    private var fields = [Field]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if id != nil {
-            model.load(id: id!)
-            reloadData()
-        }
-
-        NotificationCenter.default.addObserver(forName: ClientModel.clientUpdateNotification,
-                                               object: model,
-                                               queue: nil) {
-            _ in
-            self.reloadData()
-        }
-
-        NotificationCenter.default.addObserver(forName: ClientModel.clientRelationshipUpdateNotification,
-                                               object: model,
-                                               queue: nil) {
-            _ in
-            self.reloadData()
+            loadData()
+            updateUi()
         }
     }
 
-    func reloadData() {
+    func loadData() {
+        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let url = URL(string: "\(host)/client?id=eq.\(id!)")!
+
+        let coreDataTask = URLSession.shared.dataTask(with: url) {
+            data, response, error in
+
+            if error != nil {
+                print("Failed to get client: \(error!)")
+                return
+            }
+
+            if let clients = try? JSONDecoder().decode([Client].self, from: data!) {
+                self.client = clients.first
+            }
+
+            DispatchQueue.main.async {
+                self.updateUi()
+            }
+        }
+        coreDataTask.resume()
+
+        let relationshipUrl = URL(string: "\(host)/clientrelationship?clientId=eq.\(id!)")!
+        let relationshipsDataTask = URLSession.shared.dataTask(with: relationshipUrl) {
+            data, response, error in
+
+            if error != nil {
+                print("Failed to get relationships: \(error!)")
+                return
+            }
+
+            if let relationships = try? JSONDecoder().decode([Relationship].self, from: data!) {
+                self.relationships = relationships
+            }
+
+            DispatchQueue.main.async {
+                self.updateUi()
+            }
+        }
+
+        relationshipsDataTask.resume()
+    }
+
+
+    func updateUi() {
         fields.removeAll()
 
-        if let client = model.client {
+        if let client = client {
             let isPerson = (client.type == .individual)
 
             fields.append(Field(description: "Client Code", data: client.code))
@@ -84,7 +116,7 @@ class ClientViewController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == (numberOfSections(in: tableView) - 1) {
-            return model.relationships.count
+            return relationships.count
         } else {
             return 1
         }
@@ -94,7 +126,7 @@ class ClientViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClientViewCell", for: indexPath) as! ClientViewCell
 
         if indexPath.section == (numberOfSections(in: tableView) - 1) {
-            let relationship = model.relationships[indexPath.row]
+            let relationship = relationships[indexPath.row]
             cell.accessoryType = .disclosureIndicator
             cell.textView.isUserInteractionEnabled = false
             cell.textView.text = relationship.relatedClientName
@@ -117,7 +149,7 @@ class ClientViewController : UITableViewController {
 
         let indexPath = tableView.indexPath(for: cell)
 
-        let relationship = model.relationships[indexPath!.row]
+        let relationship = relationships[indexPath!.row]
 
         let clientViewController = segue.destination as! ClientViewController
         clientViewController.id = relationship.relatedClientId
