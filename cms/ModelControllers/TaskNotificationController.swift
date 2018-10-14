@@ -13,7 +13,7 @@ class TaskNotificationController {
     static let numberOfDueTasksNotification = Notification.Name("numberOfDueTasks")
     static let numberOfDueTasksKey = "numberOfDueTasks"
 
-    static let refreshInterval = 5.0
+    static let refreshInterval = 60.0
 
     private var userId: Int
     private var numberOfOverdueTasks = 0
@@ -66,5 +66,15 @@ class TaskNotificationController {
                                             userInfo: [TaskNotificationController.numberOfDueTasksKey: self.numberOfOverdueTasks])
         }
         dataTask!.resume()
+
+        Timer.scheduledTimer(timeInterval: TaskNotificationController.refreshInterval,
+                             target:self,
+                             selector: #selector(self.onRefreshTimerFired),
+                             userInfo: nil,
+                             repeats: false)
+    }
+
+    @objc func onRefreshTimerFired() {
+        refreshData()
     }
 }
