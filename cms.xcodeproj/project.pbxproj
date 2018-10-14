@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DA10A0212172323500C28463 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA10A0202172323500C28463 /* Task.swift */; };
 		DA10A025217233C700C28463 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA10A024217233C700C28463 /* Client.swift */; };
+		DA10A02A2173202F00C28463 /* TaskNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA10A0292173202F00C28463 /* TaskNotificationController.swift */; };
+		DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA10A02B21732B6200C28463 /* TabViewController.swift */; };
 		DA2A966B216E498D000AE7F1 /* ClientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */; };
 		DA2A966E216E5F66000AE7F1 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966D216E5F66000AE7F1 /* ClientModel.swift */; };
 		DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		DA10A0202172323500C28463 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		DA10A024217233C700C28463 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		DA10A0292173202F00C28463 /* TaskNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNotificationController.swift; sourceTree = "<group>"; };
+		DA10A02B21732B6200C28463 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListViewController.swift; sourceTree = "<group>"; };
 		DA2A966D216E5F66000AE7F1 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
 		DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,7 @@
 		DA10A01D217230CB00C28463 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DA10A02B21732B6200C28463 /* TabViewController.swift */,
 				DA6C116C216CD04A00DAD2D0 /* TaskListViewController.swift */,
 				DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */,
 				DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */,
@@ -84,6 +89,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		DA10A0282173200700C28463 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DA10A0292173202F00C28463 /* TaskNotificationController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
 		DA6C115E216CD04A00DAD2D0 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +118,7 @@
 			children = (
 				DA10A01E217230F700C28463 /* Model */,
 				DA10A01D217230CB00C28463 /* ViewControllers */,
+				DA10A0282173200700C28463 /* ModelControllers */,
 				DA10A01F2172313600C28463 /* Views */,
 				DA6C116A216CD04A00DAD2D0 /* AppDelegate.swift */,
 				DA6C1170216CD04A00DAD2D0 /* Main.storyboard */,
@@ -147,6 +161,11 @@
 				TargetAttributes = {
 					DA6C1166216CD04A00DAD2D0 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -186,9 +205,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA10A02A2173202F00C28463 /* TaskNotificationController.swift in Sources */,
 				DA2A966B216E498D000AE7F1 /* ClientListViewController.swift in Sources */,
 				DA2A966E216E5F66000AE7F1 /* ClientModel.swift in Sources */,
 				DA10A025217233C700C28463 /* Client.swift in Sources */,
+				DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */,
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
 				DA10A0212172323500C28463 /* Task.swift in Sources */,
 				DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */,
