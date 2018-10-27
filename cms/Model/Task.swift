@@ -16,6 +16,7 @@ struct Task : Decodable {
     var startDate: Date?
     var clientName: String?
     var clientId: Int?
+    var clientType: Client.ClientType?
     var assignee: String?
     var workDescription: String?
     var status: String?

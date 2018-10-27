@@ -16,6 +16,11 @@ struct Client : Decodable {
         case partnership = "partnership"
     }
 
+    init(id: Int, type: ClientType) {
+        self.id = id
+        self.type = type
+    }
+
     var id: Int
     var type: ClientType
     var name: String?
@@ -31,6 +36,7 @@ struct Client : Decodable {
 
 struct Relationship : Decodable {
     var relatedClientId: Int
+    var relatedClientType: Client.ClientType
     var relatedClientName: String
     var type: String
 }

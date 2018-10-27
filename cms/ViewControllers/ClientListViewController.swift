@@ -82,7 +82,7 @@ class ClientListViewController : UITableViewController {
         let client = clients[indexPath!.row]
 
         let clientViewController = segue.destination as! ClientViewController
-        clientViewController.id = client.id
+        clientViewController.setClient(id: client.id, type: client.type)
         clientViewController.title = client.name
     }
 }

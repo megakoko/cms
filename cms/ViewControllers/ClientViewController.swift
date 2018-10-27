@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 class ClientViewController : UITableViewController {
-    var id: Int? = nil
-
     private var client: Client? = nil
     private var relationships = [Relationship] ()
 
@@ -30,15 +28,21 @@ class ClientViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if id != nil {
+        updateUi()
+
+        if client?.id != nil {
             loadData()
             updateUi()
         }
     }
 
-    func loadData() {
+    func setClient(id: Int, type: Client.ClientType) {
+        self.client = Client(id: id, type: type)
+    }
+
+    private func loadData() {
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
-        let url = URL(string: "\(host)/client?id=eq.\(id!)")!
+        let url = URL(string: "\(host)/client?id=eq.\(client!.id)")!
 
         let coreDataTask = URLSession.shared.dataTask(with: url) {
             data, response, error in
@@ -58,7 +62,7 @@ class ClientViewController : UITableViewController {
         }
         coreDataTask.resume()
 
-        let relationshipUrl = URL(string: "\(host)/clientrelationship?clientId=eq.\(id!)")!
+        let relationshipUrl = URL(string: "\(host)/clientrelationship?clientId=eq.\(client!.id)")!
         let relationshipsDataTask = URLSession.shared.dataTask(with: relationshipUrl) {
             data, response, error in
 
@@ -79,8 +83,7 @@ class ClientViewController : UITableViewController {
         relationshipsDataTask.resume()
     }
 
-
-    func updateUi() {
+    private func updateUi() {
         fields.removeAll()
 
         if let client = client {
@@ -152,7 +155,7 @@ class ClientViewController : UITableViewController {
         let relationship = relationships[indexPath!.row]
 
         let clientViewController = segue.destination as! ClientViewController
-        clientViewController.id = relationship.relatedClientId
+        clientViewController.setClient(id: relationship.relatedClientId, type: relationship.relatedClientType)
         clientViewController.title = relationship.relatedClientName
     }
 }

@@ -79,7 +79,9 @@ class TaskViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let clientViewController = segue.destination as! ClientViewController
 
-        clientViewController.id = task?.clientId
-        clientViewController.title = task?.clientName
+        if let task = task {
+            clientViewController.setClient(id: task.clientId!, type: task.clientType!)
+            clientViewController.title = task.clientName
+        }
     }
 }
