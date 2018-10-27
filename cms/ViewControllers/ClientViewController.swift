@@ -198,14 +198,24 @@ class ClientViewController : UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let cell = sender as? UITableViewCell else { return }
+        if segue.identifier == "mapDetailsSegue" {
+            let mapDetailsController = segue.destination as! MapDetailsViewController
+            mapDetailsController.setRegion(mapView.region)
+            mapDetailsController.setAnnotations(mapView.annotations)
+        } else if segue.identifier == "relatedClientSeque" {
+            guard let cell = sender as? UITableViewCell else { return }
 
-        let indexPath = tableView.indexPath(for: cell)
+            let indexPath = tableView.indexPath(for: cell)
 
-        let relationship = relationships[indexPath!.row]
+            let relationship = relationships[indexPath!.row]
 
-        let clientViewController = segue.destination as! ClientViewController
-        clientViewController.setClient(id: relationship.relatedClientId, type: relationship.relatedClientType)
-        clientViewController.title = relationship.relatedClientName
+            let clientViewController = segue.destination as! ClientViewController
+            clientViewController.setClient(id: relationship.relatedClientId, type: relationship.relatedClientType)
+            clientViewController.title = relationship.relatedClientName
+        }
+    }
+
+    @IBAction func openMapDetails(_ sender: Any) {
+        performSegue(withIdentifier: "mapDetailsSegue", sender: mapView)
     }
 }

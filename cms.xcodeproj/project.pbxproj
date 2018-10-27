@@ -22,6 +22,7 @@
 		DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C152170751D004B1498 /* UserListViewController.swift */; };
 		DA7E6C182170752A004B1498 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C172170752A004B1498 /* User.swift */; };
 		DA7E6C1B2170D0EC004B1498 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */; };
+		DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */; };
 		DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		DA7E6C152170751D004B1498 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		DA7E6C172170752A004B1498 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
 		DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */,
 				DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */,
 				DA7E6C152170751D004B1498 /* UserListViewController.swift */,
+				DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
 				DA10A0212172323500C28463 /* Task.swift in Sources */,
 				DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */,
+				DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */,
 				DA6C116B216CD04A00DAD2D0 /* AppDelegate.swift in Sources */,
 				DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */,
 				DA7E6C1B2170D0EC004B1498 /* TaskViewController.swift in Sources */,

@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -457,9 +458,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <mapView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="3u2-u9-JGn">
+                        <mapView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" id="nJa-0V-OIx">
                             <rect key="frame" x="0.0" y="72" width="375" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="Acx-1H-jlN" appends="YES" id="Cc8-lX-3gI"/>
+                            </connections>
                         </mapView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClientViewCell" id="Xqu-O1-dcq" customClass="ClientViewCell" customModule="cms" customModuleProvider="target">
@@ -487,10 +492,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="textView" destination="FUa-nW-979" id="Wr9-aU-CI3"/>
-                                    <segue destination="09q-iA-pQ0" kind="show" id="Rgh-qw-2x3">
-                                        <segue key="commit" inheritsFrom="parent" id="Cpt-sx-XZH"/>
-                                        <segue key="preview" inheritsFrom="commit" id="Gx3-Fn-po6"/>
-                                    </segue>
+                                    <segue destination="09q-iA-pQ0" kind="show" identifier="relatedClientSeque" id="aaR-Lu-NAX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -501,12 +503,47 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="CE6-IW-ffU"/>
                     <connections>
-                        <outlet property="mapView" destination="3u2-u9-JGn" id="RIS-Pe-nI9"/>
+                        <outlet property="mapView" destination="nJa-0V-OIx" id="QWV-X0-pMg"/>
+                        <segue destination="boR-4r-aeV" kind="show" identifier="mapDetailsSegue" id="3D0-eh-j0P"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bnp-FR-FKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Acx-1H-jlN">
+                    <connections>
+                        <action selector="openMapDetails:" destination="09q-iA-pQ0" id="sjz-IM-kk4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2538.4000000000001" y="403.44827586206901"/>
+        </scene>
+        <!--Map Details View Controller-->
+        <scene sceneID="hCT-7O-biK">
+            <objects>
+                <viewController id="boR-4r-aeV" customClass="MapDetailsViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HBS-L6-Gl0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kBg-WC-Xrv">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kBg-WC-Xrv" firstAttribute="leading" secondItem="45n-xj-yIk" secondAttribute="leading" id="FmI-Sn-s77"/>
+                            <constraint firstItem="kBg-WC-Xrv" firstAttribute="top" secondItem="45n-xj-yIk" secondAttribute="top" id="Ill-UO-ezQ"/>
+                            <constraint firstItem="45n-xj-yIk" firstAttribute="trailing" secondItem="kBg-WC-Xrv" secondAttribute="trailing" id="TQw-rs-QJd"/>
+                            <constraint firstItem="45n-xj-yIk" firstAttribute="bottom" secondItem="kBg-WC-Xrv" secondAttribute="bottom" id="dbh-An-laB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="45n-xj-yIk"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="kBg-WC-Xrv" id="fau-Bz-4lD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DQ1-h1-iBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3630" y="400"/>
         </scene>
         <!--Clients-->
         <scene sceneID="47G-Jh-cbn">
