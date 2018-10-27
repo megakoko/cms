@@ -18,14 +18,18 @@ class ClientViewController : UITableViewController {
     private var relationships = [Relationship] ()
 
     private struct Field {
-        init(description: String, data: String?, detectorTypes: UIDataDetectorTypes = UIDataDetectorTypes()) {
+        enum SpecialType {
+            case Address, Phone, Link, Relationship, None
+        }
+
+        init(description: String, data: String?, specialType: SpecialType = .None) {
             self.description = description
             self.data = data
-            self.detectorTypes = detectorTypes
+            self.specialType = specialType
         }
         let description: String
         let data: String?
-        let detectorTypes: UIDataDetectorTypes
+        let specialType: SpecialType
     }
     private var fields = [Field]()
 
@@ -103,9 +107,10 @@ class ClientViewController : UITableViewController {
                 fields.append(Field(description: "Company name", data: client.companyName))
             }
             fields.append(Field(description: "UTR", data: client.utr))
-            fields.append(Field(description: "Telephone", data: client.phoneNumber, detectorTypes: .phoneNumber))
-            fields.append(Field(description: "Email", data: client.email, detectorTypes: .link))
-            fields.append(Field(description: "Address", data: client.address))
+            fields.append(Field(description: "Telephone", data: client.phoneNumber, specialType: .Phone))
+            fields.append(Field(description: "Email", data: client.email, specialType: .Link))
+            fields.append(Field(description: "Relationships", data: nil, specialType: .Relationship))
+            fields.append(Field(description: "Address", data: client.address, specialType: .Address))
         }
 
         tableView.reloadData()
@@ -138,19 +143,16 @@ class ClientViewController : UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 + fields.count
+        return fields.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == (numberOfSections(in: tableView) - 1) {
-            return "Relationships"
-        } else {
-            return fields[section].description
-        }
+        return fields[section].description
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == (numberOfSections(in: tableView) - 1) {
+        let field = fields[section]
+        if field.specialType == .Relationship {
             return relationships.count
         } else {
             return 1
@@ -159,16 +161,24 @@ class ClientViewController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClientViewCell", for: indexPath) as! ClientViewCell
-
-        if indexPath.section == (numberOfSections(in: tableView) - 1) {
+        let field = fields[indexPath.section]
+        
+        if field.specialType == .Relationship {
             let relationship = relationships[indexPath.row]
             cell.accessoryType = .disclosureIndicator
             cell.textView.isUserInteractionEnabled = false
             cell.textView.text = relationship.relatedClientName
         } else {
             cell.selectionStyle = .none
-            cell.textView.text = fields[indexPath.section].data
-            cell.textView.dataDetectorTypes = fields[indexPath.section].detectorTypes
+            cell.textView.text = field.data
+            switch field.specialType {
+            case .Link:
+                cell.textView.dataDetectorTypes = .link
+            case .Phone:
+                cell.textView.dataDetectorTypes = .phoneNumber
+            default:
+                cell.textView.dataDetectorTypes = UIDataDetectorTypes()
+            }
         }
 
         return cell
@@ -176,7 +186,7 @@ class ClientViewController : UITableViewController {
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard let indexPath = tableView.indexPathForSelectedRow else { return false }
-        return indexPath.section == (numberOfSections(in: tableView) - 1)
+        return fields[indexPath.section].specialType == .Relationship
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
