@@ -8,8 +8,12 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+import MapKit
 
 class ClientViewController : UITableViewController {
+    @IBOutlet weak var mapView: MKMapView!
+
     private var client: Client? = nil
     private var relationships = [Relationship] ()
 
@@ -54,6 +58,7 @@ class ClientViewController : UITableViewController {
 
             if let clients = try? JSONDecoder().decode([Client].self, from: data!) {
                 self.client = clients.first
+                self.updateClientAddressOnMap()
             }
 
             DispatchQueue.main.async {
@@ -100,9 +105,36 @@ class ClientViewController : UITableViewController {
             fields.append(Field(description: "UTR", data: client.utr))
             fields.append(Field(description: "Telephone", data: client.phoneNumber, detectorTypes: .phoneNumber))
             fields.append(Field(description: "Email", data: client.email, detectorTypes: .link))
+            fields.append(Field(description: "Address", data: client.address))
         }
 
         tableView.reloadData()
+    }
+
+    private func updateClientAddressOnMap() {
+        if client?.address != nil {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(client!.address!) {
+                (placemarks, error) in
+                if error != nil {
+                    print("Failed to get client address: \(error!)")
+                    return
+                }
+                
+                if let coordinate = placemarks?.first?.location?.coordinate {
+                    let distance = CLLocationDistance(exactly: 1000.0)
+                    let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: distance!, longitudinalMeters: distance!)
+
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+
+                    DispatchQueue.main.async {
+                        self.mapView.setRegion(region, animated: false)
+                        self.mapView.addAnnotation(annotation)
+                    }
+                }
+            }
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

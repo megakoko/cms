@@ -32,6 +32,7 @@ struct Client : Decodable {
     var companyName: String?
     var phoneNumber: String?
     var email: String?
+    var address: String?
 }
 
 struct Relationship : Decodable {
