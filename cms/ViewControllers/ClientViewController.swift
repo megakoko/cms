@@ -36,6 +36,8 @@ class ClientViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.tableFooterView?.isHidden = true
+
         updateUi()
 
         if client?.id != nil {
@@ -136,6 +138,7 @@ class ClientViewController : UITableViewController {
                     DispatchQueue.main.async {
                         self.mapView.setRegion(region, animated: false)
                         self.mapView.addAnnotation(annotation)
+                        self.tableView.tableFooterView?.isHidden = false
                     }
                 }
             }
