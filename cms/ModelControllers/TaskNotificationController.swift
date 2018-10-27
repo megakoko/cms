@@ -18,12 +18,13 @@ class TaskNotificationController {
     private var userId: Int
     private var numberOfOverdueTasks = 0
     private var dataTask: URLSessionDataTask? = nil
+    private var refreshTimer: Timer? = nil
 
     init(userId: Int) {
         self.userId = userId
     }
 
-    @objc func refreshData(with completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
+    func refreshData(with completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
         if dataTask != nil {
             dataTask?.cancel()
             dataTask = nil
@@ -66,15 +67,24 @@ class TaskNotificationController {
                                             userInfo: [TaskNotificationController.numberOfDueTasksKey: self.numberOfOverdueTasks])
         }
         dataTask!.resume()
-
-        Timer.scheduledTimer(timeInterval: TaskNotificationController.refreshInterval,
-                             target:self,
-                             selector: #selector(self.onRefreshTimerFired),
-                             userInfo: nil,
-                             repeats: false)
     }
 
-    @objc func onRefreshTimerFired() {
+    func startRefreshing() {
+        refreshData()
+
+        refreshTimer = Timer.scheduledTimer(timeInterval: TaskNotificationController.refreshInterval,
+                                            target:self,
+                                            selector: #selector(self.onRefreshTimerFired),
+                                            userInfo: nil,
+                                            repeats: false)
+    }
+
+    func stopRefreshing() {
+        refreshTimer?.invalidate()
+        refreshTimer = nil
+    }
+
+    @objc private func onRefreshTimerFired() {
         refreshData()
     }
 }
