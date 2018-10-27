@@ -184,6 +184,11 @@ class ClientViewController : UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let field = fields[indexPath.section]
+        return field.specialType == .Address ? CGFloat(90) : CGFloat(45)
+    }
+
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard let indexPath = tableView.indexPathForSelectedRow else { return false }
         return fields[indexPath.section].specialType == .Relationship
