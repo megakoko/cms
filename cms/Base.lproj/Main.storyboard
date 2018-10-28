@@ -537,6 +537,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="45n-xj-yIk"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6Vs-Me-P3F">
+                        <barButtonItem key="rightBarButtonItem" title="Navigate to..." id="WFq-z3-izk">
+                            <connections>
+                                <action selector="openNavigation:" destination="boR-4r-aeV" id="EI1-bd-Qmf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="kBg-WC-Xrv" id="fau-Bz-4lD"/>
                     </connections>

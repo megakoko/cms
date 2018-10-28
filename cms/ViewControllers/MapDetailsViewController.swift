@@ -11,20 +11,31 @@ import MapKit
 
 class MapDetailsViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
-    private var region: MKCoordinateRegion!
-    private var annotations = [MKAnnotation]()
+    private var coordinate: CLLocationCoordinate2D!
+    private var name: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let distance = CLLocationDistance(1000.0)
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: distance, longitudinalMeters: distance)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+
         mapView.setRegion(region, animated: false)
-        mapView.addAnnotations(annotations)
+        mapView.addAnnotation(annotation)
     }
 
-    func setRegion(_ region: MKCoordinateRegion) {
-        self.region = region
+    func setCoordinate(_ coordinate: CLLocationCoordinate2D, name: String?) {
+        self.coordinate = coordinate
+        self.name = name
     }
 
-    func setAnnotations(_ annotations: [MKAnnotation]) {
-        self.annotations = annotations
+    @IBAction func openNavigation(_ sender: Any) {
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = name
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
     }
 }

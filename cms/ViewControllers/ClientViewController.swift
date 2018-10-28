@@ -16,6 +16,7 @@ class ClientViewController : UITableViewController {
 
     private var client: Client? = nil
     private var relationships = [Relationship] ()
+    private var addressCoordinate: CLLocationCoordinate2D? = nil
 
     private struct Field {
         enum SpecialType {
@@ -129,8 +130,10 @@ class ClientViewController : UITableViewController {
                 }
                 
                 if let coordinate = placemarks?.first?.location?.coordinate {
-                    let distance = CLLocationDistance(exactly: 1000.0)
-                    let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: distance!, longitudinalMeters: distance!)
+                    self.addressCoordinate = coordinate
+
+                    let distance = CLLocationDistance(1000.0)
+                    let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: distance, longitudinalMeters: distance)
 
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = coordinate
@@ -200,8 +203,7 @@ class ClientViewController : UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mapDetailsSegue" {
             let mapDetailsController = segue.destination as! MapDetailsViewController
-            mapDetailsController.setRegion(mapView.region)
-            mapDetailsController.setAnnotations(mapView.annotations)
+            mapDetailsController.setCoordinate(addressCoordinate!, name: client?.name)
         } else if segue.identifier == "relatedClientSeque" {
             guard let cell = sender as? UITableViewCell else { return }
 
