@@ -68,6 +68,10 @@ class NewClientTableViewController: UITableViewController {
     }
 
     @IBAction func saveAndClose(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
+    }
+
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
     }
 }
