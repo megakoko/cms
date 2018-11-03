@@ -24,6 +24,7 @@
 		DA7E6C1B2170D0EC004B1498 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */; };
 		DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */; };
 		DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */; };
+		DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
 		DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
+		DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClientTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */,
+				DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				DA10A025217233C700C28463 /* Client.swift in Sources */,
 				DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */,
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
+				DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */,
 				DA10A0212172323500C28463 /* Task.swift in Sources */,
 				DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */,
 				DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */,
