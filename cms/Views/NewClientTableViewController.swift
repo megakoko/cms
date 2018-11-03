@@ -14,10 +14,10 @@ class NewClientTableViewController: UITableViewController {
     @IBOutlet weak var entityNameField: UITextField!
 
     private let clientTypes = [
-        (Client.ClientType.individual, "Individual"),
-        (Client.ClientType.limitedCompany, "Limited Company"),
-        (Client.ClientType.partnership, "Partnership"),
-        (Client.ClientType.trust, "Trust")
+        Client.ClientType.individual,
+        Client.ClientType.limitedCompany,
+        Client.ClientType.partnership,
+        Client.ClientType.trust
     ]
 
     private var selectedIndividual = true
@@ -35,7 +35,7 @@ class NewClientTableViewController: UITableViewController {
 
     @IBAction func onClientTypeChanged(_ sender: Any) {
         let index = clientTypeControl.selectedSegmentIndex
-        let clientType = clientTypes[index].0
+        let clientType = clientTypes[index]
 
         selectedIndividual = clientType == .individual
 
