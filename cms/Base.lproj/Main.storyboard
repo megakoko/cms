@@ -558,11 +558,11 @@
             </objects>
             <point key="canvasLocation" x="3630" y="400"/>
         </scene>
-        <!--New Client Table View Controller-->
+        <!--New Client-->
         <scene sceneID="G1D-Be-Oe0">
             <objects>
                 <tableViewController id="UhM-zG-nl9" customClass="NewClientTableViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="xOl-mA-SWs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="xOl-mA-SWs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -741,7 +741,7 @@
                             <outlet property="delegate" destination="UhM-zG-nl9" id="nkk-Xb-hgE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="HXh-Gy-0pp">
+                    <navigationItem key="navigationItem" title="New Client" largeTitleDisplayMode="never" id="HXh-Gy-0pp">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="crd-2e-dhY">
                             <connections>
                                 <action selector="saveAndClose:" destination="UhM-zG-nl9" id="poe-MS-brT"/>
