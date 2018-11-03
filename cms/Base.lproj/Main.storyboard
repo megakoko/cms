@@ -576,9 +576,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lUs-TQ-6Mi">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lUs-TQ-6Mi">
                                                     <rect key="frame" x="16" y="17" width="343" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
                                                         <segment title="Individual"/>
                                                         <segment title="Company"/>
@@ -590,6 +589,12 @@
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lUs-TQ-6Mi" secondAttribute="bottom" constant="6" id="1Kn-x6-f6P"/>
+                                                <constraint firstItem="lUs-TQ-6Mi" firstAttribute="leading" secondItem="ZBE-kK-9J9" secondAttribute="leadingMargin" id="ccw-9V-DHz"/>
+                                                <constraint firstItem="lUs-TQ-6Mi" firstAttribute="centerY" secondItem="ZBE-kK-9J9" secondAttribute="centerY" id="umK-Ty-xSp"/>
+                                                <constraint firstItem="lUs-TQ-6Mi" firstAttribute="trailing" secondItem="ZBE-kK-9J9" secondAttribute="trailingMargin" id="ytw-QP-QVu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tmf-Xp-0uB">
@@ -692,10 +697,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MdO-VB-ywp">
-                                                    <rect key="frame" x="16" y="6.5" width="343" height="30.5"/>
+                                                    <rect key="frame" x="16" y="6.5" width="343" height="31.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -714,10 +719,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Telephone..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QH0-g8-zTY">
-                                                    <rect key="frame" x="16" y="6.5" width="343" height="30.5"/>
+                                                    <rect key="frame" x="16" y="6.5" width="343" height="31.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
