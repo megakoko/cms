@@ -8,8 +8,10 @@
 
 import UIKit
 
-class NewClientTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    @IBOutlet weak var clientTypePicker: UIPickerView!
+class NewClientTableViewController: UITableViewController {
+    @IBOutlet weak var clientTypeControl: UISegmentedControl!
+
+    @IBOutlet weak var entityNameField: UITextField!
 
     private let clientTypes = [
         (Client.ClientType.individual, "Individual"),
@@ -29,27 +31,24 @@ class NewClientTableViewController: UITableViewController, UIPickerViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        clientTypePicker.dataSource = self
-        clientTypePicker.delegate = self
     }
 
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return clientTypes.count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return clientTypes[row].1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let clientType = clientTypes[row].0
+    @IBAction func onClientTypeChanged(_ sender: Any) {
+        let index = clientTypeControl.selectedSegmentIndex
+        let clientType = clientTypes[index].0
 
         selectedIndividual = clientType == .individual
+
+        switch clientType {
+        case .limitedCompany:
+            entityNameField.placeholder = "Company name..."
+        case .partnership:
+            entityNameField.placeholder = "Partnership name..."
+        case .trust:
+            entityNameField.placeholder = "Trust name..."
+        default:
+            break
+        }
 
         self.tableView.reloadData()
     }
@@ -68,8 +67,6 @@ class NewClientTableViewController: UITableViewController, UIPickerViewDataSourc
     }
 
     @IBAction func saveAndClose(_ sender: Any) {
-        print(clientTypePicker.selectedRow(inComponent: 0))
-
         navigationController?.popViewController(animated: true)
     }
 }

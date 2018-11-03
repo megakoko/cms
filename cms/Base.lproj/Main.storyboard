@@ -576,16 +576,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdK-At-Dpe">
-                                                    <rect key="frame" x="0.0" y="-59" width="375" height="162"/>
-                                                </pickerView>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lUs-TQ-6Mi">
+                                                    <rect key="frame" x="16" y="17" width="343" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="Individual"/>
+                                                        <segment title="Company"/>
+                                                        <segment title="Partnership"/>
+                                                        <segment title="Trust"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="onClientTypeChanged:" destination="UhM-zG-nl9" eventType="valueChanged" id="bEH-ss-zmp"/>
+                                                    </connections>
+                                                </segmentedControl>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="sdK-At-Dpe" secondAttribute="bottom" constant="-52" id="S5Z-M5-mbe"/>
-                                                <constraint firstItem="sdK-At-Dpe" firstAttribute="top" secondItem="ZBE-kK-9J9" secondAttribute="topMargin" constant="-70" id="UQ7-mW-KFJ"/>
-                                                <constraint firstItem="sdK-At-Dpe" firstAttribute="leading" secondItem="ZBE-kK-9J9" secondAttribute="leading" id="XRb-Q8-nzc"/>
-                                                <constraint firstAttribute="trailing" secondItem="sdK-At-Dpe" secondAttribute="trailing" id="l9z-de-cDl"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tmf-Xp-0uB">
@@ -740,7 +744,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="clientTypePicker" destination="sdK-At-Dpe" id="qdC-j5-avh"/>
+                        <outlet property="clientTypeControl" destination="lUs-TQ-6Mi" id="wjV-cQ-KF7"/>
+                        <outlet property="entityNameField" destination="y3t-zN-eQL" id="JTs-0n-gHU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMC-vQ-XN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
