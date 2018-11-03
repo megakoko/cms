@@ -69,6 +69,7 @@
 				DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */,
 				DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */,
 				DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */,
+				DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */,
 				DA7E6C152170751D004B1498 /* UserListViewController.swift */,
 				DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */,
 			);
@@ -90,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */,
-				DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
