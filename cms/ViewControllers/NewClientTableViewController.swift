@@ -12,7 +12,12 @@ import ContactsUI
 class NewClientTableViewController: UITableViewController, CNContactPickerDelegate {
     @IBOutlet weak var clientTypeControl: UISegmentedControl!
 
+    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var middleNameField: UITextField!
+    @IBOutlet weak var surnameField: UITextField!
     @IBOutlet weak var entityNameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var telephoneField: UITextField!
 
     private let clientTypes = [
         Client.ClientType.individual,
@@ -80,12 +85,24 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
     }
 
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        print(contact.emailAddresses.first?.value ?? "")
-        print(contact.phoneNumbers.first?.value.stringValue ?? "")
-        print(contact.givenName)
-        print(contact.middleName)
-        print(contact.familyName);
-        print(contact.organizationName)
+        firstNameField.text = contact.givenName
+        middleNameField.text = contact.middleName
+        surnameField.text = contact.familyName
+        entityNameField.text = contact.organizationName
+
+        emailField.text = String(contact.emailAddresses.first?.value ?? "")
+        telephoneField.text = contact.phoneNumbers.first?.value.stringValue ?? ""
+
+        var clientType = Client.ClientType.individual
+        if contact.givenName.isEmpty && contact.middleName.isEmpty && contact.familyName.isEmpty {
+            if contact.organizationName.range(of: "LLC") != nil {
+                clientType = .limitedCompany
+            } else if contact.organizationName.range(of: "LLP") != nil {
+                clientType = .partnership
+            }
+        }
+        clientTypeControl.selectedSegmentIndex = clientTypes.firstIndex(of: clientType)!
+        clientTypeControl.sendActions(for: .valueChanged)
     }
 
     private func askForContactAccess() {

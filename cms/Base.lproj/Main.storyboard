@@ -779,7 +779,12 @@
                     </tableView>
                     <connections>
                         <outlet property="clientTypeControl" destination="lUs-TQ-6Mi" id="wjV-cQ-KF7"/>
+                        <outlet property="emailField" destination="MdO-VB-ywp" id="t26-2e-Ziw"/>
                         <outlet property="entityNameField" destination="y3t-zN-eQL" id="JTs-0n-gHU"/>
+                        <outlet property="firstNameField" destination="7e4-Lp-Ai8" id="dYb-kZ-9bM"/>
+                        <outlet property="middleNameField" destination="tst-nf-ZXz" id="AFa-wQ-YEr"/>
+                        <outlet property="surnameField" destination="FJq-Xt-y1J" id="D7a-tB-lK7"/>
+                        <outlet property="telephoneField" destination="QH0-g8-zTY" id="xun-Ua-8EV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMC-vQ-XN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
