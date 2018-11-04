@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct Client : Decodable {
-    enum ClientType: String, Decodable {
+struct Client : Codable {
+    enum ClientType: String, Codable {
         case individual = "individual"
         case limitedCompany = "limitedCompany"
         case trust = "trust"

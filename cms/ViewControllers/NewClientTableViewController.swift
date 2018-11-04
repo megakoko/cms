@@ -116,14 +116,79 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
             if !access {
                 DispatchQueue.main.async {
                     let alertController = UIAlertController(title: "Contacts", message: "Failed to get access to Contacts", preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
         })
     }
 
+    private func clientDetails() -> Client {
+        let clientType = clientTypes[clientTypeControl.selectedSegmentIndex]
+
+        var client = Client(id: 0, type: clientType)
+        client.foreNames = firstNameField.text
+        client.middleNames = middleNameField.text
+        client.surname = surnameField.text
+        client.companyName = entityNameField.text
+        client.email = emailField.text
+        client.phoneNumber = telephoneField.text
+
+        return client
+    }
+
+    private func saveClient(_ client: Client, completion: @escaping ((Bool) -> Void)) {
+        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let url = URL(string: "\(host)/client")
+
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(client) else {
+            completion(false)
+            return
+        }
+
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = data
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) {
+            data, response, error in
+
+            if error != nil {
+                print("Failed to create new client: \(error!)")
+                completion(false)
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode < 200 || httpResponse.statusCode >= 300 {
+                    print("Failed to create new client, status code: \(httpResponse.statusCode)")
+                    completion(false)
+                    return;
+                }
+            }
+
+            completion(true)
+        }
+
+        dataTask.resume();
+    }
+
     @IBAction func saveAndClose(_ sender: Any) {
-        dismiss(animated: true)
+        saveClient(clientDetails()) {
+            ok in
+
+            DispatchQueue.main.async {
+                if ok {
+                    self.dismiss(animated: true)
+                } else {
+                    let alertController = UIAlertController(title: "New Client", message: "Failed to create new Client", preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
     @IBAction func cancel(_ sender: Any) {
