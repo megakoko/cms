@@ -34,7 +34,7 @@ class ClientListViewController : UITableViewController {
         }
 
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
-        let url = URL(string: "\(host)/clients")
+        let url = URL(string: "\(host)/clients?order=id.desc")
 
         clientDataTask = URLSession.shared.dataTask(with: url!) {
             data, response, error in
