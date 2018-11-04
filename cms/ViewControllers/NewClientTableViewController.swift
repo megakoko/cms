@@ -19,6 +19,8 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var telephoneField: UITextField!
 
+    private(set) var createdClient = false
+
     private let clientTypes = [
         Client.ClientType.individual,
         Client.ClientType.limitedCompany,
@@ -179,9 +181,11 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
         saveClient(clientDetails()) {
             ok in
 
+            self.createdClient = ok
+
             DispatchQueue.main.async {
                 if ok {
-                    self.dismiss(animated: true)
+                    self.performSegue(withIdentifier: "unwindToClientList", sender: self)
                 } else {
                     let alertController = UIAlertController(title: "New Client", message: "Failed to create new Client", preferredStyle: UIAlertController.Style.alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))

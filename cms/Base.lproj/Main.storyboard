@@ -785,9 +785,11 @@
                         <outlet property="middleNameField" destination="tst-nf-ZXz" id="AFa-wQ-YEr"/>
                         <outlet property="surnameField" destination="FJq-Xt-y1J" id="D7a-tB-lK7"/>
                         <outlet property="telephoneField" destination="QH0-g8-zTY" id="xun-Ua-8EV"/>
+                        <segue destination="kiW-Xo-LQY" kind="unwind" identifier="unwindToClientList" unwindAction="unwindToClientList:" id="3IN-Kc-wNc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMC-vQ-XN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="kiW-Xo-LQY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3376.8000000000002" y="1420.8395802098951"/>
         </scene>

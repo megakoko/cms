@@ -85,4 +85,11 @@ class ClientListViewController : UITableViewController {
         clientViewController.setClient(id: client.id!, type: client.type)
         clientViewController.title = client.name
     }
+
+    @IBAction func unwindToClientList(_ sender: UIStoryboardSegue) {
+        let newClientController = sender.source as! NewClientTableViewController
+        if newClientController.createdClient {
+            refreshData()
+        }
+    }
 }
