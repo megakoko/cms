@@ -30,7 +30,7 @@ class TaskViewController: UITableViewController {
     }
 
     func reloadData() {
-        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let url = URL(string: "\(host)/task?id=eq.\(id!)")
 
         let dataTask = URLSession.shared.dataTask(with: url!) {

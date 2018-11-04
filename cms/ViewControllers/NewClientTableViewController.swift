@@ -138,7 +138,7 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
     }
 
     private func saveClient(_ client: Client, completion: @escaping ((Bool) -> Void)) {
-        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let url = URL(string: "\(host)/client")
 
         let encoder = JSONEncoder()

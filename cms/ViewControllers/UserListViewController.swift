@@ -31,7 +31,7 @@ class UserListViewController: UITableViewController {
             coreDataTask = nil
         }
 
-        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let coreRequest = URLRequest(url: URL(string: "\(host)/users")!)
         coreDataTask = URLSession.shared.dataTask(with: coreRequest) {
             data, response, error in

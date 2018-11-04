@@ -34,7 +34,7 @@ class TaskNotificationController {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
         let now = dateFormatter.string(from: Date())
 
-        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let url = URL(string: "\(host)/tasks?assigneeId=eq.\(userId)&endDateReminder=lte.\(now)")!
 
         dataTask = URLSession.shared.dataTask(with: url) {

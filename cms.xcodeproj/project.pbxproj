@@ -42,6 +42,7 @@
 		DA6C1173216CD04B00DAD2D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA6C1176216CD04B00DAD2D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA6C1178216CD04B00DAD2D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA78B26B218F550E0071106D /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BuildSettings.xcconfig; sourceTree = "<group>"; };
 		DA7E6C152170751D004B1498 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		DA7E6C172170752A004B1498 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 				DA6C1173216CD04B00DAD2D0 /* Assets.xcassets */,
 				DA6C1175216CD04B00DAD2D0 /* LaunchScreen.storyboard */,
 				DA6C1178216CD04B00DAD2D0 /* Info.plist */,
+				DA78B26B218F550E0071106D /* BuildSettings.xcconfig */,
 			);
 			path = cms;
 			sourceTree = "<group>";
@@ -253,6 +255,7 @@
 /* Begin XCBuildConfiguration section */
 		DA6C1179216CD04B00DAD2D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA78B26B218F550E0071106D /* BuildSettings.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

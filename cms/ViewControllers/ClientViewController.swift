@@ -52,7 +52,7 @@ class ClientViewController : UITableViewController {
     }
 
     private func loadData() {
-        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let url = URL(string: "\(host)/client?id=eq.\(client!.id!)")!
 
         let coreDataTask = URLSession.shared.dataTask(with: url) {

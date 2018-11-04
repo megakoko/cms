@@ -16,7 +16,7 @@ class ClientModel {
     private(set) var relationships = [Relationship] ()
 
     func load(id: Int) {
-        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let url = URL(string: "\(host)/client?id=eq.\(id)")!
 
         let coreDataTask = URLSession.shared.dataTask(with: url) {

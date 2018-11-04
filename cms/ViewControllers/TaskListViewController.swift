@@ -23,7 +23,7 @@ class TaskListViewController: UITableViewController {
             taskListDataTask = nil
         }
 
-        let host = ProcessInfo.processInfo.environment["host"] ?? ""
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let url = URL(string: "\(host)/tasks?order=endDate.desc")
 
         taskListDataTask = URLSession.shared.dataTask(with: url!) {
