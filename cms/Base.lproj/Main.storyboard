@@ -584,6 +584,24 @@
                                 </navigationItem>
                             </items>
                         </navigationBar>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="mx8-gt-mkD">
+                            <rect key="frame" x="0.0" y="450" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcB-qU-CpK">
+                                    <rect key="frame" x="107.5" y="6" width="160" height="30"/>
+                                    <state key="normal" title="Import from Contacts..."/>
+                                    <connections>
+                                        <action selector="importFromContacts:" destination="UhM-zG-nl9" eventType="touchUpInside" id="Vz5-Wy-sn5"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="LcB-qU-CpK" firstAttribute="centerX" secondItem="mx8-gt-mkD" secondAttribute="centerX" id="41W-2b-YvN"/>
+                                <constraint firstItem="LcB-qU-CpK" firstAttribute="top" secondItem="mx8-gt-mkD" secondAttribute="top" constant="6" id="NRy-xS-KJi"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection id="Evf-9h-7CD">
                                 <cells>

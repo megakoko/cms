@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ContactsUI
 
-class NewClientTableViewController: UITableViewController {
+class NewClientTableViewController: UITableViewController, CNContactPickerDelegate {
     @IBOutlet weak var clientTypeControl: UISegmentedControl!
 
     @IBOutlet weak var entityNameField: UITextField!
@@ -65,6 +66,43 @@ class NewClientTableViewController: UITableViewController {
         }
 
         return 45
+    }
+
+    @IBAction func importFromContacts(_ sender: Any) {
+
+        askForContactAccess()
+
+        let contactPicker = CNContactPickerViewController()
+        contactPicker.delegate = self
+        self.present(contactPicker, animated: true) {
+
+        }
+    }
+
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+        print(contact.emailAddresses.first?.value ?? "")
+        print(contact.phoneNumbers.first?.value.stringValue ?? "")
+        print(contact.givenName)
+        print(contact.middleName)
+        print(contact.familyName);
+        print(contact.organizationName)
+    }
+
+    private func askForContactAccess() {
+        let authorizationStatus = CNContactStore.authorizationStatus(for: CNEntityType.contacts)
+        if authorizationStatus == .authorized {
+            return
+        }
+
+        let contactStore = CNContactStore()
+        contactStore.requestAccess(for: CNEntityType.contacts, completionHandler: { access, accessError in
+            if !access {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Contacts", message: "Failed to get access to Contacts", preferredStyle: UIAlertController.Style.alert)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        })
     }
 
     @IBAction func saveAndClose(_ sender: Any) {
