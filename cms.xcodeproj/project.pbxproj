@@ -12,7 +12,6 @@
 		DA10A02A2173202F00C28463 /* TaskNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA10A0292173202F00C28463 /* TaskNotificationController.swift */; };
 		DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA10A02B21732B6200C28463 /* TabViewController.swift */; };
 		DA2A966B216E498D000AE7F1 /* ClientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */; };
-		DA2A966E216E5F66000AE7F1 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966D216E5F66000AE7F1 /* ClientModel.swift */; };
 		DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */; };
 		DA6C116B216CD04A00DAD2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C116A216CD04A00DAD2D0 /* AppDelegate.swift */; };
 		DA6C116D216CD04A00DAD2D0 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C116C216CD04A00DAD2D0 /* TaskListViewController.swift */; };
@@ -33,7 +32,6 @@
 		DA10A0292173202F00C28463 /* TaskNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNotificationController.swift; sourceTree = "<group>"; };
 		DA10A02B21732B6200C28463 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListViewController.swift; sourceTree = "<group>"; };
-		DA2A966D216E5F66000AE7F1 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
 		DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		DA6C1167216CD04A00DAD2D0 /* cms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6C116A216CD04A00DAD2D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 			children = (
 				DA10A0202172323500C28463 /* Task.swift */,
 				DA10A024217233C700C28463 /* Client.swift */,
-				DA2A966D216E5F66000AE7F1 /* ClientModel.swift */,
 				DA7E6C172170752A004B1498 /* User.swift */,
 			);
 			path = Model;
@@ -215,7 +212,6 @@
 			files = (
 				DA10A02A2173202F00C28463 /* TaskNotificationController.swift in Sources */,
 				DA2A966B216E498D000AE7F1 /* ClientListViewController.swift in Sources */,
-				DA2A966E216E5F66000AE7F1 /* ClientModel.swift in Sources */,
 				DA10A025217233C700C28463 /* Client.swift in Sources */,
 				DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */,
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
