@@ -53,7 +53,7 @@ class ClientViewController : UITableViewController {
 
     private func loadData() {
         let host = ProcessInfo.processInfo.environment["host"] ?? ""
-        let url = URL(string: "\(host)/client?id=eq.\(client!.id)")!
+        let url = URL(string: "\(host)/client?id=eq.\(client!.id!)")!
 
         let coreDataTask = URLSession.shared.dataTask(with: url) {
             data, response, error in
@@ -74,7 +74,7 @@ class ClientViewController : UITableViewController {
         }
         coreDataTask.resume()
 
-        let relationshipUrl = URL(string: "\(host)/clientrelationship?clientId=eq.\(client!.id)")!
+        let relationshipUrl = URL(string: "\(host)/clientrelationship?clientId=eq.\(client!.id!)")!
         let relationshipsDataTask = URLSession.shared.dataTask(with: relationshipUrl) {
             data, response, error in
 

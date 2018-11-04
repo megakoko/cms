@@ -126,7 +126,7 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
     private func clientDetails() -> Client {
         let clientType = clientTypes[clientTypeControl.selectedSegmentIndex]
 
-        var client = Client(id: 0, type: clientType)
+        var client = Client(id: nil, type: clientType)
         client.foreNames = firstNameField.text
         client.middleNames = middleNameField.text
         client.surname = surnameField.text

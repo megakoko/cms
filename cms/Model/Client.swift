@@ -16,12 +16,12 @@ struct Client : Codable {
         case partnership = "partnership"
     }
 
-    init(id: Int, type: ClientType) {
+    init(id: Int?, type: ClientType) {
         self.id = id
         self.type = type
     }
 
-    var id: Int
+    var id: Int?
     var type: ClientType
     var name: String?
     var code: String?
