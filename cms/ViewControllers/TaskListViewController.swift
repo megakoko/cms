@@ -24,7 +24,7 @@ class TaskListViewController: UITableViewController {
         }
 
         let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/tasks?order=endDate.desc")
+        let url = URL(string: "\(host)/tasks?status=neq.completed&order=endDate.desc")
 
         taskListDataTask = URLSession.shared.dataTask(with: url!) {
             data, response, error in
