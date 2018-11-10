@@ -14,11 +14,17 @@ class TaskViewController: UITableViewController {
     var task: Task? = nil
 
     private let statusCellSection = 1
+    private let endDateFieldIndexPath = IndexPath(row: 0, section: 2)
+    private let endDatePickerIndexPath = IndexPath(row: 1, section: 2)
+    private let startDateFieldIndexPath = IndexPath(row: 0, section: 3)
+    private let startDatePickerIndexPath = IndexPath(row: 1, section: 3)
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var statusField: UITextField!
     @IBOutlet weak var endDateField: UITextField!
+    @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var startDateField: UITextField!
+    @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var assigneeField: UITextField!
     @IBOutlet weak var clientNameField: UITextField!
     @IBOutlet weak var clientNameCell: UITableViewCell!
@@ -71,6 +77,7 @@ class TaskViewController: UITableViewController {
         let url = URL(string: "\(host)/task")
 
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         guard let data = try? encoder.encode(task!) else {
             completionHandler(false)
             return
@@ -131,9 +138,9 @@ class TaskViewController: UITableViewController {
     @IBAction func done(_ sender: Any) {
         task = Task(id: nil,
                     name: nameField.text ?? "",
-                    endDate: nil,
+                    endDate: endDatePicker.date,
                     endDateReminder: nil,
-                    startDate: nil,
+                    startDate: startDatePicker.date,
                     clientName: nil,
                     clientId: nil,
                     clientType: nil,
@@ -180,6 +187,17 @@ class TaskViewController: UITableViewController {
         if id == nil && indexPath.section == statusCellSection {
             return 0
         }
+
+        if (indexPath == endDateFieldIndexPath && id == nil) ||
+            (indexPath == endDatePickerIndexPath && id != nil) {
+            return 0
+        }
+
+        if (indexPath == startDateFieldIndexPath && id == nil) ||
+            (indexPath == startDatePickerIndexPath && id != nil) {
+            return 0
+        }
+
 
         return super.tableView(tableView, heightForRowAt: indexPath)
     }

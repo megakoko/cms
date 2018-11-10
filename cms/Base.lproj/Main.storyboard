@@ -104,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="rES-0D-0oB">
-                            <rect key="frame" x="0.0" y="511" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="601" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
@@ -185,12 +185,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4xf-dq-qM1">
+                                        <rect key="frame" x="0.0" y="219" width="375" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4xf-dq-qM1" id="K3q-m8-0yf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="sfo-sE-XrN">
+                                                    <rect key="frame" x="0.0" y="-86" width="375" height="216"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="563555592.23472297">
+                                                        <!--2018-11-10 15:13:12 +0000-->
+                                                    </date>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="sfo-sE-XrN" secondAttribute="trailing" id="HPL-3g-f21"/>
+                                                <constraint firstItem="sfo-sE-XrN" firstAttribute="leading" secondItem="K3q-m8-0yf" secondAttribute="leading" id="JOc-vP-sog"/>
+                                                <constraint firstAttribute="bottom" secondItem="sfo-sE-XrN" secondAttribute="bottom" constant="-85.5" id="gLL-dw-Hgp"/>
+                                                <constraint firstItem="sfo-sE-XrN" firstAttribute="top" secondItem="K3q-m8-0yf" secondAttribute="top" constant="-86" id="tPF-mV-Um3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Start Date" id="1Dd-3N-hcO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0D2-C4-Wsf">
-                                        <rect key="frame" x="0.0" y="247" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="292" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0D2-C4-Wsf" id="yhH-dQ-oV0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
@@ -211,12 +233,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="7v8-w6-X4q">
+                                        <rect key="frame" x="0.0" y="337" width="375" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7v8-w6-X4q" id="5Oo-rm-kGF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Tq-BL-VvG">
+                                                    <rect key="frame" x="27" y="-86" width="320" height="216"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="563557568.24005795">
+                                                        <!--2018-11-10 15:46:08 +0000-->
+                                                    </date>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8Tq-BL-VvG" firstAttribute="top" secondItem="5Oo-rm-kGF" secondAttribute="top" constant="-86" id="2AD-d7-Boa"/>
+                                                <constraint firstAttribute="trailing" secondItem="8Tq-BL-VvG" secondAttribute="trailing" constant="28" id="Jmp-Nr-G2V"/>
+                                                <constraint firstAttribute="bottom" secondItem="8Tq-BL-VvG" secondAttribute="bottom" constant="-85.5" id="Miu-Mk-Ygt"/>
+                                                <constraint firstItem="8Tq-BL-VvG" firstAttribute="leading" secondItem="5Oo-rm-kGF" secondAttribute="leading" constant="27" id="zgW-NY-HAB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Assignee" id="DKS-RJ-cH7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="AVC-si-8vV">
-                                        <rect key="frame" x="0.0" y="320" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="410" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AVC-si-8vV" id="Ubr-FV-5Up">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
@@ -242,7 +286,7 @@
                             <tableViewSection headerTitle="Client Name" id="0nI-5f-JT0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Ns8-Eg-C7A">
-                                        <rect key="frame" x="0.0" y="393" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="483" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ns8-Eg-C7A" id="8yw-iG-otB">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="44.5"/>
@@ -272,7 +316,7 @@
                             <tableViewSection headerTitle="Work Description" id="I0k-rU-Swb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GdF-f0-d03">
-                                        <rect key="frame" x="0.0" y="466" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="556" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GdF-f0-d03" id="CWB-pQ-JuE">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
@@ -308,8 +352,10 @@
                         <outlet property="clientNameField" destination="9xW-b2-UKO" id="7yA-9P-dJe"/>
                         <outlet property="clientNameTapGestureRecognizer" destination="KWc-6n-lpi" id="UsL-Fq-vp6"/>
                         <outlet property="endDateField" destination="kky-8L-MTi" id="1iY-Gb-ijq"/>
+                        <outlet property="endDatePicker" destination="sfo-sE-XrN" id="RED-fQ-G5T"/>
                         <outlet property="nameField" destination="9vD-lg-Eqf" id="P6f-7e-QFR"/>
                         <outlet property="startDateField" destination="vFh-Le-iy4" id="U5p-uq-Mxe"/>
+                        <outlet property="startDatePicker" destination="8Tq-BL-VvG" id="R03-rs-DKq"/>
                         <outlet property="statusField" destination="dec-Bs-gjh" id="6tX-TU-A4X"/>
                         <outlet property="workDescriptionField" destination="doQ-cR-VTl" id="Tms-lM-hhA"/>
                         <segue destination="HEt-U0-Gur" kind="unwind" identifier="unwindToTaskList" unwindAction="unwindToTaskListWithSender:" id="Cv9-Sw-EwQ"/>
