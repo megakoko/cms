@@ -18,6 +18,7 @@ struct Task : Codable {
     var clientId: Int?
     var clientType: Client.ClientType?
     var assignee: String?
+    var assigneeId: Int?
     var workDescription: String?
     var status: String?
 }

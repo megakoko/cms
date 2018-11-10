@@ -8,15 +8,17 @@
 
 import UIKit
 
-class NewTaskViewController: UITableViewController {
+class NewTaskViewController: UITableViewController, UserListViewControllerDelegate {
     var task: Task? = nil
+
+    var selectedAssigneeId: Int?
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var endDateEnabled: UISwitch!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var startDateEnabled: UISwitch!
     @IBOutlet weak var startDatePicker: UIDatePicker!
-    @IBOutlet weak var assigneeField: UITextField!
+    @IBOutlet weak var assigneeLabel: UILabel!
     @IBOutlet weak var clientNameField: UITextField!
     @IBOutlet weak var clientNameCell: UITableViewCell!
     @IBOutlet weak var workDescriptionField: UITextField!
@@ -25,6 +27,7 @@ class NewTaskViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        assigneeLabel.text = nil
         onEndDateToggled(endDatePicker)
         onStartDateToggled(startDatePicker)
     }
@@ -68,6 +71,11 @@ class NewTaskViewController: UITableViewController {
         dataTask.resume();
     }
 
+    func didSelect(userId: Int, userName: String) {
+        selectedAssigneeId = userId
+        assigneeLabel.text = userName
+    }
+
     @IBAction func done(_ sender: Any) {
         task = Task(id: nil,
                     name: nameField.text ?? "",
@@ -78,6 +86,7 @@ class NewTaskViewController: UITableViewController {
                     clientId: nil,
                     clientType: nil,
                     assignee: nil,
+                    assigneeId: selectedAssigneeId,
                     workDescription: nil,
                     status: nil)
 
@@ -109,5 +118,13 @@ class NewTaskViewController: UITableViewController {
 
     @IBAction func onStartDateToggled(_ sender: Any) {
         startDatePicker.isEnabled = startDateEnabled.isOn
+    }
+
+    @IBAction func chooseAssignee(_ sender: Any) {
+        let userListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
+
+        userListViewController.delegate = self
+
+        present(userListViewController, animated: true)
     }
 }

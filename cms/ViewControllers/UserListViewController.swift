@@ -15,6 +15,8 @@ class UserListViewController: UITableViewController {
 
     var avatars = [Int: UIImage]()
 
+    var delegate: UserListViewControllerDelegate? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -105,5 +107,13 @@ class UserListViewController: UITableViewController {
         cell.detailTextLabel?.text = user.loggedIn ? "logged in" : ""
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if delegate != nil {
+            let user = users[indexPath.row]
+            delegate!.didSelect(userId: user.id, userName: user.fullName)
+            dismiss(animated: true)
+        }
     }
 }

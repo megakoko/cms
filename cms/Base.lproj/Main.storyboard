@@ -394,7 +394,7 @@
         <!--Users-->
         <scene sceneID="Y7g-iI-cks">
             <objects>
-                <tableViewController id="RgN-wG-hCG" customClass="UserListViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="UserListViewController" id="RgN-wG-hCG" customClass="UserListViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="k2N-Dp-ZkG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1018,27 +1018,29 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Assignee" id="uLd-ve-eYO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dDw-Bg-xk0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="dDw-Bg-xk0">
                                         <rect key="frame" x="0.0" y="337" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dDw-Bg-xk0" id="KgS-Ah-n0f">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OEs-fH-52r">
-                                                    <rect key="frame" x="16" y="8" width="343" height="29"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8n-Nz-FMQ">
+                                                    <rect key="frame" x="16" y="12" width="317" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="OEs-fH-52r" firstAttribute="leading" secondItem="KgS-Ah-n0f" secondAttribute="leadingMargin" id="FAe-de-9F1"/>
-                                                <constraint firstItem="OEs-fH-52r" firstAttribute="centerY" secondItem="KgS-Ah-n0f" secondAttribute="centerY" id="blj-Ql-qS0"/>
-                                                <constraint firstItem="OEs-fH-52r" firstAttribute="trailing" secondItem="KgS-Ah-n0f" secondAttribute="trailingMargin" id="fHd-J3-esB"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="OEs-fH-52r" secondAttribute="bottom" constant="-3" id="hNP-T3-QPh"/>
+                                                <constraint firstItem="V8n-Nz-FMQ" firstAttribute="centerY" secondItem="KgS-Ah-n0f" secondAttribute="centerY" id="4cN-XU-fsh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="V8n-Nz-FMQ" secondAttribute="trailing" id="8LS-0m-X1L"/>
+                                                <constraint firstItem="V8n-Nz-FMQ" firstAttribute="leading" secondItem="KgS-Ah-n0f" secondAttribute="leadingMargin" id="llK-fj-7uj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="bRI-Ed-z2v" appends="YES" id="WR7-XU-Vxm"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1114,7 +1116,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="assigneeField" destination="OEs-fH-52r" id="3se-V1-5QP"/>
+                        <outlet property="assigneeLabel" destination="V8n-Nz-FMQ" id="iue-8R-CHZ"/>
                         <outlet property="clientNameCell" destination="C2l-fR-sCp" id="Pw6-7g-ig7"/>
                         <outlet property="clientNameField" destination="YB3-Nw-wyi" id="ctQ-WP-DaP"/>
                         <outlet property="clientNameTapGestureRecognizer" destination="KWc-6n-lpi" id="l53-KD-BSH"/>
@@ -1128,6 +1130,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IXW-kl-PRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bRI-Ed-z2v">
+                    <connections>
+                        <action selector="chooseAssignee:" destination="O2z-JW-Ybf" id="uaP-70-xBB"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <exit id="sLg-ey-Lib" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3629.5999999999999" y="-1334.4827586206898"/>
