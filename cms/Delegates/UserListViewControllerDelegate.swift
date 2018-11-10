@@ -9,5 +9,5 @@
 import Foundation
 
 protocol UserListViewControllerDelegate {
-    func didSelect(userId: Int, userName: String)
+    func didSelect(userId: Int?, userName: String?)
 }

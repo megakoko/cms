@@ -11,7 +11,8 @@ import UIKit
 class NewTaskViewController: UITableViewController, UserListViewControllerDelegate {
     var task: Task? = nil
 
-    var selectedAssigneeId: Int?
+    private var selectedAssigneeId: Int?
+    private let noAssigneeSelectionOption = "No Assignee"
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var endDateEnabled: UISwitch!
@@ -27,7 +28,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        assigneeLabel.text = nil
+        assigneeLabel.text = noAssigneeSelectionOption
         onEndDateToggled(endDatePicker)
         onStartDateToggled(startDatePicker)
     }
@@ -71,9 +72,9 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         dataTask.resume();
     }
 
-    func didSelect(userId: Int, userName: String) {
+    func didSelect(userId: Int?, userName: String?) {
         selectedAssigneeId = userId
-        assigneeLabel.text = userName
+        assigneeLabel.text = userName ?? noAssigneeSelectionOption
     }
 
     @IBAction func done(_ sender: Any) {
@@ -123,6 +124,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     @IBAction func chooseAssignee(_ sender: Any) {
         let userListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
         userListViewController.delegate = self
+        userListViewController.emptySelectionOption = noAssigneeSelectionOption
 
         let userListNavigationController = UINavigationController(rootViewController: userListViewController)
 

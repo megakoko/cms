@@ -9,6 +9,8 @@
 import UIKit
 
 class UserListViewController: UITableViewController {
+    var emptySelectionOption: String? = nil
+
     private var users = [User] ()
     private var coreDataTask: URLSessionDataTask? = nil
     private var avatarDataTask: URLSessionDataTask? = nil
@@ -95,24 +97,38 @@ class UserListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return users.count + (emptySelectionOption != nil ? 1 : 0)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath)
 
-        let user = users[indexPath.row]
-        cell.textLabel?.text = user.fullName
-        cell.imageView?.image = avatars[user.id]
-        cell.detailTextLabel?.text = user.loggedIn ? "logged in" : ""
+        if emptySelectionOption != nil && indexPath.row == users.count {
+            cell.textLabel?.text = emptySelectionOption
+            cell.detailTextLabel?.text = nil
+        } else {
+            let user = users[indexPath.row]
+            cell.textLabel?.text = user.fullName
+            cell.imageView?.image = avatars[user.id]
+            cell.detailTextLabel?.text = user.loggedIn ? "logged in" : ""
+        }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if delegate != nil {
-            let user = users[indexPath.row]
-            delegate!.didSelect(userId: user.id, userName: user.fullName)
+            var userId: Int? = nil
+            var userName: String? = nil
+
+            if indexPath.row < users.count {
+                let user = users[indexPath.row]
+                userId = user.id
+                userName = user.fullName
+            }
+
+            delegate!.didSelect(userId: userId, userName: userName)
+
             dismiss(animated: true)
         }
     }
