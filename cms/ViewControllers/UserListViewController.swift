@@ -9,11 +9,11 @@
 import UIKit
 
 class UserListViewController: UITableViewController {
-    var users = [User] ()
-    var coreDataTask: URLSessionDataTask? = nil
-    var avatarDataTask: URLSessionDataTask? = nil
+    private var users = [User] ()
+    private var coreDataTask: URLSessionDataTask? = nil
+    private var avatarDataTask: URLSessionDataTask? = nil
 
-    var avatars = [Int: UIImage]()
+    private var avatars = [Int: UIImage]()
 
     var delegate: UserListViewControllerDelegate? = nil
 
@@ -27,7 +27,7 @@ class UserListViewController: UITableViewController {
         reloadUsers()
     }
 
-    func reloadUsers() {
+    private func reloadUsers() {
         if coreDataTask != nil {
             coreDataTask?.cancel()
             coreDataTask = nil
