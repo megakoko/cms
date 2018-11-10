@@ -40,6 +40,8 @@ class TaskNotificationController {
         dataTask = URLSession.shared.dataTask(with: url) {
             data, response, error in
 
+            self.dataTask = nil
+
             if error != nil {
                 print("Failed to get overdue tasks")
                 if let completionHandler = completionHandler {
@@ -71,7 +73,16 @@ class TaskNotificationController {
 
     func startRefreshing() {
         refreshData()
+        scheduleRefreshTimer()
+    }
 
+    func stopRefreshing() {
+        dataTask?.cancel()
+        refreshTimer?.invalidate()
+        refreshTimer = nil
+    }
+
+    private func scheduleRefreshTimer() {
         refreshTimer = Timer.scheduledTimer(timeInterval: TaskNotificationController.refreshInterval,
                                             target:self,
                                             selector: #selector(self.onRefreshTimerFired),
@@ -79,12 +90,8 @@ class TaskNotificationController {
                                             repeats: false)
     }
 
-    func stopRefreshing() {
-        refreshTimer?.invalidate()
-        refreshTimer = nil
-    }
-
     @objc private func onRefreshTimerFired() {
         refreshData()
+        scheduleRefreshTimer()
     }
 }
