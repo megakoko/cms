@@ -22,6 +22,12 @@ class TaskNotificationController {
 
     init(userId: Int) {
         self.userId = userId
+
+        NotificationCenter.default.addObserver(forName: TaskListViewController.listUpdateNotification, object: nil, queue: nil) {
+            notification in
+            self.stopRefreshing()
+            self.startRefreshing()
+        }
     }
 
     func refreshData(with completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {

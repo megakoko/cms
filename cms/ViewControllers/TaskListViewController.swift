@@ -12,6 +12,8 @@ class TaskListViewController: UITableViewController {
     var tasks = [Task]()
     var taskListDataTask: URLSessionDataTask? = nil
 
+    static let listUpdateNotification = Notification.Name("listUpdateNotification")
+
     var userId = 1
 
     override func viewDidLoad() {
@@ -46,6 +48,7 @@ class TaskListViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.tableView.refreshControl?.endRefreshing()
+                NotificationCenter.default.post(name: TaskListViewController.listUpdateNotification, object: self)
             }
         }
 
@@ -101,6 +104,7 @@ class TaskListViewController: UITableViewController {
                 self.tasks.remove(at: row)
                 DispatchQueue.main.async {
                     self.tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .none)
+                    NotificationCenter.default.post(name: TaskListViewController.listUpdateNotification, object: self)
                 }
             }
         }
@@ -163,6 +167,7 @@ class TaskListViewController: UITableViewController {
                 self.tasks.remove(at: row)
                 DispatchQueue.main.async {
                     self.tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .none)
+                    NotificationCenter.default.post(name: TaskListViewController.listUpdateNotification, object: self)
                 }
             }
         }
