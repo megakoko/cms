@@ -12,6 +12,8 @@ class TaskListViewController: UITableViewController {
     var tasks = [Task]()
     var taskListDataTask: URLSessionDataTask? = nil
 
+    var userId = 1
+
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshData()
@@ -24,7 +26,7 @@ class TaskListViewController: UITableViewController {
         }
 
         let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/tasks?status=neq.completed&order=endDate.desc")
+        let url = URL(string: "\(host)/tasks?assigneeId=eq.\(userId)&status=neq.completed&order=endDate.desc")
 
         taskListDataTask = URLSession.shared.dataTask(with: url!) {
             data, response, error in

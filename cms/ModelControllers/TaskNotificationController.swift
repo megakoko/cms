@@ -35,7 +35,7 @@ class TaskNotificationController {
         let now = dateFormatter.string(from: Date())
 
         let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/tasks?assigneeId=eq.\(userId)&endDateReminder=lte.\(now)")!
+        let url = URL(string: "\(host)/tasks?assigneeId=eq.\(userId)&endDateReminder=lte.\(now)&status=neq.completed")!
 
         dataTask = URLSession.shared.dataTask(with: url) {
             data, response, error in
