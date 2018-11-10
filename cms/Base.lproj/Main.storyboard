@@ -867,7 +867,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="lWu-Xv-Cp7">
-                            <rect key="frame" x="0.0" y="528" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="455" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
@@ -1071,32 +1071,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Work Description" id="mka-l1-aao">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IWX-eV-RK9">
-                                        <rect key="frame" x="0.0" y="483" width="375" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWX-eV-RK9" id="LmN-kH-QrU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVb-Wj-H8V">
-                                                    <rect key="frame" x="16" y="8" width="343" height="29"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="AVb-Wj-H8V" firstAttribute="trailing" secondItem="LmN-kH-QrU" secondAttribute="trailingMargin" id="03x-vS-4wb"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="AVb-Wj-H8V" secondAttribute="bottom" constant="-3" id="2Gb-Ga-ISF"/>
-                                                <constraint firstItem="AVb-Wj-H8V" firstAttribute="centerY" secondItem="LmN-kH-QrU" secondAttribute="centerY" id="Shu-AU-GUY"/>
-                                                <constraint firstItem="AVb-Wj-H8V" firstAttribute="leading" secondItem="LmN-kH-QrU" secondAttribute="leadingMargin" id="zhK-4i-Ln8"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="O2z-JW-Ybf" id="PFp-RH-q4w"/>
@@ -1125,7 +1099,6 @@
                         <outlet property="nameField" destination="EcO-gQ-sZI" id="L8A-Av-f2w"/>
                         <outlet property="startDateEnabled" destination="9gK-ED-Inl" id="nEe-Lc-ZUt"/>
                         <outlet property="startDatePicker" destination="mjO-aX-AVK" id="Ps0-26-98F"/>
-                        <outlet property="workDescriptionField" destination="AVb-Wj-H8V" id="bFa-41-7FB"/>
                         <segue destination="sLg-ey-Lib" kind="unwind" identifier="unwindToTaskList" unwindAction="unwindToTaskListWithSender:" id="v6o-Uu-448"/>
                     </connections>
                 </tableViewController>
