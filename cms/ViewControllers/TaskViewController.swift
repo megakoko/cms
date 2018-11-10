@@ -13,20 +13,28 @@ class TaskViewController: UITableViewController {
 
     var task: Task? = nil
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var endDateLabel: UILabel!
-    @IBOutlet weak var startDateLabel: UILabel!
-    @IBOutlet weak var assigneeLabel: UILabel!
-    @IBOutlet weak var clientNameLabel: UILabel!
+    private let statusCellSection = 1
+
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var statusField: UITextField!
+    @IBOutlet weak var endDateField: UITextField!
+    @IBOutlet weak var startDateField: UITextField!
+    @IBOutlet weak var assigneeField: UITextField!
+    @IBOutlet weak var clientNameField: UITextField!
     @IBOutlet weak var clientNameCell: UITableViewCell!
-    @IBOutlet weak var workDescriptionLabel: UILabel!
+    @IBOutlet weak var workDescriptionField: UITextField!
     @IBOutlet weak var clientNameTapGestureRecognizer: UITapGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        reloadData()
+        updateUi()
+        if id != nil {
+            reloadData()
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        }
     }
 
     func reloadData() {
@@ -58,30 +66,129 @@ class TaskViewController: UITableViewController {
         dataTask.resume()
     }
 
-    func updateUi() {
+    private func saveTask(completionHandler: @escaping (Bool) -> Void) {
+        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
+        let url = URL(string: "\(host)/task")
+
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(task!) else {
+            completionHandler(false)
+            return
+        }
+
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = data
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) {
+            data, response, error in
+
+            if error != nil {
+                print("Failed to create new task: \(error!)")
+                completionHandler(false)
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode < 200 || httpResponse.statusCode >= 300 {
+                    print("Failed to create new task, status code: \(httpResponse.statusCode)")
+                    completionHandler(false)
+                    return;
+                }
+            }
+
+            completionHandler(true)
+        }
+
+        dataTask.resume();
+    }
+
+    private func updateUi() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy 'at' hh:mm"
 
-        nameLabel.text = task?.name
-        statusLabel.text = task?.status
-        endDateLabel.text = task?.endDate != nil ? dateFormatter.string(from: (task?.endDate)!) : nil
-        startDateLabel.text = task?.startDate != nil ? dateFormatter.string(from: (task?.startDate)!) : nil
-        assigneeLabel.text = task?.assignee
-        clientNameLabel.text = task?.clientName
+        nameField.text = task?.name
+        statusField.text = task?.status
+        endDateField.text = task?.endDate != nil ? dateFormatter.string(from: (task?.endDate)!) : nil
+        startDateField.text = task?.startDate != nil ? dateFormatter.string(from: (task?.startDate)!) : nil
+        assigneeField.text = task?.assignee
+        clientNameField.text = task?.clientName
         clientNameCell.accessoryType = task?.clientId == nil ? .none : .disclosureIndicator
-        workDescriptionLabel.text = task?.workDescription
+        workDescriptionField.text = task?.workDescription
 
         if task?.clientId == nil {
             clientNameTapGestureRecognizer.isEnabled = false
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let clientViewController = segue.destination as! ClientViewController
+    struct Test : Codable {
+        var id: Int?
+        var name: String?
+        var t: Int?
+    }
 
-        if let task = task {
-            clientViewController.setClient(id: task.clientId!, type: task.clientType!)
-            clientViewController.title = task.clientName
+    @IBAction func done(_ sender: Any) {
+        task = Task(id: nil,
+                    name: nameField.text ?? "",
+                    endDate: nil,
+                    endDateReminder: nil,
+                    startDate: nil,
+                    clientName: nil,
+                    clientId: nil,
+                    clientType: nil,
+                    assignee: nil,
+                    workDescription: nil,
+                    status: nil)
+
+        saveTask() {
+            saved in
+
+            if !saved {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Save Task", message: "Failed to save the task", preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "unwindToTaskList", sender: self)
+            }
         }
+    }
+
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "clientSegue" {
+            let clientViewController = segue.destination as! ClientViewController
+
+            if let task = task {
+                clientViewController.setClient(id: task.clientId!, type: task.clientType!)
+                clientViewController.title = task.clientName
+            }
+        } else if segue.identifier == "unwindToTaskList" {
+
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if id == nil && indexPath.section == statusCellSection {
+            return 0
+        }
+
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if id == nil && section == statusCellSection {
+            return 0
+        }
+
+        return super.tableView(tableView, heightForHeaderInSection: section)
     }
 }

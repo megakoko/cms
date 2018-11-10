@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct Task : Decodable {
-    var id: Int
+struct Task : Codable {
+    var id: Int?
     var name: String
     var endDate: Date?
     let endDateReminder: Date?

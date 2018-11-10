@@ -211,7 +211,7 @@ class TaskListViewController: UITableViewController {
             completionHandler(false)
 
             let task = self.tasks[indexPath.row]
-            self.completeTask(id: task.id)
+            self.completeTask(id: task.id!)
         }
         completeAction.backgroundColor = UIColor(red: 0.12, green: 0.46, blue: 1, alpha: 1)
 
@@ -225,7 +225,7 @@ class TaskListViewController: UITableViewController {
             completionHandler(false)
 
             let task = self.tasks[indexPath.row]
-            self.deleteTask(id: task.id)
+            self.deleteTask(id: task.id!)
         }
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
@@ -239,5 +239,9 @@ class TaskListViewController: UITableViewController {
 
         let taskViewController = segue.destination as! TaskViewController
         taskViewController.id = task.id
+    }
+
+    @IBAction func unwindToTaskList(sender: UIStoryboardSegue) {
+        refreshData()
     }
 }
