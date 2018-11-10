@@ -452,7 +452,7 @@
         <!--Users-->
         <scene sceneID="J6h-br-YZC">
             <objects>
-                <navigationController id="fza-A4-ES1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UserListNavigationController" id="fza-A4-ES1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Users" image="second" selectedImage="second" id="7cv-ed-orC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6i8-zB-buC">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>

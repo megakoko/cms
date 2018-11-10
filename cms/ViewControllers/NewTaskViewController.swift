@@ -122,9 +122,17 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
 
     @IBAction func chooseAssignee(_ sender: Any) {
         let userListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
-
         userListViewController.delegate = self
 
-        present(userListViewController, animated: true)
+        let userListNavigationController = UINavigationController(rootViewController: userListViewController)
+
+        userListViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAssigneeSelection))
+        userListViewController.navigationItem.leftBarButtonItem?.tintColor = view.tintColor
+
+        present(userListNavigationController, animated: true)
+    }
+
+    @IBAction func cancelAssigneeSelection() {
+        dismiss(animated: true)
     }
 }
