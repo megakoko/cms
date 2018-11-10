@@ -72,9 +72,7 @@ class TaskViewController: UITableViewController {
         clientNameCell.accessoryType = task?.clientId == nil ? .none : .disclosureIndicator
         workDescriptionLabel.text = task?.workDescription
 
-        if task?.clientId == nil {
-            clientNameTapGestureRecognizer.isEnabled = false
-        }
+        clientNameTapGestureRecognizer.isEnabled = (task?.clientId != nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
