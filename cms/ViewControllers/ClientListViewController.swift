@@ -21,7 +21,7 @@ class ClientListViewController : UITableViewController {
                                           Client.ClientType.partnership: "Partnership",
                                           Client.ClientType.individual: "Individual"]
 
-    @IBAction func onTablePulledToRefresh(_ sender: UIRefreshControl) {
+    @IBAction  private func onTablePulledToRefresh(_ sender: UIRefreshControl) {
         refreshData()
     }
 
@@ -38,7 +38,7 @@ class ClientListViewController : UITableViewController {
         refreshData()
     }
 
-    func refreshData() {
+    private func refreshData() {
         if clientDataTask != nil {
             clientDataTask?.cancel()
             clientDataTask = nil
@@ -130,14 +130,14 @@ class ClientListViewController : UITableViewController {
         clientViewController.title = client.name
     }
 
-    @IBAction func unwindToClientList(_ sender: UIStoryboardSegue) {
+    @IBAction private func unwindToClientList(_ sender: UIStoryboardSegue) {
         let newClientController = sender.source as! NewClientTableViewController
         if newClientController.createdClient {
             refreshData()
         }
     }
 
-    @IBAction func cancelClientSelection() {
+    @IBAction private func cancelClientSelection() {
         dismiss(animated: true)
     }
 }

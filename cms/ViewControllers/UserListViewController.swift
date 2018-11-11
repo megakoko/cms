@@ -30,7 +30,7 @@ class UserListViewController: UITableViewController {
         reloadUsers()
     }
 
-    @IBAction func onTablePulledToRefresh(_ sender: Any) {
+    @IBAction private func onTablePulledToRefresh(_ sender: Any) {
         reloadUsers()
     }
 
@@ -138,7 +138,7 @@ class UserListViewController: UITableViewController {
         }
     }
 
-    @IBAction func cancelAssigneeSelection() {
+    @IBAction private func cancelAssigneeSelection() {
         dismiss(animated: true)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 struct Client : Codable {
-    enum ClientType: String, Codable {
+    enum ClientType : String, Codable {
         case individual = "individual"
         case limitedCompany = "limitedCompany"
         case trust = "trust"

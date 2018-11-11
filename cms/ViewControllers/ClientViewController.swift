@@ -217,7 +217,7 @@ class ClientViewController : UITableViewController {
         }
     }
 
-    @IBAction func openMapDetails(_ sender: Any) {
+    @IBAction private func openMapDetails(_ sender: Any) {
         performSegue(withIdentifier: "mapDetailsSegue", sender: mapView)
     }
 }

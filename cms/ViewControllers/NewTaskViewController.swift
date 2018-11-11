@@ -9,7 +9,7 @@
 import UIKit
 
 class NewTaskViewController: UITableViewController, UserListViewControllerDelegate, ClientListViewControllerDelegate {
-    var task: Task? = nil
+    private var task: Task? = nil
 
     private var selectedAssigneeId: Int?
     private let noAssigneeSelectionOption = "No Assignee"
@@ -83,7 +83,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         clientNameLabel.text = clientName ?? noClientSelectionOption
     }
 
-    @IBAction func done(_ sender: Any) {
+    @IBAction private func done(_ sender: Any) {
         task = Task(id: nil,
                     name: nameField.text ?? "",
                     endDate: endDateEnabled.isOn ? endDatePicker.date : nil,
@@ -115,19 +115,19 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         }
     }
 
-    @IBAction func cancel(_ sender: Any) {
+    @IBAction private func cancel(_ sender: Any) {
         dismiss(animated: true)
     }
 
-    @IBAction func onEndDateToggled(_ sender: Any) {
+    @IBAction private func onEndDateToggled(_ sender: Any) {
         endDatePicker.isEnabled = endDateEnabled.isOn
     }
 
-    @IBAction func onStartDateToggled(_ sender: Any) {
+    @IBAction private func onStartDateToggled(_ sender: Any) {
         startDatePicker.isEnabled = startDateEnabled.isOn
     }
 
-    @IBAction func chooseAssignee(_ sender: Any) {
+    @IBAction private func chooseAssignee(_ sender: Any) {
         let userListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
         userListViewController.delegate = self
         userListViewController.emptySelectionOption = noAssigneeSelectionOption
@@ -137,7 +137,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         present(userListNavigationController, animated: true)
     }
 
-    @IBAction func chooseClient(_ sender: Any) {
+    @IBAction private func chooseClient(_ sender: Any) {
         let clientListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ClientListViewController") as! ClientListViewController
         clientListViewController.delegate = self
         clientListViewController.emptySelectionOption = noClientSelectionOption

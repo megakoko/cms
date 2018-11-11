@@ -32,7 +32,7 @@ class MapDetailsViewController: UIViewController {
         self.name = name
     }
 
-    @IBAction func openNavigation(_ sender: Any) {
+    @IBAction private func openNavigation(_ sender: Any) {
         let placemark = MKPlacemark(coordinate: coordinate)
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = name

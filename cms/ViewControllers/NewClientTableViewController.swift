@@ -41,7 +41,7 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
         super.viewDidLoad()
     }
 
-    @IBAction func onClientTypeChanged(_ sender: Any) {
+    @IBAction private func onClientTypeChanged(_ sender: Any) {
         let index = clientTypeControl.selectedSegmentIndex
         let clientType = clientTypes[index]
 
@@ -75,15 +75,12 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
         return 45
     }
 
-    @IBAction func importFromContacts(_ sender: Any) {
-
+    @IBAction private func importFromContacts(_ sender: Any) {
         askForContactAccess()
 
         let contactPicker = CNContactPickerViewController()
         contactPicker.delegate = self
-        self.present(contactPicker, animated: true) {
-
-        }
+        self.present(contactPicker, animated: true)
     }
 
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
@@ -177,7 +174,7 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
         dataTask.resume();
     }
 
-    @IBAction func saveAndClose(_ sender: Any) {
+    @IBAction private func saveAndClose(_ sender: Any) {
         saveClient(clientDetails()) {
             ok in
 
@@ -195,7 +192,7 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
         }
     }
 
-    @IBAction func cancel(_ sender: Any) {
+    @IBAction private func cancel(_ sender: Any) {
         dismiss(animated: true)
     }
 }

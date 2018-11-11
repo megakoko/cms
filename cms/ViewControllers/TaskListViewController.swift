@@ -9,12 +9,12 @@
 import UIKit
 
 class TaskListViewController: UITableViewController {
-    var tasks = [Task]()
-    var taskListDataTask: URLSessionDataTask? = nil
+    private var tasks = [Task]()
+    private var taskListDataTask: URLSessionDataTask? = nil
 
     static let listUpdateNotification = Notification.Name("listUpdateNotification")
 
-    var userId = 1
+    private var userId = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,10 +173,9 @@ class TaskListViewController: UITableViewController {
         }
     }
 
-    @IBAction func onTablePulledToRefresh(_ sender: Any) {
+    @IBAction private func onTablePulledToRefresh(_ sender: Any) {
         refreshData()
     }
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
@@ -241,7 +240,7 @@ class TaskListViewController: UITableViewController {
         taskViewController.id = task.id
     }
 
-    @IBAction func unwindToTaskList(sender: UIStoryboardSegue) {
+    @IBAction private func unwindToTaskList(sender: UIStoryboardSegue) {
         refreshData()
     }
 }

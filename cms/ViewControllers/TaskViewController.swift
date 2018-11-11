@@ -11,7 +11,7 @@ import UIKit
 class TaskViewController: UITableViewController {
     var id: Int? = nil
 
-    var task: Task? = nil
+    private var task: Task? = nil
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -30,7 +30,7 @@ class TaskViewController: UITableViewController {
         reloadData()
     }
 
-    func reloadData() {
+    private func reloadData() {
         let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
         let url = URL(string: "\(host)/task?id=eq.\(id!)")
 
