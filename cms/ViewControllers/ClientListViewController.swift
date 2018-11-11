@@ -74,7 +74,7 @@ class ClientListViewController : UITableViewController {
             cell.textLabel?.text = emptySelectionOption
             cell.detailTextLabel?.text = nil
         } else {
-            let client = clients[indexPath.row - 1]
+            let client = clients[indexPath.row - (emptySelectionOption != nil ? 1 : 0)]
             cell.textLabel?.text = client.name
             cell.detailTextLabel?.text = clientTypeDescriptions[client.type]! + (client.code == nil ? "" : (" — " + client.code!))
         }

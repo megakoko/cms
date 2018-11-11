@@ -107,7 +107,7 @@ class UserListViewController: UITableViewController {
             cell.textLabel?.text = emptySelectionOption
             cell.detailTextLabel?.text = nil
         } else {
-            let user = users[indexPath.row - 1]
+            let user = users[indexPath.row - (emptySelectionOption != nil ? 1 : 0)]
             cell.textLabel?.text = user.fullName
             cell.imageView?.image = avatars[user.id]
             cell.detailTextLabel?.text = user.loggedIn ? "logged in" : ""
