@@ -22,6 +22,11 @@ class UserListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if delegate != nil {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAssigneeSelection))
+            navigationItem.leftBarButtonItem?.tintColor = view.tintColor
+        }
+
         reloadUsers()
     }
 
@@ -131,5 +136,9 @@ class UserListViewController: UITableViewController {
 
             dismiss(animated: true)
         }
+    }
+
+    @IBAction func cancelAssigneeSelection() {
+        dismiss(animated: true)
     }
 }

@@ -27,6 +27,14 @@ class ClientListViewController : UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if delegate != nil {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelClientSelection))
+            navigationItem.leftBarButtonItem?.tintColor = view.tintColor
+
+            navigationItem.rightBarButtonItem = nil
+        }
+
         refreshData()
     }
 
@@ -127,5 +135,9 @@ class ClientListViewController : UITableViewController {
         if newClientController.createdClient {
             refreshData()
         }
+    }
+
+    @IBAction func cancelClientSelection() {
+        dismiss(animated: false)
     }
 }

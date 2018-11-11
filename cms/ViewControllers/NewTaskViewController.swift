@@ -134,14 +134,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
 
         let userListNavigationController = UINavigationController(rootViewController: userListViewController)
 
-        userListViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAssigneeSelection))
-        userListViewController.navigationItem.leftBarButtonItem?.tintColor = view.tintColor
-
         present(userListNavigationController, animated: true)
-    }
-
-    @IBAction func cancelAssigneeSelection() {
-        dismiss(animated: true)
     }
 
     @IBAction func chooseClient(_ sender: Any) {
@@ -151,15 +144,6 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
 
         let clientListNavigationController = UINavigationController(rootViewController: clientListViewController)
 
-        clientListViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelClientSelection))
-        clientListViewController.navigationItem.leftBarButtonItem?.tintColor = view.tintColor
-
-        clientListViewController.navigationItem.rightBarButtonItem = nil
-
         present(clientListNavigationController, animated: true)
-    }
-
-    @IBAction func cancelClientSelection() {
-        dismiss(animated: false)
     }
 }
