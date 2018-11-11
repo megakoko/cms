@@ -97,17 +97,17 @@ class UserListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count + (emptySelectionOption != nil ? 1 : 0)
+        return (emptySelectionOption != nil ? 1 : 0) + users.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath)
 
-        if emptySelectionOption != nil && indexPath.row == users.count {
+        if emptySelectionOption != nil && indexPath.row == 0 {
             cell.textLabel?.text = emptySelectionOption
             cell.detailTextLabel?.text = nil
         } else {
-            let user = users[indexPath.row]
+            let user = users[indexPath.row - 1]
             cell.textLabel?.text = user.fullName
             cell.imageView?.image = avatars[user.id]
             cell.detailTextLabel?.text = user.loggedIn ? "logged in" : ""
@@ -121,8 +121,8 @@ class UserListViewController: UITableViewController {
             var userId: Int? = nil
             var userName: String? = nil
 
-            if indexPath.row < users.count {
-                let user = users[indexPath.row]
+            if indexPath.row != 0 {
+                let user = users[indexPath.row-1]
                 userId = user.id
                 userName = user.fullName
             }
