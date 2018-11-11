@@ -999,7 +999,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mjO-aX-AVK">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="mjO-aX-AVK">
                                                     <rect key="frame" x="0.0" y="-86" width="375" height="216.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="563557568.24005795">
                                                         <!--2018-11-10 15:46:08 +0000-->
