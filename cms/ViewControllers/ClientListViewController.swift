@@ -106,8 +106,6 @@ class ClientListViewController : UITableViewController {
 
             return
         }
-
-        super.tableView(tableView, didSelectRowAt: indexPath)
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
