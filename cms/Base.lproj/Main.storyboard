@@ -64,7 +64,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="gZw-Pj-yyN" kind="show" id="ROg-BU-jmz"/>
+                                    <segue destination="gZw-Pj-yyN" kind="show" id="ROg-BU-jmz">
+                                        <segue key="commit" inheritsFrom="parent" id="yUe-bA-fIu"/>
+                                        <segue key="preview" inheritsFrom="commit" id="x2M-3c-E33"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1127,6 +1130,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gY3-E0-92N"/>
+        <segue reference="ROg-BU-jmz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
 </document>
