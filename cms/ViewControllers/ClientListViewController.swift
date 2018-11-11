@@ -138,6 +138,6 @@ class ClientListViewController : UITableViewController {
     }
 
     @IBAction func cancelClientSelection() {
-        dismiss(animated: false)
+        dismiss(animated: true)
     }
 }
