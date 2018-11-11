@@ -24,7 +24,6 @@ class UserListViewController: UITableViewController {
 
         if delegate != nil {
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAssigneeSelection))
-            navigationItem.leftBarButtonItem?.tintColor = view.tintColor
         }
 
         reloadUsers()

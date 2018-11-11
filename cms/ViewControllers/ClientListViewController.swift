@@ -30,7 +30,6 @@ class ClientListViewController : UITableViewController {
 
         if delegate != nil {
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelClientSelection))
-            navigationItem.leftBarButtonItem?.tintColor = view.tintColor
 
             navigationItem.rightBarButtonItem = nil
         }
