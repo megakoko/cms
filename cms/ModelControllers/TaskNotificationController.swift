@@ -36,14 +36,13 @@ class TaskNotificationController {
             dataTask = nil
         }
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
-        let now = dateFormatter.string(from: Date())
-
         let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/tasks?assigneeId=eq.\(userId)&endDateReminder=lte.\(now)&status=neq.completed")!
+        let url = URL(string: "\(host)/taskreminders?assigneeId=eq.\(userId)&select=tasksWithReminder")!
 
-        dataTask = URLSession.shared.dataTask(with: url) {
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue("application/vnd.pgrst.object+json", forHTTPHeaderField: "Accept")
+
+        dataTask = URLSession.shared.dataTask(with: urlRequest) {
             data, response, error in
 
             self.dataTask = nil
@@ -56,15 +55,18 @@ class TaskNotificationController {
                 return
             }
 
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            guard let tasksWithReminders = try? decoder.decode([Task].self, from: data!) else { return }
-
-            if self.numberOfOverdueTasks == tasksWithReminders.count {
+            guard   let jsonResponse = try? JSONSerialization.jsonObject(with: data!, options: []),
+                    let jsonObject = jsonResponse as? [String: Int],
+                    let newCount = jsonObject["tasksWithReminder"] else {
+                print("Failed to parse number of task reminders from response")
                 return
             }
 
-            self.numberOfOverdueTasks = tasksWithReminders.count
+            if self.numberOfOverdueTasks == newCount  {
+                return
+            }
+
+            self.numberOfOverdueTasks = newCount
 
             if let completionHandler = completionHandler {
                 completionHandler(.newData)
