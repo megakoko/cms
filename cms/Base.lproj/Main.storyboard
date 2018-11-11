@@ -831,7 +831,6 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="mVW-UE-rsJ" kind="relationship" relationship="viewControllers" id="Dg3-58-8md"/>
@@ -1132,5 +1131,4 @@
         <segue reference="gY3-E0-92N"/>
         <segue reference="ROg-BU-jmz"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
 </document>
