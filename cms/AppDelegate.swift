@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        UIApplication.shared.delegate?.window??.tintColor = UIColor(red: 1.00, green: 0.00, blue: 0.40, alpha: 1.0)
+        UIApplication.shared.delegate?.window??.tintColor = UIColor(red: 1.00, green: 0.00, blue: 0.40, alpha: 0.84)
 
         return true
     }
