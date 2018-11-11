@@ -11,6 +11,9 @@ import Foundation
 import UIKit
 
 class ClientListViewController : UITableViewController {
+    var delegate: ClientListViewControllerDelegate?
+    var emptySelectionOption: String?
+
     private var clients = [Client]()
     private var clientDataTask: URLSessionDataTask? = nil
     private var clientTypeDescriptions = [Client.ClientType.limitedCompany: "Company",
@@ -61,17 +64,50 @@ class ClientListViewController : UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clients.count
+        return (emptySelectionOption != nil ? 1 : 0) + clients.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClientCell", for: indexPath)
 
-        let client = clients[indexPath.row]
-        cell.textLabel?.text = client.name
-        cell.detailTextLabel?.text = clientTypeDescriptions[client.type]! + (client.code == nil ? "" : (" — " + client.code!))
+        if emptySelectionOption != nil && indexPath.row == 0 {
+            cell.textLabel?.text = emptySelectionOption
+            cell.detailTextLabel?.text = nil
+        } else {
+            let client = clients[indexPath.row - 1]
+            cell.textLabel?.text = client.name
+            cell.detailTextLabel?.text = clientTypeDescriptions[client.type]! + (client.code == nil ? "" : (" — " + client.code!))
+        }
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if delegate != nil {
+            var clientId: Int? = nil
+            var clientName: String? = nil
+
+            if emptySelectionOption != nil && indexPath.row != 0 {
+                let client = clients[indexPath.row - 1]
+                clientId = client.id
+                clientName = client.name
+            }
+
+            delegate?.didSelect(clientId: clientId, clientName: clientName)
+            dismiss(animated: true)
+
+            return
+        }
+
+        super.tableView(tableView, didSelectRowAt: indexPath)
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if delegate != nil && identifier == "clientDrilldownSegue" {
+            return false
+        }
+
+        return true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

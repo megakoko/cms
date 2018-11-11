@@ -13,6 +13,7 @@
 		DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA10A02B21732B6200C28463 /* TabViewController.swift */; };
 		DA1B07A221973DD200EDC797 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1B07A121973DD100EDC797 /* NewTaskViewController.swift */; };
 		DA1B07A521974E5100EDC797 /* UserListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1B07A421974E5100EDC797 /* UserListViewControllerDelegate.swift */; };
+		DA1B07A72197F68500EDC797 /* ClientListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1B07A62197F68500EDC797 /* ClientListViewControllerDelegate.swift */; };
 		DA2A966B216E498D000AE7F1 /* ClientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */; };
 		DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */; };
 		DA6C116B216CD04A00DAD2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C116A216CD04A00DAD2D0 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		DA10A02B21732B6200C28463 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		DA1B07A121973DD100EDC797 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		DA1B07A421974E5100EDC797 /* UserListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewControllerDelegate.swift; sourceTree = "<group>"; };
+		DA1B07A62197F68500EDC797 /* ClientListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListViewControllerDelegate.swift; sourceTree = "<group>"; };
 		DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListViewController.swift; sourceTree = "<group>"; };
 		DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		DA6C1167216CD04A00DAD2D0 /* cms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cms.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				DA1B07A421974E5100EDC797 /* UserListViewControllerDelegate.swift */,
+				DA1B07A62197F68500EDC797 /* ClientListViewControllerDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */,
 				DA1B07A521974E5100EDC797 /* UserListViewControllerDelegate.swift in Sources */,
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
+				DA1B07A72197F68500EDC797 /* ClientListViewControllerDelegate.swift in Sources */,
 				DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */,
 				DA10A0212172323500C28463 /* Task.swift in Sources */,
 				DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */,

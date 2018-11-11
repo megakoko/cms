@@ -328,7 +328,7 @@
         <!--Clients-->
         <scene sceneID="PL1-hF-xIJ">
             <objects>
-                <tableViewController id="zAN-98-9az" customClass="ClientListViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ClientListViewController" id="zAN-98-9az" customClass="ClientListViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xck-bQ-RxE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -358,7 +358,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="09q-iA-pQ0" kind="show" id="gY3-E0-92N">
+                                    <segue destination="09q-iA-pQ0" kind="show" identifier="clientDrilldownSegue" id="gY3-E0-92N">
                                         <segue key="commit" inheritsFrom="parent" id="q7H-AK-V3F"/>
                                         <segue key="preview" inheritsFrom="commit" id="l91-La-vMq"/>
                                     </segue>
@@ -1053,21 +1053,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YB3-Nw-wyi">
-                                                    <rect key="frame" x="16" y="8" width="316" height="29"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gz-iB-PFV">
+                                                    <rect key="frame" x="16" y="12" width="317" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="YB3-Nw-wyi" firstAttribute="centerY" secondItem="dmT-CZ-BGe" secondAttribute="centerY" id="Lpz-Be-E1b"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="YB3-Nw-wyi" secondAttribute="bottom" constant="-3" id="S55-aG-xem"/>
-                                                <constraint firstItem="YB3-Nw-wyi" firstAttribute="leading" secondItem="dmT-CZ-BGe" secondAttribute="leadingMargin" id="W5R-Yd-Uju"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="YB3-Nw-wyi" secondAttribute="trailing" constant="1" id="pxL-80-t4v"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Gz-iB-PFV" secondAttribute="trailing" constant="8" id="3yJ-I1-QvQ"/>
+                                                <constraint firstItem="9Gz-iB-PFV" firstAttribute="top" secondItem="dmT-CZ-BGe" secondAttribute="top" constant="12" id="IBw-z7-GvT"/>
+                                                <constraint firstAttribute="bottom" secondItem="9Gz-iB-PFV" secondAttribute="bottom" constant="12" id="Oub-dF-nkj"/>
+                                                <constraint firstItem="9Gz-iB-PFV" firstAttribute="leading" secondItem="dmT-CZ-BGe" secondAttribute="leading" constant="16" id="h3B-vL-coQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="JWr-K0-0NX" appends="YES" id="IRy-V6-HSY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1091,8 +1095,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="assigneeLabel" destination="V8n-Nz-FMQ" id="iue-8R-CHZ"/>
-                        <outlet property="clientNameCell" destination="C2l-fR-sCp" id="Pw6-7g-ig7"/>
-                        <outlet property="clientNameField" destination="YB3-Nw-wyi" id="ctQ-WP-DaP"/>
+                        <outlet property="clientNameLabel" destination="9Gz-iB-PFV" id="L57-rh-11Z"/>
                         <outlet property="clientNameTapGestureRecognizer" destination="KWc-6n-lpi" id="l53-KD-BSH"/>
                         <outlet property="endDateEnabled" destination="oRz-oL-41I" id="UMv-GX-O8M"/>
                         <outlet property="endDatePicker" destination="zFW-Yo-spK" id="pCk-Mn-6Gi"/>
@@ -1109,6 +1112,11 @@
                     </connections>
                 </tapGestureRecognizer>
                 <exit id="sLg-ey-Lib" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="JWr-K0-0NX">
+                    <connections>
+                        <action selector="chooseClient:" destination="O2z-JW-Ybf" id="Loe-6a-mw4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3629.5999999999999" y="-1334.4827586206898"/>
         </scene>
@@ -1118,7 +1126,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mmK-mC-GJF"/>
+        <segue reference="gY3-E0-92N"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.40000000000000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
 </document>

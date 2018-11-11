@@ -8,11 +8,14 @@
 
 import UIKit
 
-class NewTaskViewController: UITableViewController, UserListViewControllerDelegate {
+class NewTaskViewController: UITableViewController, UserListViewControllerDelegate, ClientListViewControllerDelegate {
     var task: Task? = nil
 
     private var selectedAssigneeId: Int?
     private let noAssigneeSelectionOption = "No Assignee"
+
+    private var selectedClientId: Int?
+    private let noClientSelectionOption = "No Client"
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var endDateEnabled: UISwitch!
@@ -20,15 +23,13 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     @IBOutlet weak var startDateEnabled: UISwitch!
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var assigneeLabel: UILabel!
-    @IBOutlet weak var clientNameField: UITextField!
-    @IBOutlet weak var clientNameCell: UITableViewCell!
-    @IBOutlet weak var workDescriptionField: UITextField!
-    @IBOutlet weak var clientNameTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var clientNameLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         assigneeLabel.text = noAssigneeSelectionOption
+        clientNameLabel.text = noClientSelectionOption
         onEndDateToggled(endDatePicker)
         onStartDateToggled(startDatePicker)
     }
@@ -77,6 +78,11 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         assigneeLabel.text = userName ?? noAssigneeSelectionOption
     }
 
+    func didSelect(clientId: Int?, clientName: String?) {
+        selectedClientId = clientId
+        clientNameLabel.text = clientName ?? noClientSelectionOption
+    }
+
     @IBAction func done(_ sender: Any) {
         task = Task(id: nil,
                     name: nameField.text ?? "",
@@ -84,7 +90,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
                     endDateReminder: nil,
                     startDate: startDateEnabled.isOn ? startDatePicker.date : nil,
                     clientName: nil,
-                    clientId: nil,
+                    clientId: selectedClientId,
                     clientType: nil,
                     assignee: nil,
                     assigneeId: selectedAssigneeId,
@@ -136,5 +142,24 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
 
     @IBAction func cancelAssigneeSelection() {
         dismiss(animated: true)
+    }
+
+    @IBAction func chooseClient(_ sender: Any) {
+        let clientListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ClientListViewController") as! ClientListViewController
+        clientListViewController.delegate = self
+        clientListViewController.emptySelectionOption = noClientSelectionOption
+
+        let clientListNavigationController = UINavigationController(rootViewController: clientListViewController)
+
+        clientListViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelClientSelection))
+        clientListViewController.navigationItem.leftBarButtonItem?.tintColor = view.tintColor
+
+        clientListViewController.navigationItem.rightBarButtonItem = nil
+
+        present(clientListNavigationController, animated: true)
+    }
+
+    @IBAction func cancelClientSelection() {
+        dismiss(animated: false)
     }
 }
