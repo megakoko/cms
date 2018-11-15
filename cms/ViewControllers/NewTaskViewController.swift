@@ -35,42 +35,16 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     }
 
     private func saveTask(completionHandler: @escaping (Bool) -> Void) {
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/task")
+        NetworkManager.request(.newTask(task!)) {
+            response in
 
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        guard let data = try? encoder.encode(task!) else {
-            completionHandler(false)
-            return
-        }
-
-        var urlRequest = URLRequest(url: url!)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = data
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) {
-            data, response, error in
-
-            if error != nil {
-                print("Failed to create new task: \(error!)")
+            if let error = response?.error {
+                print("Failed to create a task: \(error)")
                 completionHandler(false)
-                return
+            } else {
+                completionHandler(true)
             }
-
-            if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode < 200 || httpResponse.statusCode >= 300 {
-                    print("Failed to create new task, status code: \(httpResponse.statusCode)")
-                    completionHandler(false)
-                    return;
-                }
-            }
-
-            completionHandler(true)
         }
-
-        dataTask.resume();
     }
 
     func didSelect(userId: Int?, userName: String?) {

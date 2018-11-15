@@ -137,41 +137,16 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
     }
 
     private func saveClient(_ client: Client, completion: @escaping ((Bool) -> Void)) {
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/client")
+        NetworkManager.request(.newClient(client)) {
+            response in
 
-        let encoder = JSONEncoder()
-        guard let data = try? encoder.encode(client) else {
-            completion(false)
-            return
-        }
-
-        var urlRequest = URLRequest(url: url!)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = data
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) {
-            data, response, error in
-
-            if error != nil {
-                print("Failed to create new client: \(error!)")
+            if let error = response?.error {
+                print("Failed to create new client: \(error)")
                 completion(false)
-                return
+            } else {
+                completion(false)
             }
-
-            if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode < 200 || httpResponse.statusCode >= 300 {
-                    print("Failed to create new client, status code: \(httpResponse.statusCode)")
-                    completion(false)
-                    return;
-                }
-            }
-
-            completion(true)
         }
-
-        dataTask.resume();
     }
 
     @IBAction private func saveAndClose(_ sender: Any) {

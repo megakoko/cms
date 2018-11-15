@@ -43,22 +43,15 @@ class ClientListViewController : UITableViewController {
             clientDataTask = nil
         }
 
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/clients?order=id.desc")
+        clientDataTask = NetworkManager.request(.clients) {
+            response in
 
-        clientDataTask = URLSession.shared.dataTask(with: url!) {
-            data, response, error in
+            self.clientDataTask = nil
 
-            if error != nil {
-                print("Failed to get clients: \(error!)")
-                return
-            }
-
-            let decoder = JSONDecoder()
-            if let clients = try? decoder.decode([Client].self, from: data!) {
-                self.clients = clients
+            if let error = response?.error {
+                print("Failed to get clients: \(error)")
             } else {
-                self.clients.removeAll()
+                self.clients = response?.parsed([Client].self) ?? [Client]()
             }
 
             DispatchQueue.main.async {
@@ -66,8 +59,6 @@ class ClientListViewController : UITableViewController {
                 self.tableView.refreshControl?.endRefreshing()
             }
         }
-
-        clientDataTask!.resume()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

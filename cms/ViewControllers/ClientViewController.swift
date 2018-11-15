@@ -52,47 +52,36 @@ class ClientViewController : UITableViewController {
     }
 
     private func loadData() {
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/client?id=eq.\(client!.id!)")!
+        NetworkManager.request(.client(id: client!.id!)) {
+            response in
 
-        let coreDataTask = URLSession.shared.dataTask(with: url) {
-            data, response, error in
+            if let error = response?.error {
+                print("Failed to get client: \(error)")
+            } else {
+                if let client = response?.parsed(Client.self) {
+                    self.client = client
+                    self.updateClientAddressOnMap()
+                }
 
-            if error != nil {
-                print("Failed to get client: \(error!)")
-                return
-            }
-
-            if let clients = try? JSONDecoder().decode([Client].self, from: data!) {
-                self.client = clients.first
-                self.updateClientAddressOnMap()
-            }
-
-            DispatchQueue.main.async {
-                self.updateUi()
-            }
-        }
-        coreDataTask.resume()
-
-        let relationshipUrl = URL(string: "\(host)/clientrelationship?clientId=eq.\(client!.id!)")!
-        let relationshipsDataTask = URLSession.shared.dataTask(with: relationshipUrl) {
-            data, response, error in
-
-            if error != nil {
-                print("Failed to get relationships: \(error!)")
-                return
-            }
-
-            if let relationships = try? JSONDecoder().decode([Relationship].self, from: data!) {
-                self.relationships = relationships
-            }
-
-            DispatchQueue.main.async {
-                self.updateUi()
+                DispatchQueue.main.async {
+                    self.updateUi()
+                }
             }
         }
 
-        relationshipsDataTask.resume()
+        NetworkManager.request(.relationships(clientId: client!.id!)) {
+            response in
+
+            if let error = response?.error {
+                print("Failed to get client relationships: \(error)")
+            } else {
+                self.relationships = response?.parsed([Relationship].self) ?? [Relationship]()
+
+                DispatchQueue.main.async {
+                    self.updateUi()
+                }
+            }
+        }
     }
 
     private func updateUi() {

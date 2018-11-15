@@ -39,65 +39,58 @@ class UserListViewController: UITableViewController {
             coreDataTask = nil
         }
 
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let coreRequest = URLRequest(url: URL(string: "\(host)/users")!)
-        coreDataTask = URLSession.shared.dataTask(with: coreRequest) {
-            data, response, error in
+        NetworkManager.request(.users) {
+            response in
 
-            if error != nil {
-                print("Failed to get users: \(error!)")
-                return
-            }
+            self.coreDataTask = nil
 
-            if let users = try? JSONDecoder().decode([User].self, from: data!) {
-                self.users = users
-            }
+            if let error = response?.error {
+                print("Failed to get users: \(error)")
+            } else {
+                self.users = response?.parsed([User].self) ?? [User]()
 
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.tableView.refreshControl?.endRefreshing()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+                }
             }
         }
-        coreDataTask?.resume()
-
 
         if avatarDataTask != nil {
             avatarDataTask?.cancel()
             avatarDataTask = nil
         }
 
-        let avatarRequest = URLRequest(url: URL(string: "\(host)/avatars")!)
-        avatarDataTask = URLSession.shared.dataTask(with: avatarRequest) {
-            data, response, error in
+        NetworkManager.request(.avatars) {
+            response in
 
-            if error != nil {
-                print("Failed to get avatars: \(error!)")
-                return
-            }
+            self.avatarDataTask = nil
 
-            struct AvatarData : Decodable {
-                let userId: Int
-                let avatar: String
-            }
+            if let error = response?.error {
+                print("Failed to get avatars: \(error)")
+            } else {
+                struct AvatarData : Decodable {
+                    let userId: Int
+                    let avatar: String
+                }
 
-            
-            var avatars = [Int: UIImage]()
-            if let avatarDataList = try? JSONDecoder().decode([AvatarData].self, from: data!) {
-                for avatarData in avatarDataList {
-                    let base64string = avatarData.avatar.replacingOccurrences(of: "\n", with: "", options: .literal, range: nil);
-                    if let base64 = Data(base64Encoded: base64string) {
-                        let img = UIImage(data: base64)
-                        avatars[avatarData.userId] = img
+                var avatars = [Int: UIImage]()
+                if let avatarDataList = response?.parsed([AvatarData].self) {
+                    for avatarData in avatarDataList {
+                        let base64string = avatarData.avatar.replacingOccurrences(of: "\n", with: "", options: .literal, range: nil);
+                        if let base64 = Data(base64Encoded: base64string) {
+                            let img = UIImage(data: base64)
+                            avatars[avatarData.userId] = img
+                        }
                     }
                 }
-            }
 
-            DispatchQueue.main.async {
-                self.avatars = avatars
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.avatars = avatars
+                    self.tableView.reloadData()
+                }
             }
         }
-        avatarDataTask?.resume()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -36,47 +36,34 @@ class TaskNotificationController {
             dataTask = nil
         }
 
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/taskreminders?assigneeId=eq.\(userId)&select=tasksWithReminder")!
-
-        var urlRequest = URLRequest(url: url)
-        urlRequest.setValue("application/vnd.pgrst.object+json", forHTTPHeaderField: "Accept")
-
-        dataTask = URLSession.shared.dataTask(with: urlRequest) {
-            data, response, error in
+        dataTask = NetworkManager.request(.taskNotification(userId: userId)) {
+            response in
 
             self.dataTask = nil
 
-            if error != nil {
-                print("Failed to get overdue tasks")
-                if let completionHandler = completionHandler {
-                    completionHandler(.failed)
+            if let error = response?.error {
+                print("Failed to get task reminders: \(error)")
+                completionHandler?(.failed)
+            } else {
+                struct TasksWithReminder: Decodable {
+                    let tasksWithReminder: Int
                 }
-                return
-            }
 
-            guard   let jsonResponse = try? JSONSerialization.jsonObject(with: data!, options: []),
-                    let jsonObject = jsonResponse as? [String: Int],
-                    let newCount = jsonObject["tasksWithReminder"] else {
-                print("Failed to parse number of task reminders from response")
-                return
-            }
+                guard let data = response?.parsed(TasksWithReminder.self) else {
+                    print("Failed to parse task reminder count")
+                    completionHandler?(.failed)
+                    return
+                }
 
-            if self.numberOfOverdueTasks == newCount  {
-                return
+                if self.numberOfOverdueTasks != data.tasksWithReminder {
+                    self.numberOfOverdueTasks = data.tasksWithReminder
+                    completionHandler?(.newData)
+                    NotificationCenter.default.post(name: TaskNotificationController.numberOfDueTasksNotification,
+                                                    object: self,
+                                                    userInfo: [TaskNotificationController.numberOfDueTasksKey: self.numberOfOverdueTasks])
+                }
             }
-
-            self.numberOfOverdueTasks = newCount
-
-            if let completionHandler = completionHandler {
-                completionHandler(.newData)
-            }
-            
-            NotificationCenter.default.post(name: TaskNotificationController.numberOfDueTasksNotification,
-                                            object: self,
-                                            userInfo: [TaskNotificationController.numberOfDueTasksKey: self.numberOfOverdueTasks])
         }
-        dataTask!.resume()
     }
 
     func startRefreshing() {

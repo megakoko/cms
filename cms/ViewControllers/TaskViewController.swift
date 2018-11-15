@@ -31,32 +31,19 @@ class TaskViewController: UITableViewController {
     }
 
     private func reloadData() {
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/task?id=eq.\(id!)")
+        NetworkManager.request(.task(id: id!)) {
+            response in
 
-        let dataTask = URLSession.shared.dataTask(with: url!) {
-            data, response, error in
+            if let error = response?.error {
+                print("Failed to get task: \(error)")
+            } else {
+                self.task = response?.parsed(Task.self)
 
-            if error != nil {
-                print("Failed to get task: \(error!)")
-                return
-            }
-
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-
-            if let tasks = try? decoder.decode([Task].self, from: data!) {
-                if !tasks.isEmpty {
-                    self.task = tasks[0]
+                DispatchQueue.main.async {
+                    self.updateUi()
                 }
             }
-
-            DispatchQueue.main.async {
-                self.updateUi()
-            }
         }
-
-        dataTask.resume()
     }
 
     private func updateUi() {

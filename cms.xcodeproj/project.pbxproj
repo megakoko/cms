@@ -27,6 +27,9 @@
 		DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */; };
 		DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */; };
 		DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */; };
+		DADCCA6E219C116A00D6CC43 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADCCA6D219C116A00D6CC43 /* Request.swift */; };
+		DADCCA70219C1A0B00D6CC43 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADCCA6F219C1A0B00D6CC43 /* Response.swift */; };
+		DADCCA72219C1F1C00D6CC43 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADCCA71219C1F1C00D6CC43 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
 		DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
 		DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClientTableViewController.swift; sourceTree = "<group>"; };
+		DADCCA6D219C116A00D6CC43 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		DADCCA6F219C1A0B00D6CC43 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		DADCCA71219C1F1C00D6CC43 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,7 @@
 		DA6C1169216CD04A00DAD2D0 /* cms */ = {
 			isa = PBXGroup;
 			children = (
+				DADCCA6C219C115800D6CC43 /* Networking */,
 				DA10A01E217230F700C28463 /* Model */,
 				DA10A01D217230CB00C28463 /* ViewControllers */,
 				DA1B07A321974DF700EDC797 /* Delegates */,
@@ -149,6 +156,16 @@
 				DA78B26B218F550E0071106D /* BuildSettings.xcconfig */,
 			);
 			path = cms;
+			sourceTree = "<group>";
+		};
+		DADCCA6C219C115800D6CC43 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				DADCCA6D219C116A00D6CC43 /* Request.swift */,
+				DADCCA6F219C1A0B00D6CC43 /* Response.swift */,
+				DADCCA71219C1F1C00D6CC43 /* NetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,11 +249,14 @@
 				DA10A025217233C700C28463 /* Client.swift in Sources */,
 				DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */,
 				DA1B07A521974E5100EDC797 /* UserListViewControllerDelegate.swift in Sources */,
+				DADCCA70219C1A0B00D6CC43 /* Response.swift in Sources */,
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
 				DA1B07A72197F68500EDC797 /* ClientListViewControllerDelegate.swift in Sources */,
+				DADCCA6E219C116A00D6CC43 /* Request.swift in Sources */,
 				DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */,
 				DA10A0212172323500C28463 /* Task.swift in Sources */,
 				DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */,
+				DADCCA72219C1F1C00D6CC43 /* NetworkManager.swift in Sources */,
 				DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */,
 				DA6C116B216CD04A00DAD2D0 /* AppDelegate.swift in Sources */,
 				DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */,

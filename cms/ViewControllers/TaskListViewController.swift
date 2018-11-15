@@ -27,62 +27,37 @@ class TaskListViewController: UITableViewController {
             taskListDataTask = nil
         }
 
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/tasks?assigneeId=eq.\(userId)&status=neq.completed&order=endDate.desc")
+        taskListDataTask = NetworkManager.request(.tasks) {
+            response in
 
-        taskListDataTask = URLSession.shared.dataTask(with: url!) {
-            data, response, error in
-
-            if error != nil {
-                print("Failed to get list of tasks. \(error!))")
+            if let error = response?.error {
+                print("Failed to get list of tasks: \(error)")
                 return
             }
 
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            if let tasks = try? decoder.decode([Task].self, from: data!) {
-                self.tasks = tasks
-            } else {
-                self.tasks.removeAll()
-            }
+            self.tasks = response?.parsed([Task].self) ?? [Task]()
+
+            self.taskListDataTask = nil
+
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.tableView.refreshControl?.endRefreshing()
                 NotificationCenter.default.post(name: TaskListViewController.listUpdateNotification, object: self)
             }
         }
-
-        taskListDataTask!.resume()
     }
 
     private func sendTaskDeletionRequest(id: Int, completionHandler: @escaping (Bool) -> Void) {
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/task?id=eq.\(id)")
+        NetworkManager.request(.deleteTask(id: id)) {
+            response in
 
-        var urlRequest = URLRequest(url: url!)
-        urlRequest.httpMethod = "DELETE"
-
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) {
-            data, response, error in
-
-            if error != nil {
-                print("Failed to delete task: \(error!)")
+            if let error = response?.error {
+                print("Failed to delete task: \(error)")
                 completionHandler(false)
-                return
+            } else {
+                completionHandler(true)
             }
-
-            if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode < 200 || httpResponse.statusCode >= 300 {
-                    print("Failed to delete task, status code: \(httpResponse.statusCode)")
-                    completionHandler(false)
-                    return;
-                }
-            }
-
-            completionHandler(true)
         }
-
-        dataTask.resume();
     }
 
     private func deleteTask(id: Int) {
@@ -110,46 +85,21 @@ class TaskListViewController: UITableViewController {
         }
     }
 
-    private func sendTaskCompletionRequest(id: Int, completionHandler: @escaping (Bool) -> Void) {
-        let host = (Bundle.main.infoDictionary?["Server"] as? String) ?? ""
-        let url = URL(string: "\(host)/task?id=eq.\(id)")
+    private func sendTaskCompletionRequest(task: Task, completionHandler: @escaping (Bool) -> Void) {
+        NetworkManager.request(.updateTask(task)) {
+            response in
 
-        let encoder = JSONEncoder()
-        guard let data = try? encoder.encode(["status": "completed"]) else {
-            completionHandler(false)
-            return
-        }
-
-        var urlRequest = URLRequest(url: url!)
-        urlRequest.httpMethod = "PATCH"
-        urlRequest.httpBody = data
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) {
-            data, response, error in
-
-            if error != nil {
-                print("Failed to complete task: \(error!)")
+            if let error = response?.error {
+                print("Failed to complete task: \(error)")
                 completionHandler(false)
-                return
+            } else {
+                completionHandler(true)
             }
-
-            if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode < 200 || httpResponse.statusCode >= 300 {
-                    print("Failed to complete task, status code: \(httpResponse.statusCode)")
-                    completionHandler(false)
-                    return;
-                }
-            }
-
-            completionHandler(true)
         }
-
-        dataTask.resume();
     }
 
-    private func completeTask(id: Int) {
-        sendTaskCompletionRequest(id: id) {
+    private func completeTask(task: Task) {
+        sendTaskCompletionRequest(task: task) {
             completed in
 
             if !completed {
@@ -161,9 +111,7 @@ class TaskListViewController: UITableViewController {
                 return
             }
 
-            for (row, task) in self.tasks.enumerated() {
-                if task.id != id { continue }
-
+            if let row = self.tasks.firstIndex(where: { $0.id == task.id } ) {
                 self.tasks.remove(at: row)
                 DispatchQueue.main.async {
                     self.tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .none)
@@ -209,8 +157,9 @@ class TaskListViewController: UITableViewController {
 
             completionHandler(false)
 
-            let task = self.tasks[indexPath.row]
-            self.completeTask(id: task.id!)
+            var task = self.tasks[indexPath.row]
+            task.status = "completed"
+            self.completeTask(task: task)
         }
         completeAction.backgroundColor = UIColor(red: 0.12, green: 0.46, blue: 1, alpha: 1)
 
