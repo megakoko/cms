@@ -19,7 +19,7 @@ class TabViewController: UITabBarController {
             DispatchQueue.main.async {
                 let taskListViewControllerIndex = 0
                 if let taskListController = self.tabBar.items?[taskListViewControllerIndex] {
-                    taskListController.badgeValue = String(numberOfTasks)
+                    taskListController.badgeValue = numberOfTasks > 0 ? String(numberOfTasks) : nil
                 }
             }
         }
