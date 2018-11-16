@@ -107,6 +107,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         userListViewController.emptySelectionOption = noAssigneeSelectionOption
 
         let userListNavigationController = UINavigationController(rootViewController: userListViewController)
+        userListViewController.title = "Choose Assignee"
 
         present(userListNavigationController, animated: true)
     }
@@ -117,6 +118,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         clientListViewController.emptySelectionOption = noClientSelectionOption
 
         let clientListNavigationController = UINavigationController(rootViewController: clientListViewController)
+        clientListViewController.title = "Choose Associated Client"
 
         present(clientListNavigationController, animated: true)
     }

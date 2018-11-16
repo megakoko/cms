@@ -187,6 +187,7 @@ class TaskListViewController: UITableViewController {
 
         let taskViewController = segue.destination as! TaskViewController
         taskViewController.id = task.id
+        taskViewController.title = task.name
     }
 
     @IBAction private func unwindToTaskList(sender: UIStoryboardSegue) {
