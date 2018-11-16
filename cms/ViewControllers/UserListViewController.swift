@@ -23,6 +23,7 @@ class UserListViewController: UITableViewController {
         super.viewDidLoad()
 
         if delegate != nil {
+            tableView.allowsSelection = true
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAssigneeSelection))
         }
 
