@@ -62,7 +62,7 @@ extension Request {
         case .clients:
             return .url(["order": "id.desc"])
         case .client(let id):
-            return .url(["id": "id=eq.\(id)"])
+            return .url(["id": "eq.\(id)"])
         case .newClient(let client):
             return .body(encode(client))
         case .relationships(let clientId):
