@@ -144,7 +144,7 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
                 print("Failed to create new client: \(error)")
                 completion(false)
             } else {
-                completion(false)
+                completion(true)
             }
         }
     }
