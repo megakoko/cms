@@ -112,11 +112,7 @@ extension Request {
         let parameters = self.parameters
         switch parameters {
         case .url(let queryItems):
-            var urlQueryItems = [URLQueryItem]()
-            for (key, value) in queryItems {
-                urlQueryItems.append(URLQueryItem(name: key, value: value))
-            }
-            urlComponents.queryItems = urlQueryItems
+            urlComponents.queryItems = queryItems.map{ URLQueryItem(name: $0, value: $1) }
         case .body:
             break
         }
