@@ -22,7 +22,7 @@ class TaskTableViewCell: UITableViewCell {
     }
     
     func setRecording(_ recording: Bool) {
-        recordButton.setTitle(recording ? "Stop" : "Start", for: .normal)
+        recordButton.setImage(UIImage(named: recording ? "Stop" : "Start"), for: .normal)
     }
 
     @IBAction func recordClicked(_ sender: Any) {

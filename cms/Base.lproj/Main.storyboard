@@ -48,17 +48,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Klr-wg-CEx">
-                                            <rect key="frame" x="16" y="11" width="343" height="24"/>
+                                            <rect key="frame" x="16" y="11" width="343" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kz9-gw-AS0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="289" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="315" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIj-TU-l3d">
-                                                    <rect key="frame" x="297" y="0.0" width="46" height="24"/>
-                                                    <state key="normal" title="Button"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIj-TU-l3d">
+                                                    <rect key="frame" x="323" y="0.0" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="d16-8b-N8D"/>
+                                                        <constraint firstAttribute="height" constant="20" id="jj3-9a-t1J"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Stop"/>
                                                     <connections>
                                                         <action selector="recordClicked:" destination="BnF-XL-LWT" eventType="touchUpInside" id="TL1-kj-XmQ"/>
                                                     </connections>
@@ -66,16 +70,16 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sxo-97-RMq">
-                                            <rect key="frame" x="16" y="43" width="343" height="14.5"/>
+                                            <rect key="frame" x="16" y="39" width="343" height="18.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dj-LO-EyU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="304" height="14.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="304" height="18.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nj1-tI-vtX">
-                                                    <rect key="frame" x="312" y="0.0" width="31" height="14.5"/>
+                                                    <rect key="frame" x="312" y="0.0" width="31" height="18.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1157,6 +1161,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Stop" width="40" height="40"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
