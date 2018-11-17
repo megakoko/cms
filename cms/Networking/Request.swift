@@ -14,6 +14,7 @@ enum Request {
     case newTask(Task)
     case updateTask(Task)
     case deleteTask(id: Int)
+    case timesheetEntries
     case clients
     case client(id: Int)
     case newClient(Client)
@@ -30,6 +31,8 @@ extension Request {
             return "/tasks"
         case .task, .newTask, .updateTask, .deleteTask:
             return "/task"
+        case .timesheetEntries:
+            return "/timesheet"
         case .clients:
             return "/clients"
         case .client, .newClient:
@@ -59,6 +62,9 @@ extension Request {
             return .body(encode(task))
         case .deleteTask(let id):
             return .url(["id": "eq.\(id)"])
+        case .timesheetEntries:
+            return .url(["userId": "eq.1",
+                         "order": "end.desc"])
         case .clients:
             return .url(["order": "id.desc"])
         case .client(let id):
@@ -79,7 +85,7 @@ extension Request {
 
     private var method: HttpMethod {
         switch self {
-        case .tasks, .task, .clients, .client, .relationships, .users, .avatars, .taskNotification:
+        case .tasks, .task, .timesheetEntries, .clients, .client, .relationships, .users, .avatars, .taskNotification:
             return .get
         case .newTask, .newClient:
             return .post
@@ -94,7 +100,7 @@ extension Request {
         switch self {
         case .task, .client, .taskNotification:
             return true
-        case .tasks, .deleteTask, .updateTask, .newTask, .clients, .newClient, .relationships, .users, .avatars:
+        case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .clients, .newClient, .relationships, .users, .avatars:
             return false
         }
     }

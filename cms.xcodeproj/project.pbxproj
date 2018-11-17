@@ -28,6 +28,7 @@
 		DAA81075219FFC6300F3D3A4 /* TaskTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA81074219FFC6300F3D3A4 /* TaskTableViewCellDelegate.swift */; };
 		DAA8107721A0003E00F3D3A4 /* TimesheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8107621A0003E00F3D3A4 /* TimesheetController.swift */; };
 		DAA8107921A05DC100F3D3A4 /* TimesheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8107821A05DC100F3D3A4 /* TimesheetTableViewController.swift */; };
+		DAA8107B21A0672900F3D3A4 /* TimesheetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8107A21A0672900F3D3A4 /* TimesheetEntry.swift */; };
 		DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */; };
 		DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */; };
 		DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */; };
@@ -61,6 +62,7 @@
 		DAA81074219FFC6300F3D3A4 /* TaskTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		DAA8107621A0003E00F3D3A4 /* TimesheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetController.swift; sourceTree = "<group>"; };
 		DAA8107821A05DC100F3D3A4 /* TimesheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetTableViewController.swift; sourceTree = "<group>"; };
+		DAA8107A21A0672900F3D3A4 /* TimesheetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetEntry.swift; sourceTree = "<group>"; };
 		DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
 		DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
 		DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClientTableViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				DA10A0202172323500C28463 /* Task.swift */,
+				DAA8107A21A0672900F3D3A4 /* TimesheetEntry.swift */,
 				DA10A024217233C700C28463 /* Client.swift */,
 				DA7E6C172170752A004B1498 /* User.swift */,
 			);
@@ -260,6 +263,7 @@
 				DA2A966B216E498D000AE7F1 /* ClientListViewController.swift in Sources */,
 				DA10A025217233C700C28463 /* Client.swift in Sources */,
 				DA10A02C21732B6200C28463 /* TabViewController.swift in Sources */,
+				DAA8107B21A0672900F3D3A4 /* TimesheetEntry.swift in Sources */,
 				DAA8107921A05DC100F3D3A4 /* TimesheetTableViewController.swift in Sources */,
 				DAA8107721A0003E00F3D3A4 /* TimesheetController.swift in Sources */,
 				DA1B07A521974E5100EDC797 /* UserListViewControllerDelegate.swift in Sources */,
