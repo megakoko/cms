@@ -19,29 +19,59 @@ class TimesheetController {
     }
     
     private(set) var currentTaskId: Int?
+    private var currentTaskRecordingStartTime: Date?
+    
+    var timeRecording: TimeInterval? {
+        if let start = currentTaskRecordingStartTime {
+            return Date().timeIntervalSince(start)
+        } else {
+            return nil
+        }
+    }
     
     private init() {
     }
     
-    func taskRecordingToggled(taskId: Int) {
-//        print("Before: \(currentTaskId)")
+    func formatTimeInterval(interval: TimeInterval?) -> String {
+        if interval == nil {
+            return ""
+        }
         
+        var interval = Int(interval!)
+        
+        let seconds = interval % 60
+        interval /= 60
+        
+        let minutes = interval % 60
+        interval /= 60
+        
+        let hours = interval
+        
+        if hours > 0 {
+            return "\(hours)h \(minutes)"
+        } else {
+            return "\(minutes):\(String(format: "%02d", seconds))"
+        }
+    }
+    
+    func taskRecordingToggled(taskId: Int) {
         if currentTaskId == taskId {
-//            print("Stopping task \(currentTaskId)")
-            sendNotification(taskId: currentTaskId!, action: .stop)
-            
+            let taskId = currentTaskId
             currentTaskId = nil
+            currentTaskRecordingStartTime = nil
+            sendNotification(taskId: taskId!, action: .stop)
         } else {
             if currentTaskId != nil {
-                sendNotification(taskId: currentTaskId!, action: .stop)
+                let taskId = currentTaskId
+                currentTaskId = nil
+                currentTaskRecordingStartTime = nil
+                sendNotification(taskId: taskId!, action: .stop)
             }
             
             currentTaskId = taskId
-            
+            currentTaskRecordingStartTime = Date()
             sendNotification(taskId: currentTaskId!, action: .start)
         }
-        
-//        print("After: \(currentTaskId)")
     }
     
     private func sendNotification(taskId: Int, action: TimesheetActionType) {

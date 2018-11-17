@@ -101,6 +101,7 @@
                                     <outlet property="endDate" destination="2dj-LO-EyU" id="Y8M-As-d7A"/>
                                     <outlet property="name" destination="kz9-gw-AS0" id="VuY-nE-TB1"/>
                                     <outlet property="recordButton" destination="OIj-TU-l3d" id="rb9-2J-Y7i"/>
+                                    <outlet property="recordingTimeLabel" destination="Nj1-tI-vtX" id="WRx-sa-Ufg"/>
                                     <segue destination="gZw-Pj-yyN" kind="show" id="ROg-BU-jmz">
                                         <segue key="commit" inheritsFrom="parent" id="yUe-bA-fIu"/>
                                         <segue key="preview" inheritsFrom="commit" id="x2M-3c-E33"/>

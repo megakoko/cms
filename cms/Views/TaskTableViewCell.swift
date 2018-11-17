@@ -12,6 +12,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var endDate: UILabel!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var recordingTimeLabel: UILabel!
     
     var delegate: TaskTableViewCellDelegate?
     

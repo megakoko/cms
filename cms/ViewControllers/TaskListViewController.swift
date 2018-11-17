@@ -15,6 +15,8 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
     static let listUpdateNotification = Notification.Name("listUpdateNotification")
 
     private var userId = 1
+    
+    private var recordingTimer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +24,7 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
         
         NotificationCenter.default.addObserver(forName: TimesheetController.timesheetTaskActionNotificationName, object: nil, queue: nil) {
             notification in
-            
-            guard let data = notification.userInfo,
-                  let taskId = data[TimesheetController.timesheetTaskIdNotificationKey] as? Int,
-                  let action = data[TimesheetController.timesheetTaskActionNotificationKey] as? TimesheetController.TimesheetActionType else { return }
-            print(taskId)
-            print(action)
-            
-            guard let row = self.tasks.firstIndex(where: { $0.id == taskId }) else { return }
-            
-            let indexPath = IndexPath(row: row, section: 0)
-            guard let cell = self.tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
-            
-            cell.setRecording(action == .start)
+            self.handleTimesheetActionNotification(notification)
         }
     }
 
@@ -167,7 +157,9 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
             cell.endDate.textColor = UIColor.black
         }
         
-        cell.setRecording(task.id == TimesheetController.shared.currentTaskId)
+        let isRecording = (task.id == TimesheetController.shared.currentTaskId)
+        cell.setRecording(isRecording)
+        cell.recordingTimeLabel.text = TimesheetController.shared.formatTimeInterval(interval: TimesheetController.shared.timeRecording)
         
         return cell
     }
@@ -227,5 +219,41 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
 
     @IBAction private func unwindToTaskList(sender: UIStoryboardSegue) {
         refreshData()
+    }
+    
+    private func handleTimesheetActionNotification(_ notification: Notification) {
+        guard let data = notification.userInfo,
+            let taskId = data[TimesheetController.timesheetTaskIdNotificationKey] as? Int,
+            let action = data[TimesheetController.timesheetTaskActionNotificationKey] as? TimesheetController.TimesheetActionType else { return }
+        
+        switch action {
+        case .stop:
+            recordingTimer?.invalidate()
+            recordingTimer = nil
+        case .start:
+            recordingTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                self.updateRecordingTime()
+            }
+        }
+        
+        guard let row = tasks.firstIndex(where: { $0.id == taskId }) else { return }
+        
+        let indexPath = IndexPath(row: row, section: 0)
+        guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
+        
+        let isRecording = (action == .start)
+        cell.setRecording(isRecording)
+        cell.recordingTimeLabel.text = TimesheetController.shared.formatTimeInterval(interval: TimesheetController.shared.timeRecording)
+    }
+    
+    private func updateRecordingTime() {
+        guard let taskId = TimesheetController.shared.currentTaskId else { return }
+        
+        guard let row = self.tasks.firstIndex(where: { $0.id == taskId }) else { return }
+        
+        let indexPath = IndexPath(row: row, section: 0)
+        guard let cell = self.tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
+        
+        cell.recordingTimeLabel.text = TimesheetController.shared.formatTimeInterval(interval: TimesheetController.shared.timeRecording)
     }
 }
