@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskListViewController: UITableViewController {
+class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
     private var tasks = [Task]()
     private var taskListDataTask: URLSessionDataTask? = nil
 
@@ -19,6 +19,23 @@ class TaskListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshData()
+        
+        NotificationCenter.default.addObserver(forName: TimesheetController.timesheetTaskActionNotificationName, object: nil, queue: nil) {
+            notification in
+            
+            guard let data = notification.userInfo,
+                  let taskId = data[TimesheetController.timesheetTaskIdNotificationKey] as? Int,
+                  let action = data[TimesheetController.timesheetTaskActionNotificationKey] as? TimesheetController.TimesheetActionType else { return }
+            print(taskId)
+            print(action)
+            
+            guard let row = self.tasks.firstIndex(where: { $0.id == taskId }) else { return }
+            
+            let indexPath = IndexPath(row: row, section: 0)
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
+            
+            cell.setRecording(action == .start)
+        }
     }
 
     private func refreshData() {
@@ -130,23 +147,27 @@ class TaskListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+        
+        cell.delegate = self
 
         let task = tasks[indexPath.row]
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy hh:mm"
         
-        cell.textLabel?.text = task.name
-        cell.detailTextLabel?.text = task.endDate == nil ? nil : (dateFormatter.string(from: task.endDate!))
+        cell.name.text = task.name
+        cell.endDate.text = task.endDate == nil ? nil : (dateFormatter.string(from: task.endDate!))
 
         if task.endDate != nil && task.endDate! <= Date() {
-            cell.detailTextLabel?.textColor = UIColor.red
+            cell.endDate.textColor = UIColor.red
         } else if task.endDateReminder != nil && task.endDateReminder! <= Date() {
-            cell.detailTextLabel?.textColor = UIColor.orange
+            cell.endDate.textColor = UIColor.orange
         } else {
-            cell.detailTextLabel?.textColor = UIColor.black
+            cell.endDate.textColor = UIColor.black
         }
+        
+        cell.setRecording(task.id == TimesheetController.shared.currentTaskId)
         
         return cell
     }
@@ -177,6 +198,20 @@ class TaskListViewController: UITableViewController {
         }
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    func recordTapped(_ cell: TaskTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            print("Can't find a cell that was clicked")
+            return
+        }
+        
+        let task = tasks[indexPath.row]
+//        print("Recording task id \(task.id!)")
+        
+        TimesheetController.shared.taskRecordingToggled(taskId: task.id!)
+        
+//        cell.setRecording(true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

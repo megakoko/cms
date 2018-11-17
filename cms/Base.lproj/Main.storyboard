@@ -35,35 +35,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="iQk-bE-FYa">
-                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="98" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" textLabel="9U5-8i-IYX" detailTextLabel="E3P-i0-dKk" style="IBUITableViewCellStyleSubtitle" id="BnF-XL-LWT">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="70" id="BnF-XL-LWT" customClass="TaskTableViewCell" customModule="cms" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BnF-XL-LWT" id="lMB-rj-y73">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9U5-8i-IYX">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E3P-i0-dKk">
-                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Klr-wg-CEx">
+                                            <rect key="frame" x="16" y="11" width="343" height="24"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kz9-gw-AS0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="289" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIj-TU-l3d">
+                                                    <rect key="frame" x="297" y="0.0" width="46" height="24"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="recordClicked:" destination="BnF-XL-LWT" eventType="touchUpInside" id="TL1-kj-XmQ"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sxo-97-RMq">
+                                            <rect key="frame" x="16" y="43" width="343" height="14.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dj-LO-EyU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="304" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nj1-tI-vtX">
+                                                    <rect key="frame" x="312" y="0.0" width="31" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Sxo-97-RMq" secondAttribute="bottom" constant="12" id="a6W-9A-bTf"/>
+                                        <constraint firstItem="Sxo-97-RMq" firstAttribute="leading" secondItem="lMB-rj-y73" secondAttribute="leading" constant="16" id="ap4-92-XhZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Sxo-97-RMq" secondAttribute="trailing" constant="16" id="dL1-Lw-uDx"/>
+                                        <constraint firstItem="Klr-wg-CEx" firstAttribute="leading" secondItem="lMB-rj-y73" secondAttribute="leading" constant="16" id="fID-u6-RqO"/>
+                                        <constraint firstItem="Klr-wg-CEx" firstAttribute="top" secondItem="lMB-rj-y73" secondAttribute="top" constant="11" id="khW-ii-as1"/>
+                                        <constraint firstItem="Sxo-97-RMq" firstAttribute="top" secondItem="Klr-wg-CEx" secondAttribute="bottom" constant="8" id="lyv-Xb-vXA"/>
+                                        <constraint firstAttribute="trailing" secondItem="Klr-wg-CEx" secondAttribute="trailing" constant="16" id="rSh-4e-XCV"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="endDate" destination="2dj-LO-EyU" id="Y8M-As-d7A"/>
+                                    <outlet property="name" destination="kz9-gw-AS0" id="VuY-nE-TB1"/>
+                                    <outlet property="recordButton" destination="OIj-TU-l3d" id="rb9-2J-Y7i"/>
                                     <segue destination="gZw-Pj-yyN" kind="show" id="ROg-BU-jmz">
                                         <segue key="commit" inheritsFrom="parent" id="yUe-bA-fIu"/>
                                         <segue key="preview" inheritsFrom="commit" id="x2M-3c-E33"/>
@@ -96,7 +129,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H82-un-2SB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1708" y="-508"/>
+            <point key="canvasLocation" x="1708" y="-508.69565217391306"/>
         </scene>
         <!--Task-->
         <scene sceneID="0lN-uW-tsK">
