@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimesheetTableViewController: UITableViewController {
+class TimesheetTableViewController: UITableViewController, TimesheetTableViewCellDelegate {
     private var timesheetEntries = [TimesheetEntry]()
     
     private var recordingTimer: Timer?
@@ -51,7 +51,9 @@ class TimesheetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "timesheetCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "timesheetCell", for: indexPath) as! TimesheetTableViewCell
+        
+        cell.delegate = self
 
         let timesheetEntry = timesheetEntries[indexPath.row]
         let interval = (timesheetEntry.end ?? Date()).timeIntervalSince(timesheetEntry.start)
@@ -62,8 +64,9 @@ class TimesheetTableViewController: UITableViewController {
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         
-        cell.textLabel?.text = timesheetEntry.taskName
-        cell.detailTextLabel?.text = TimesheetController.shared.formatTimeInterval(interval: interval) + " ‒ since " + dateFormatter.string(from: startDate)
+        cell.taskName.text = timesheetEntry.taskName
+        cell.recordingTime.text = TimesheetController.shared.formatTimeInterval(interval: interval) + " ‒ since " + dateFormatter.string(from: startDate)
+        cell.setRecording(timesheetEntry.id == TimesheetController.shared.currentTimesheetEntry?.id)
 
         return cell
     }
@@ -81,9 +84,10 @@ class TimesheetTableViewController: UITableViewController {
         case .stop:
             recordingTimer?.invalidate()
             recordingTimer = nil
+            updateRecordingTime(for: entry)
         case .start:
             recordingTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                self.updateRecordingTime()
+                self.updateRecordingTime(for: entry)
             }
             
             if !timesheetEntries.contains(where: { $0.id == entry.id }) {
@@ -94,14 +98,20 @@ class TimesheetTableViewController: UITableViewController {
             }
         }
         
-        updateRecordingTime()
+        updateRecordingTime(for: entry)
     }
     
-    private func updateRecordingTime() {
-        guard let id = TimesheetController.shared.currentTimesheetEntry?.id else { return }
-        
+    private func updateRecordingTime(for entry: TimesheetEntry) {
+        let id = entry.id
         guard let row = timesheetEntries.firstIndex(where: { $0.id == id }) else { return }
         let indexPath = IndexPath(row: row, section: 0)
         tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func recordTapped(_ cell: TimesheetTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        let timesheetEntry = timesheetEntries[indexPath.row]
+        TimesheetController.shared.taskRecordingToggled(taskId: timesheetEntry.taskId)
     }
 }
