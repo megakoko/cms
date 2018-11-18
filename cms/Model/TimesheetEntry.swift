@@ -9,10 +9,10 @@
 import Foundation
 
 struct TimesheetEntry: Codable {
-    let id: Int
+    let id: Int?
     let userId: Int
     let taskId: Int
-    let taskName: String
+    let taskName: String?
     let start: Date
-    let end: Date?
+    var end: Date?
 }

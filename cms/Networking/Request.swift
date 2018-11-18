@@ -15,6 +15,8 @@ enum Request {
     case updateTask(Task)
     case deleteTask(id: Int)
     case timesheetEntries
+    case newTimesheetEntry(TimesheetEntry)
+    case updateTimesheetEntry(TimesheetEntry)
     case clients
     case client(id: Int)
     case newClient(Client)
@@ -31,7 +33,7 @@ extension Request {
             return "/tasks"
         case .task, .newTask, .updateTask, .deleteTask:
             return "/task"
-        case .timesheetEntries:
+        case .timesheetEntries, .newTimesheetEntry, .updateTimesheetEntry:
             return "/timesheet"
         case .clients:
             return "/clients"
@@ -64,7 +66,11 @@ extension Request {
             return .url(["id": "eq.\(id)"])
         case .timesheetEntries:
             return .url(["userId": "eq.1",
-                         "order": "end.desc"])
+                         "order": "start.desc"])
+        case .newTimesheetEntry(let entry):
+            return .body(encode(entry))
+        case .updateTimesheetEntry(let entry):
+            return .body(encode(entry))
         case .clients:
             return .url(["order": "id.desc"])
         case .client(let id):
@@ -87,9 +93,9 @@ extension Request {
         switch self {
         case .tasks, .task, .timesheetEntries, .clients, .client, .relationships, .users, .avatars, .taskNotification:
             return .get
-        case .newTask, .newClient:
+        case .newTask, .newClient, .newTimesheetEntry:
             return .post
-        case .updateTask:
+        case .updateTask, .updateTimesheetEntry:
             return .patch
         case .deleteTask:
             return .delete
@@ -98,7 +104,7 @@ extension Request {
 
     private var singleEntity: Bool {
         switch self {
-        case .task, .client, .taskNotification:
+        case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .taskNotification:
             return true
         case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .clients, .newClient, .relationships, .users, .avatars:
             return false
@@ -132,6 +138,9 @@ extension Request {
         result.httpMethod = method.rawValue
         if singleEntity {
             result.setValue("application/vnd.pgrst.object+json", forHTTPHeaderField: "Accept")
+            if method == .post {
+                result.setValue("return=representation", forHTTPHeaderField: "Prefer")
+            }
         }
 
         switch parameters {
