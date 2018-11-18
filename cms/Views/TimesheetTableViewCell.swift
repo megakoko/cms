@@ -26,7 +26,6 @@ class TimesheetTableViewCell: UITableViewCell {
     }
     
     @IBAction func recordClicked(_ sender: Any) {
-        print("Tapped")
         delegate?.recordTapped(self)
     }
 }
