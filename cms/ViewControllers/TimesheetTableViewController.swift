@@ -52,7 +52,7 @@ class TimesheetTableViewController: UITableViewController {
         let interval = timesheetEntry.end?.timeIntervalSince(timesheetEntry.start)
         
         cell.textLabel?.text = timesheetEntry.taskName
-        cell.detailTextLabel?.text = TimesheetController.shared.formatTimeInterval(interval: interval)
+        cell.detailTextLabel?.text = interval != nil ? TimesheetController.shared.formatTimeInterval(interval: interval) : "Starting..."
 
         return cell
     }
