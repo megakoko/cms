@@ -36,6 +36,11 @@ class TimesheetTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
+
+                    let recordingEntry = self.timesheetEntries.first(where: { $0.end == nil } )
+                    if recordingEntry != nil {
+                        self.handleTimesheetAction(entry: recordingEntry!, action: .start)
+                    }
                 }
             }
         }
@@ -61,7 +66,11 @@ class TimesheetTableViewController: UITableViewController {
         guard let data = notification.userInfo,
             let entry = data[TimesheetController.timesheetEntryNotificationKey] as? TimesheetEntry,
             let action = data[TimesheetController.timesheetTaskActionNotificationKey] as? TimesheetController.TimesheetActionType else { return }
-        
+     
+        handleTimesheetAction(entry: entry, action: action)
+    }
+    
+    private func handleTimesheetAction(entry: TimesheetEntry, action: TimesheetController.TimesheetActionType) {
         switch action {
         case .stop:
             recordingTimer?.invalidate()
@@ -71,10 +80,12 @@ class TimesheetTableViewController: UITableViewController {
                 self.updateRecordingTime()
             }
             
-            tableView.beginUpdates()
-            timesheetEntries.insert(entry, at: 0)
-            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .none)
-            tableView.endUpdates()
+            if !timesheetEntries.contains(where: { $0.id == entry.id }) {
+                tableView.beginUpdates()
+                timesheetEntries.insert(entry, at: 0)
+                tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                tableView.endUpdates()
+            }
         }
         
         updateRecordingTime()

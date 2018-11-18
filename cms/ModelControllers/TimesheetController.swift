@@ -29,6 +29,20 @@ class TimesheetController {
     }
     
     private init() {
+        NetworkManager.request(Request.currentTimesheetEntry) {
+            response in
+            
+            if let error = response?.error {
+                print("Failed to get the currently recording timesheet entry: \(error)")
+            } else {
+                self.currentTimesheetEntry = response?.parsed(TimesheetEntry.self)
+                if self.currentTimesheetEntry != nil {
+                    DispatchQueue.main.async {
+                        self.sendNotification(entry: self.currentTimesheetEntry!, action: .start)
+                    }
+                }
+            }
+        }
     }
     
     func formatTimeInterval(interval: TimeInterval?) -> String {

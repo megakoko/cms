@@ -15,6 +15,7 @@ enum Request {
     case updateTask(Task)
     case deleteTask(id: Int)
     case timesheetEntries
+    case currentTimesheetEntry
     case newTimesheetEntry(TimesheetEntry)
     case updateTimesheetEntry(TimesheetEntry)
     case clients
@@ -33,7 +34,7 @@ extension Request {
             return "/tasks"
         case .task, .newTask, .updateTask, .deleteTask:
             return "/task"
-        case .timesheetEntries, .newTimesheetEntry, .updateTimesheetEntry:
+        case .timesheetEntries, .currentTimesheetEntry, .newTimesheetEntry, .updateTimesheetEntry:
             return "/timesheet"
         case .clients:
             return "/clients"
@@ -67,6 +68,9 @@ extension Request {
         case .timesheetEntries:
             return .url(["userId": "eq.1",
                          "order": "start.desc"])
+        case .currentTimesheetEntry:
+            return .url(["userId": "eq.1",
+                         "end": "is.null"])
         case .newTimesheetEntry(let entry):
             return .body(encode(entry))
         case .updateTimesheetEntry(let entry):
@@ -91,7 +95,7 @@ extension Request {
 
     private var method: HttpMethod {
         switch self {
-        case .tasks, .task, .timesheetEntries, .clients, .client, .relationships, .users, .avatars, .taskNotification:
+        case .tasks, .task, .timesheetEntries, .currentTimesheetEntry, .clients, .client, .relationships, .users, .avatars, .taskNotification:
             return .get
         case .newTask, .newClient, .newTimesheetEntry:
             return .post
@@ -104,7 +108,7 @@ extension Request {
 
     private var singleEntity: Bool {
         switch self {
-        case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .taskNotification:
+        case .task, .currentTimesheetEntry, .newTimesheetEntry, .updateTimesheetEntry, .client, .taskNotification:
             return true
         case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .clients, .newClient, .relationships, .users, .avatars:
             return false
