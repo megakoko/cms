@@ -35,7 +35,8 @@ class TimesheetController {
             if let error = response?.error {
                 print("Failed to get the currently recording timesheet entry: \(error)")
             } else {
-                self.currentTimesheetEntry = response?.parsed(TimesheetEntry.self)
+                let currentTimesheetEntryList = response?.parsed([TimesheetEntry].self)
+                self.currentTimesheetEntry = currentTimesheetEntryList?.first
                 if self.currentTimesheetEntry != nil {
                     DispatchQueue.main.async {
                         self.sendNotification(entry: self.currentTimesheetEntry!, action: .start)

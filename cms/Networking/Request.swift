@@ -108,9 +108,9 @@ extension Request {
 
     private var singleEntity: Bool {
         switch self {
-        case .task, .currentTimesheetEntry, .newTimesheetEntry, .updateTimesheetEntry, .client, .taskNotification:
+        case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .taskNotification:
             return true
-        case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .clients, .newClient, .relationships, .users, .avatars:
+        case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .currentTimesheetEntry, .clients, .newClient, .relationships, .users, .avatars:
             return false
         }
     }
