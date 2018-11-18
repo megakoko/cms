@@ -86,6 +86,7 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
             recordingTimer = nil
             updateRecordingTime(for: entry)
         case .start:
+            recordingTimer?.invalidate()
             recordingTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
                 self.updateRecordingTime(for: entry)
             }
