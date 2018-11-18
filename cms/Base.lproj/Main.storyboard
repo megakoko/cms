@@ -175,7 +175,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rar-mb-xi5">
                                                     <rect key="frame" x="309" y="0.0" width="50" height="50"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhv-oy-JLx">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhv-oy-JLx">
                                                             <rect key="frame" x="15" y="15" width="20" height="20"/>
                                                             <state key="normal" image="Stop"/>
                                                             <connections>
@@ -184,11 +184,11 @@
                                                         </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="centerX" secondItem="Rar-mb-xi5" secondAttribute="centerX" id="5xN-Eu-nIA"/>
-                                                        <constraint firstAttribute="width" constant="50" id="JrH-pe-zl1"/>
-                                                        <constraint firstAttribute="width" secondItem="Rar-mb-xi5" secondAttribute="height" multiplier="1:1" id="M2y-MH-6hE"/>
-                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="centerY" secondItem="Rar-mb-xi5" secondAttribute="centerY" id="lnz-EQ-McN"/>
-                                                        <constraint firstAttribute="height" constant="50" id="oJU-jO-WMT"/>
+                                                        <constraint firstAttribute="width" constant="50" id="CKK-gQ-khN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nhv-oy-JLx" secondAttribute="trailing" constant="15" id="LZ4-6f-gFf"/>
+                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="leading" secondItem="Rar-mb-xi5" secondAttribute="leading" constant="15" id="X0Q-lw-3ic"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nhv-oy-JLx" secondAttribute="bottom" constant="15" id="kXA-78-HTG"/>
+                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="top" secondItem="Rar-mb-xi5" secondAttribute="top" constant="15" id="qg2-Hl-FEi"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
