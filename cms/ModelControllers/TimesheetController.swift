@@ -97,11 +97,12 @@ class TimesheetController {
                     guard let createdEntry = response?.parsed(TimesheetEntry.self) else { return }
                     
                     DispatchQueue.main.async {
+                        self.currentTimesheetEntry = createdEntry
+                        
                         if oldEntry != nil {
                             self.sendNotification(entry: oldEntry!, action: .stop)
                         }
                         
-                        self.currentTimesheetEntry = createdEntry
                         self.sendNotification(entry: self.currentTimesheetEntry!, action: .start)
                     }
                 }

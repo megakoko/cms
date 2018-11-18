@@ -221,35 +221,24 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
         guard let data = notification.userInfo,
             let entry = data[TimesheetController.timesheetEntryNotificationKey] as? TimesheetEntry,
             let action = data[TimesheetController.timesheetTaskActionNotificationKey] as? TimesheetController.TimesheetActionType else { return }
-        
+
         switch action {
         case .stop:
             recordingTimer?.invalidate()
             recordingTimer = nil
+            updateRecordingTime(taskId: entry.taskId)
         case .start:
-            self.recordingTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                self.updateRecordingTime()
+            recordingTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                self.updateRecordingTime(taskId: TimesheetController.shared.currentTimesheetEntry?.taskId)
             }
+            updateRecordingTime(taskId: TimesheetController.shared.currentTimesheetEntry?.taskId)
         }
-
-        guard let row = tasks.firstIndex(where: { $0.id == entry.taskId }) else { return }
-        
-        let indexPath = IndexPath(row: row, section: 0)
-        guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
-        
-        let isRecording = (action == .start)
-        cell.setRecording(isRecording)
-        cell.recordingTimeLabel.text = TimesheetController.shared.formatTimeInterval(interval: TimesheetController.shared.timeRecording)
     }
     
-    private func updateRecordingTime() {
-        guard let taskId = TimesheetController.shared.currentTimesheetEntry?.taskId else { return }
-        
+    private func updateRecordingTime(taskId: Int?) {
         guard let row = tasks.firstIndex(where: { $0.id == taskId }) else { return }
-        
         let indexPath = IndexPath(row: row, section: 0)
-        guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
         
-        cell.recordingTimeLabel.text = TimesheetController.shared.formatTimeInterval(interval: TimesheetController.shared.timeRecording)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
 }

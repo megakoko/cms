@@ -54,10 +54,16 @@ class TimesheetTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timesheetCell", for: indexPath)
 
         let timesheetEntry = timesheetEntries[indexPath.row]
-        let interval = timesheetEntry.end?.timeIntervalSince(timesheetEntry.start)
+        let interval = (timesheetEntry.end ?? Date()).timeIntervalSince(timesheetEntry.start)
+        
+        let startDate = timesheetEntry.start
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
         
         cell.textLabel?.text = timesheetEntry.taskName
-        cell.detailTextLabel?.text = interval != nil ? TimesheetController.shared.formatTimeInterval(interval: interval) : "Starting..."
+        cell.detailTextLabel?.text = TimesheetController.shared.formatTimeInterval(interval: interval) + " ‒ since " + dateFormatter.string(from: startDate)
 
         return cell
     }
@@ -95,10 +101,7 @@ class TimesheetTableViewController: UITableViewController {
         guard let id = TimesheetController.shared.currentTimesheetEntry?.id else { return }
         
         guard let row = timesheetEntries.firstIndex(where: { $0.id == id }) else { return }
-        
         let indexPath = IndexPath(row: row, section: 0)
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        
-        cell.detailTextLabel?.text = TimesheetController.shared.formatTimeInterval(interval: TimesheetController.shared.timeRecording)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
 }
