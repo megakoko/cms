@@ -61,9 +61,9 @@ class TimesheetController {
         let hours = interval
         
         if hours > 0 {
-            return "\(hours)h \(minutes)"
+            return "\(hours)h \(minutes)m"
         } else {
-            return "\(minutes):\(String(format: "%02d", seconds))"
+            return "\(minutes)m \(seconds)s"
         }
     }
     
