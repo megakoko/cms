@@ -18,7 +18,7 @@ enum Request {
     case currentTimesheetEntry
     case newTimesheetEntry(TimesheetEntry)
     case updateTimesheetEntry(TimesheetEntry)
-    case clients
+    case clients(filter: String?)
     case client(id: Int)
     case newClient(Client)
     case relationships(clientId: Int)
@@ -75,8 +75,13 @@ extension Request {
             return .body(encode(entry))
         case .updateTimesheetEntry(let entry):
             return .body(encode(entry))
-        case .clients:
-            return .url(["order": "id.desc"])
+        case .clients(let filter):
+            if let filter = filter, !filter.isEmpty {
+                return .url(["or": "(name.ilike.*\(filter)*,code.ilike.*\(filter)*)",
+                             "order": "name.asc"])
+            } else {
+                return .url(["order": "id.desc"])
+            }
         case .client(let id):
             return .url(["id": "eq.\(id)"])
         case .newClient(let client):

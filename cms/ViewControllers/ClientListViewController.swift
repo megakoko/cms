@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class ClientListViewController : UITableViewController {
+class ClientListViewController : UITableViewController, UISearchResultsUpdating {
     var delegate: ClientListViewControllerDelegate?
     var emptySelectionOption: String?
 
@@ -20,6 +20,8 @@ class ClientListViewController : UITableViewController {
                                           Client.ClientType.trust: "Trust",
                                           Client.ClientType.partnership: "Partnership",
                                           Client.ClientType.individual: "Individual"]
+    
+    private var refreshTimer: Timer?
 
     @IBAction  private func onTablePulledToRefresh(_ sender: UIRefreshControl) {
         refreshData()
@@ -35,6 +37,14 @@ class ClientListViewController : UITableViewController {
         }
 
         refreshData()
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Filter clients by code or name"
+        navigationItem.searchController = searchController
+        
+        definesPresentationContext = true
     }
 
     private func refreshData() {
@@ -43,7 +53,9 @@ class ClientListViewController : UITableViewController {
             clientDataTask = nil
         }
 
-        clientDataTask = NetworkManager.request(.clients) {
+        let searchString = navigationItem.searchController?.searchBar.text
+
+        clientDataTask = NetworkManager.request(.clients(filter: searchString)) {
             response in
 
             self.clientDataTask = nil
@@ -127,5 +139,14 @@ class ClientListViewController : UITableViewController {
 
     @IBAction private func cancelClientSelection() {
         dismiss(animated: true)
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        refreshTimer?.invalidate()
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {
+            timer in
+            self.refreshTimer = nil
+            self.refreshData()
+        }
     }
 }
