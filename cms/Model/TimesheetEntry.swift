@@ -9,6 +9,10 @@
 import Foundation
 
 struct TimesheetEntry: Codable {
+    enum DateRangeOption : CaseIterable {
+        case day, week, month, custom
+    }
+
     let id: Int?
     let userId: Int
     let taskId: Int

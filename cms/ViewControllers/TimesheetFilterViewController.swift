@@ -13,9 +13,9 @@ class TimesheetFilterViewController: UITableViewController {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDatePicker: UIDatePicker!
 
-    enum DateRangeOption : CaseIterable {
-        case day, week, month, custom
-    }
+    var delegate: TimesheetFilterTableViewControllerDelegate?
+
+    var rangeOption: TimesheetEntry.DateRangeOption = .week
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class TimesheetFilterViewController: UITableViewController {
     private func addDateRangeOptions() {
         dateRangeOptionsControl.removeAllSegments()
 
-        for option in DateRangeOption.allCases {
+        for option in TimesheetEntry.DateRangeOption.allCases {
             var description: String
             switch option {
             case .day:      description = "Day"
@@ -40,12 +40,12 @@ class TimesheetFilterViewController: UITableViewController {
             dateRangeOptionsControl.insertSegment(withTitle: description, at: index, animated: false)
         }
 
-        dateRangeOptionsControl.selectedSegmentIndex = DateRangeOption.allCases.firstIndex(of: .week)!
+        dateRangeOptionsControl.selectedSegmentIndex = TimesheetEntry.DateRangeOption.allCases.firstIndex(of: rangeOption)!
     }
 
     @IBAction func onDateRangeOptionChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
-        let option = DateRangeOption.allCases[index]
+        let option = TimesheetEntry.DateRangeOption.allCases[index]
 
         var startDate: Date? = startDatePicker.date
         var endDate: Date? = endDatePicker.date
@@ -71,5 +71,16 @@ class TimesheetFilterViewController: UITableViewController {
         startDatePicker.isEnabled = isCustom
         endDatePicker.date = endDate!
         endDatePicker.isEnabled = isCustom
+    }
+
+    @IBAction func done(_ sender: Any) {
+        let rangeIndex = dateRangeOptionsControl.selectedSegmentIndex
+        rangeOption = TimesheetEntry.DateRangeOption.allCases[rangeIndex]
+        delegate?.didSelectOptions(controller: self)
+        dismiss(animated: true)
+    }
+
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
     }
 }

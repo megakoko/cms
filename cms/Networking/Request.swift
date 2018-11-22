@@ -14,7 +14,7 @@ enum Request {
     case newTask(Task)
     case updateTask(Task)
     case deleteTask(id: Int)
-    case timesheetEntries
+    case timesheetEntries(TimesheetEntry.DateRangeOption)
     case currentTimesheetEntry
     case newTimesheetEntry(TimesheetEntry)
     case updateTimesheetEntry(TimesheetEntry)
@@ -65,8 +65,43 @@ extension Request {
             return .body(encode(task))
         case .deleteTask(let id):
             return .url(["id": "eq.\(id)"])
-        case .timesheetEntries:
+        case .timesheetEntries(let rangeOption):
+            let startOf = { date in Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date) }
+            let endOf = { date in Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date) }
+
+            var start: Date?
+            var end: Date?
+            switch rangeOption {
+            case .day:
+                start = startOf(Date())
+                end = endOf(Date())
+            case .week:
+                if let today = startOf(Date()) {
+                    start = Calendar.current.date(byAdding: .day, value: -7, to: today)
+                }
+                end = endOf(Date())
+            case .month:
+                if let today = startOf(Date()) {
+                    start = Calendar.current.date(byAdding: .month, value: -1, to: today)
+                }
+                end = endOf(Date())
+            case .custom:
+                break
+            }
+
+            guard start != nil && end != nil else {
+                print("Invalid dates for timesheet filter")
+                return .url([:])
+            }
+
+            let dateFormatter = ISO8601DateFormatter()
+
+            let startString = dateFormatter.string(from: start!)
+            let endString = dateFormatter.string(from: end!)
+
             return .url(["userId": "eq.1",
+                         "start": "lt.\(endString)",
+                         "end": "gt.\(startString)",
                          "order": "start.desc"])
         case .currentTimesheetEntry:
             return .url(["userId": "eq.1",

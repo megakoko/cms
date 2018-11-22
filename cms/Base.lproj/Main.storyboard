@@ -216,7 +216,7 @@
                     <navigationItem key="navigationItem" title="Timesheet" id="b8K-Hj-ge6">
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="JMV-Q3-YFg">
                             <connections>
-                                <segue destination="Zs2-Fv-CJW" kind="popoverPresentation" popoverAnchorBarButtonItem="JMV-Q3-YFg" id="JZ5-vy-oFs">
+                                <segue destination="Zs2-Fv-CJW" kind="popoverPresentation" identifier="timesheetFilterSegue" popoverAnchorBarButtonItem="JMV-Q3-YFg" id="JZ5-vy-oFs">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -786,8 +786,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Timesheet Options" id="e1s-Ql-edc">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Lpn-V9-YTP"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="x50-mY-SDA"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Lpn-V9-YTP">
+                            <connections>
+                                <action selector="cancel:" destination="kxP-xd-3kN" id="eEy-Wf-emU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="x50-mY-SDA">
+                            <connections>
+                                <action selector="done:" destination="kxP-xd-3kN" id="PDY-8N-ojB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dateRangeOptionsControl" destination="IZj-nM-BC9" id="8cd-fQ-NWo"/>

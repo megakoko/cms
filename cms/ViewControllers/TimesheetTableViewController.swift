@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TimesheetTableViewController: UITableViewController, TimesheetTableViewCellDelegate {
+class TimesheetTableViewController: UITableViewController, TimesheetTableViewCellDelegate, TimesheetFilterTableViewControllerDelegate {
     private var timesheetEntries = [TimesheetEntry]()
-    
+    private var rangeOption = TimesheetEntry.DateRangeOption.week
     private var recordingTimer: Timer?
     
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
     }
     
     @IBAction func refreshData() {
-        NetworkManager.request(Request.timesheetEntries) {
+        NetworkManager.request(Request.timesheetEntries(rangeOption)) {
             response in
             
             if let error = response?.error {
@@ -114,5 +114,27 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
         
         let timesheetEntry = timesheetEntries[indexPath.row]
         TimesheetController.shared.taskRecordingToggled(taskId: timesheetEntry.taskId)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "timesheetFilterSegue" {
+            guard let navigationController = segue.destination as? UINavigationController else {
+                print("Failed to cast destination to navigation controller")
+                return
+            }
+
+            guard let timesheetFilterController = navigationController.topViewController as? TimesheetFilterViewController else {
+                print("Failed to cast destination to timesheet filter controller")
+                return
+            }
+
+            timesheetFilterController.delegate = self
+            timesheetFilterController.rangeOption = rangeOption
+        }
+    }
+
+    func didSelectOptions(controller: TimesheetFilterViewController) {
+        rangeOption = controller.rangeOption
+        refreshData()
     }
 }
