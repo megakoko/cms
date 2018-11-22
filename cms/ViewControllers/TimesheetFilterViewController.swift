@@ -20,38 +20,42 @@ class TimesheetFilterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addDateRangeOptions()
+        initDateRangeOption()
         onDateRangeOptionChanged(dateRangeOptionsControl)
     }
 
-    private func addDateRangeOptions() {
-        dateRangeOptionsControl.removeAllSegments()
-
-        for option in TimesheetEntry.DateRangeOption.allCases {
-            var description: String
-            switch option {
-            case .day:      description = "Day"
-            case .week:     description = "Week"
-            case .month:    description = "Month"
-            case .custom:   description = "Custom"
-            }
-
-            let index = dateRangeOptionsControl.numberOfSegments
-            dateRangeOptionsControl.insertSegment(withTitle: description, at: index, animated: false)
+    private func initDateRangeOption() {
+        switch rangeOption {
+        case .day:
+            dateRangeOptionsControl.selectedSegmentIndex = 0
+        case .week:
+            dateRangeOptionsControl.selectedSegmentIndex = 1
+        case .month:
+            dateRangeOptionsControl.selectedSegmentIndex = 2
+        case .custom:
+            dateRangeOptionsControl.selectedSegmentIndex = 3
         }
-
-        dateRangeOptionsControl.selectedSegmentIndex = TimesheetEntry.DateRangeOption.allCases.firstIndex(of: rangeOption)!
     }
 
     @IBAction func onDateRangeOptionChanged(_ sender: UISegmentedControl) {
-        let index = sender.selectedSegmentIndex
-        let option = TimesheetEntry.DateRangeOption.allCases[index]
+        switch sender.selectedSegmentIndex {
+        case 0:
+            rangeOption = .day
+        case 1:
+            rangeOption = .week
+        case 2:
+            rangeOption = .month
+        case 3:
+            rangeOption = .custom(startDatePicker.date, endDatePicker.date)
+        default:
+            assert(false, "Unhandled timesheet date range option")
+        }
 
         var startDate: Date? = startDatePicker.date
         var endDate: Date? = endDatePicker.date
         var isCustom = false
 
-        switch option {
+        switch rangeOption {
         case .day:
             startDate = Date()
             endDate = Date()
@@ -69,13 +73,29 @@ class TimesheetFilterViewController: UITableViewController {
 
         startDatePicker.date = startDate!
         startDatePicker.isEnabled = isCustom
+        startDatePicker.maximumDate = isCustom ? endDate : nil
         endDatePicker.date = endDate!
         endDatePicker.isEnabled = isCustom
+        endDatePicker.minimumDate = isCustom ? startDate : nil
+    }
+
+    @IBAction func onStartDateChanged(_ sender: UIDatePicker) {
+        if case let .custom(_, end) = rangeOption {
+            let start = sender.date
+            rangeOption = .custom(start, end)
+            endDatePicker.minimumDate = start
+        }
+    }
+
+    @IBAction func onEndDateChanged(_ sender: UIDatePicker) {
+        if case let .custom(start, _) = rangeOption {
+            let end = sender.date
+            rangeOption = .custom(start, end)
+            startDatePicker.maximumDate = end
+        }
     }
 
     @IBAction func done(_ sender: Any) {
-        let rangeIndex = dateRangeOptionsControl.selectedSegmentIndex
-        rangeOption = TimesheetEntry.DateRangeOption.allCases[rangeIndex]
         delegate?.didSelectOptions(controller: self)
         dismiss(animated: true)
     }

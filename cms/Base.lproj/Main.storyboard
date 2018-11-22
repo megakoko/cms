@@ -711,6 +711,8 @@
                                                     <segments>
                                                         <segment title="Day"/>
                                                         <segment title="Week"/>
+                                                        <segment title="Month"/>
+                                                        <segment title="Custom"/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="onDateRangeOptionChanged:" destination="kxP-xd-3kN" eventType="valueChanged" id="dcN-Ky-yDl"/>
@@ -741,6 +743,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="564428206.401636">
                                                         <!--2018-11-20 17:36:46 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="onStartDateChanged:" destination="kxP-xd-3kN" eventType="valueChanged" id="Ypp-sK-hvl"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -767,6 +772,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="564428206.401636">
                                                         <!--2018-11-20 17:36:46 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="onEndDateChanged:" destination="kxP-xd-3kN" eventType="valueChanged" id="2cK-uU-lWj"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>

@@ -85,8 +85,9 @@ extension Request {
                     start = Calendar.current.date(byAdding: .month, value: -1, to: today)
                 }
                 end = endOf(Date())
-            case .custom:
-                break
+            case .custom(let customStart, let customEnd):
+                start = startOf(customStart)
+                end = endOf(customEnd)
             }
 
             guard start != nil && end != nil else {
