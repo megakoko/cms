@@ -87,7 +87,7 @@ class TimesheetController {
             }
         } else {
             let oldEntry = currentTimesheetEntry
-            let newEntry = TimesheetEntry(id: nil, userId: 1, taskId: taskId, taskName: nil, start: Date(), end: nil)
+            let newEntry = TimesheetEntry(id: nil, userId: 1, taskId: taskId, taskName: nil, taskType: nil, start: Date(), end: nil)
             
             NetworkManager.request(Request.newTimesheetEntry(newEntry)) {
                 response in

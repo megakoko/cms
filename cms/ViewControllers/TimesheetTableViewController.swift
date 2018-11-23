@@ -52,22 +52,8 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timesheetCell", for: indexPath) as! TimesheetTableViewCell
-        
         cell.delegate = self
-
-        let timesheetEntry = timesheetEntries[indexPath.row]
-        let interval = (timesheetEntry.end ?? Date()).timeIntervalSince(timesheetEntry.start)
-        
-        let startDate = timesheetEntry.start
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        
-        cell.taskName.text = timesheetEntry.taskName
-        cell.recordingTime.text = TimesheetController.shared.formatTimeInterval(interval: interval) + " ‒ since " + dateFormatter.string(from: startDate)
-        cell.setRecording(timesheetEntry.id == TimesheetController.shared.currentTimesheetEntry?.id)
-
+        cell.configure(for: timesheetEntries[indexPath.row])
         return cell
     }
     

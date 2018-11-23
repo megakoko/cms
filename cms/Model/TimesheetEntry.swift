@@ -17,6 +17,7 @@ struct TimesheetEntry: Codable {
     let userId: Int
     let taskId: Int
     let taskName: String?
+    let taskType: String?
     let start: Date
     var end: Date?
 }
