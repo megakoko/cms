@@ -35,8 +35,10 @@ class TimesheetFilterViewController: UITableViewController {
             dateRangeOptionsControl.selectedSegmentIndex = 1
         case .month:
             dateRangeOptionsControl.selectedSegmentIndex = 2
-        case .custom:
+        case .custom(let start, let end):
             dateRangeOptionsControl.selectedSegmentIndex = 3
+            startDatePicker.date = start
+            endDatePicker.date = end
         }
     }
 
