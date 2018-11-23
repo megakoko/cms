@@ -12,14 +12,17 @@ class TimesheetFilterViewController: UITableViewController {
     @IBOutlet weak var dateRangeOptionsControl: UISegmentedControl!
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDatePicker: UIDatePicker!
+    @IBOutlet weak var colorCodingSwitch: UISwitch!
 
     var delegate: TimesheetFilterTableViewControllerDelegate?
 
     var rangeOption: TimesheetEntry.DateRangeOption = .week
+    var useColorCoding = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        colorCodingSwitch.isOn = useColorCoding
         initDateRangeOption()
         onDateRangeOptionChanged(dateRangeOptionsControl)
     }
@@ -93,6 +96,10 @@ class TimesheetFilterViewController: UITableViewController {
             rangeOption = .custom(start, end)
             startDatePicker.maximumDate = end
         }
+    }
+
+    @IBAction func onColorCodingSwitched(_ sender: UISwitch) {
+        useColorCoding = sender.isOn
     }
 
     @IBAction func done(_ sender: Any) {

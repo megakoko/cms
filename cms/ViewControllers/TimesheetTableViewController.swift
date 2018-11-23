@@ -11,6 +11,7 @@ import UIKit
 class TimesheetTableViewController: UITableViewController, TimesheetTableViewCellDelegate, TimesheetFilterTableViewControllerDelegate {
     private var timesheetEntries = [TimesheetEntry]()
     private var rangeOption = TimesheetEntry.DateRangeOption.week
+    private var useColorCoding = false
     private var recordingTimer: Timer?
     
     override func viewDidLoad() {
@@ -53,7 +54,7 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timesheetCell", for: indexPath) as! TimesheetTableViewCell
         cell.delegate = self
-        cell.configure(for: timesheetEntries[indexPath.row])
+        cell.configure(for: timesheetEntries[indexPath.row], usingColorCoding: useColorCoding)
         return cell
     }
     
@@ -116,11 +117,13 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
 
             timesheetFilterController.delegate = self
             timesheetFilterController.rangeOption = rangeOption
+            timesheetFilterController.useColorCoding = useColorCoding
         }
     }
 
     func didSelectOptions(controller: TimesheetFilterViewController) {
         rangeOption = controller.rangeOption
+        useColorCoding = controller.useColorCoding
         refreshData()
     }
 }

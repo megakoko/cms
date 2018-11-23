@@ -214,7 +214,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Timesheet" id="b8K-Hj-ge6">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="JMV-Q3-YFg">
+                        <barButtonItem key="rightBarButtonItem" title="Options" id="JMV-Q3-YFg">
                             <connections>
                                 <segue destination="Zs2-Fv-CJW" kind="popoverPresentation" identifier="timesheetFilterSegue" popoverAnchorBarButtonItem="JMV-Q3-YFg" id="JZ5-vy-oFs">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -787,6 +787,43 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Color Coding" id="Lro-4V-NyA">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="m4U-zA-xul">
+                                        <rect key="frame" x="0.0" y="355.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m4U-zA-xul" id="RNA-pR-Tnc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="73" translatesAutoresizingMaskIntoConstraints="NO" id="K3w-th-5SX">
+                                                    <rect key="frame" x="16" y="6" width="343" height="31"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color code timesheet entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tN-N2-86j">
+                                                            <rect key="frame" x="0.0" y="0.0" width="221" height="31"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qnQ-Ac-yz7">
+                                                            <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="onColorCodingSwitched:" destination="kxP-xd-3kN" eventType="valueChanged" id="ZSC-bB-GTf"/>
+                                                            </connections>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="K3w-th-5SX" firstAttribute="leading" secondItem="RNA-pR-Tnc" secondAttribute="leading" constant="16" id="cWe-AP-TPN"/>
+                                                <constraint firstItem="K3w-th-5SX" firstAttribute="top" secondItem="RNA-pR-Tnc" secondAttribute="top" constant="6" id="ebW-RC-VYd"/>
+                                                <constraint firstAttribute="bottom" secondItem="K3w-th-5SX" secondAttribute="bottom" constant="6.5" id="fCb-hl-2et"/>
+                                                <constraint firstAttribute="trailing" secondItem="K3w-th-5SX" secondAttribute="trailing" constant="16" id="lJj-uE-yIe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="kxP-xd-3kN" id="4Rg-wv-Yvl"/>
@@ -806,6 +843,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="colorCodingSwitch" destination="qnQ-Ac-yz7" id="E3y-HD-kSr"/>
                         <outlet property="dateRangeOptionsControl" destination="IZj-nM-BC9" id="8cd-fQ-NWo"/>
                         <outlet property="endDatePicker" destination="qZn-KD-EgS" id="pIT-5b-0PX"/>
                         <outlet property="startDatePicker" destination="QVc-Te-egx" id="Ozk-yg-w69"/>

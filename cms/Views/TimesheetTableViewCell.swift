@@ -48,7 +48,7 @@ class TimesheetTableViewCell: UITableViewCell {
         delegate?.recordTapped(self)
     }
 
-    func configure(for entry: TimesheetEntry) {
+    func configure(for entry: TimesheetEntry, usingColorCoding: Bool) {
         let interval = (entry.end ?? Date()).timeIntervalSince(entry.start)
 
         let startDate = entry.start
@@ -61,6 +61,10 @@ class TimesheetTableViewCell: UITableViewCell {
         recordingTime.text = TimesheetController.shared.formatTimeInterval(interval: interval) + " ‒ since " + dateFormatter.string(from: startDate)
         setRecording(entry.id == TimesheetController.shared.currentTimesheetEntry?.id)
 
-        backgroundColor = TimesheetTableViewCell.taskTypeColors[entry.taskType ?? ""]
+        if usingColorCoding {
+            backgroundColor = TimesheetTableViewCell.taskTypeColors[entry.taskType ?? ""]
+        } else {
+            backgroundColor = nil
+        }
     }
 }
