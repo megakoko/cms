@@ -187,6 +187,7 @@ class ClientViewController : UITableViewController {
             cell.textView.isUserInteractionEnabled = false
             cell.textView.text = attachment.fileName
         } else {
+            cell.accessoryType = .none
             cell.selectionStyle = .none
             cell.textView.text = field.data
             switch field.specialType {
@@ -204,7 +205,7 @@ class ClientViewController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let field = fields[indexPath.section]
-        return field.specialType == .Address ? CGFloat(90) : CGFloat(45)
+        return field.specialType == .Address ? CGFloat(90) : CGFloat(40)
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

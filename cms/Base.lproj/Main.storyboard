@@ -626,12 +626,12 @@
         <scene sceneID="nvn-Qx-sRs">
             <objects>
                 <tableViewController storyboardIdentifier="ClientViewController" id="09q-iA-pQ0" customClass="ClientViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0yo-sH-ZhK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="0yo-sH-ZhK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <mapView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" id="nJa-0V-OIx">
-                            <rect key="frame" x="0.0" y="72" width="375" height="200"/>
+                            <rect key="frame" x="0.0" y="118.5" width="375" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <gestureRecognizers/>
                             <connections>
@@ -639,29 +639,27 @@
                             </connections>
                         </mapView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClientViewCell" id="Xqu-O1-dcq" customClass="ClientViewCell" customModule="cms" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClientViewCell" rowHeight="45" id="Xqu-O1-dcq" customClass="ClientViewCell" customModule="cms" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xqu-O1-dcq" id="8w5-Hx-xJ7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FUa-nW-979">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="10" y="0.0" width="349" height="45"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="FUa-nW-979" secondAttribute="trailing" constant="16" id="4jl-8F-iJt"/>
-                                        <constraint firstItem="FUa-nW-979" firstAttribute="top" secondItem="8w5-Hx-xJ7" secondAttribute="top" id="Q8A-No-UNP"/>
-                                        <constraint firstItem="FUa-nW-979" firstAttribute="leading" secondItem="8w5-Hx-xJ7" secondAttribute="leading" constant="16" id="dLp-Rs-dWq"/>
+                                        <constraint firstItem="FUa-nW-979" firstAttribute="leading" secondItem="8w5-Hx-xJ7" secondAttribute="leading" constant="10" id="Slg-Kg-ETK"/>
+                                        <constraint firstAttribute="trailing" secondItem="FUa-nW-979" secondAttribute="trailing" constant="16" id="dKT-0D-FQI"/>
+                                        <constraint firstAttribute="bottom" secondItem="FUa-nW-979" secondAttribute="bottom" constant="-0.5" id="u6T-kT-Ug5"/>
+                                        <constraint firstItem="FUa-nW-979" firstAttribute="top" secondItem="8w5-Hx-xJ7" secondAttribute="top" id="uKG-PK-lCN"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="FUa-nW-979" secondAttribute="bottom" id="XD9-G8-bau"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="textView" destination="FUa-nW-979" id="Wr9-aU-CI3"/>
                                 </connections>
