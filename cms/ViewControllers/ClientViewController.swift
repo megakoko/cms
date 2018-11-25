@@ -227,9 +227,9 @@ class ClientViewController : UITableViewController {
             let indexPath = tableView.indexPath(for: cell)
             let attachment = attachments[indexPath!.row]
 
-            let clientViewController = segue.destination as! AttachmentViewController
-            clientViewController.attachmentId = attachment.id
-            clientViewController.title = attachment.fileName
+            let attachmentViewController = segue.destination as! AttachmentViewController
+            attachmentViewController.attachmentId = attachment.id
+            attachmentViewController.title = attachment.fileName
         }
     }
 
