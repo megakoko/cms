@@ -529,7 +529,7 @@
                     <navigationItem key="navigationItem" title="Clients" largeTitleDisplayMode="always" id="jCB-cg-XcN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="SA8-Hm-kfc">
                             <connections>
-                                <segue destination="UhM-zG-nl9" kind="showDetail" id="bpn-dr-lUO"/>
+                                <segue destination="UhM-zG-nl9" kind="showDetail" identifier="relatedClientSeque" id="bpn-dr-lUO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -625,7 +625,7 @@
         <!--Title-->
         <scene sceneID="nvn-Qx-sRs">
             <objects>
-                <tableViewController id="09q-iA-pQ0" customClass="ClientViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ClientViewController" id="09q-iA-pQ0" customClass="ClientViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0yo-sH-ZhK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -664,7 +664,6 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="textView" destination="FUa-nW-979" id="Wr9-aU-CI3"/>
-                                    <segue destination="09q-iA-pQ0" kind="show" identifier="relatedClientSeque" id="aaR-Lu-NAX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -677,6 +676,7 @@
                     <connections>
                         <outlet property="mapView" destination="nJa-0V-OIx" id="QWV-X0-pMg"/>
                         <segue destination="boR-4r-aeV" kind="show" identifier="mapDetailsSegue" id="3D0-eh-j0P"/>
+                        <segue destination="hjh-Ua-Ulb" kind="show" identifier="attachmentSegue" id="Pk0-rH-QaD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bnp-FR-FKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -904,6 +904,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQ1-h1-iBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3630" y="400"/>
+        </scene>
+        <!--Attachment View Controller-->
+        <scene sceneID="L5e-RK-3n1">
+            <objects>
+                <viewController id="hjh-Ua-Ulb" customClass="AttachmentViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1fa-Nb-I5r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvo-OM-FXy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fgQ-zV-Sak" firstAttribute="trailing" secondItem="rvo-OM-FXy" secondAttribute="trailing" id="8yd-un-tWr"/>
+                            <constraint firstItem="rvo-OM-FXy" firstAttribute="leading" secondItem="fgQ-zV-Sak" secondAttribute="leading" id="9zG-nu-164"/>
+                            <constraint firstItem="fgQ-zV-Sak" firstAttribute="bottom" secondItem="rvo-OM-FXy" secondAttribute="bottom" id="KEZ-DS-o1g"/>
+                            <constraint firstItem="rvo-OM-FXy" firstAttribute="top" secondItem="fgQ-zV-Sak" secondAttribute="top" id="Rht-9g-5uF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fgQ-zV-Sak"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="rvo-OM-FXy" id="8sm-gV-FJe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRT-oe-NXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3901.5999999999999" y="1420.8395802098951"/>
         </scene>
         <!--New Client Table View Controller-->
         <scene sceneID="G1D-Be-Oe0">
@@ -1138,7 +1172,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMC-vQ-XN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="kiW-Xo-LQY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3376.8000000000002" y="1420.8395802098951"/>
+            <point key="canvasLocation" x="2910" y="1421"/>
         </scene>
         <!--Clients-->
         <scene sceneID="47G-Jh-cbn">
@@ -1464,7 +1498,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mmK-mC-GJF"/>
+        <segue reference="l91-La-vMq"/>
         <segue reference="ROg-BU-jmz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,6 +22,8 @@ enum Request {
     case client(id: Int)
     case newClient(Client)
     case relationships(clientId: Int)
+    case attachments(clientId: Int)
+    case attachment(id: Int)
     case users
     case avatars
     case taskNotification(userId: Int)
@@ -42,6 +44,8 @@ extension Request {
             return "/client"
         case .relationships:
             return "/clientrelationship"
+        case .attachments, .attachment:
+            return "/clientattachment"
         case .users:
             return "/users"
         case .avatars:
@@ -124,6 +128,11 @@ extension Request {
             return .body(encode(client))
         case .relationships(let clientId):
             return .url(["clientId": "eq.\(clientId)"])
+        case .attachments(let clientId):
+            return .url(["clientId": "eq.\(clientId)",
+                         "select": "id,fileName,fileSize"])
+        case .attachment(let id):
+            return .url(["id": "eq.\(id)"])
         case .users:
             return .url([:])
         case .avatars:
@@ -136,7 +145,8 @@ extension Request {
 
     private var method: HttpMethod {
         switch self {
-        case .tasks, .task, .timesheetEntries, .currentTimesheetEntry, .clients, .client, .relationships, .users, .avatars, .taskNotification:
+        case .tasks, .task, .timesheetEntries, .currentTimesheetEntry, .clients,
+             .client, .relationships, .attachments, .attachment, .users, .avatars, .taskNotification:
             return .get
         case .newTask, .newClient, .newTimesheetEntry:
             return .post
@@ -149,9 +159,10 @@ extension Request {
 
     private var singleEntity: Bool {
         switch self {
-        case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .taskNotification:
+        case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .attachment, .taskNotification:
             return true
-        case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .currentTimesheetEntry, .clients, .newClient, .relationships, .users, .avatars:
+        case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .currentTimesheetEntry,
+             .clients, .newClient, .relationships, .attachments, .users, .avatars:
             return false
         }
     }

@@ -41,3 +41,10 @@ struct Relationship : Decodable {
     var relatedClientName: String
     var type: String
 }
+
+struct Attachment : Decodable {
+    var id: Int
+    var fileName: String
+    var fileSize: Int
+    var file: String?
+}

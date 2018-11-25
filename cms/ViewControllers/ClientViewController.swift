@@ -16,11 +16,12 @@ class ClientViewController : UITableViewController {
 
     private var client: Client? = nil
     private var relationships = [Relationship] ()
+    private var attachments = [Attachment] ()
     private var addressCoordinate: CLLocationCoordinate2D? = nil
 
     private struct Field {
         enum SpecialType {
-            case Address, Phone, Link, Relationship, None
+            case Address, Phone, Link, Relationship, Attachment, None
         }
 
         init(description: String, data: String?, specialType: SpecialType = .None) {
@@ -82,6 +83,20 @@ class ClientViewController : UITableViewController {
                 }
             }
         }
+
+        NetworkManager.request(.attachments(clientId: client!.id!)) {
+            response in
+
+            if let error = response?.error {
+                print("Failed to get client attachments: \(error)")
+            } else {
+                self.attachments = response?.parsed([Attachment].self) ?? [Attachment]()
+
+                DispatchQueue.main.async {
+                    self.updateUi()
+                }
+            }
+        }
     }
 
     private func updateUi() {
@@ -102,6 +117,7 @@ class ClientViewController : UITableViewController {
             fields.append(Field(description: "Telephone", data: client.phoneNumber, specialType: .Phone))
             fields.append(Field(description: "Email", data: client.email, specialType: .Link))
             fields.append(Field(description: "Relationships", data: nil, specialType: .Relationship))
+            fields.append(Field(description: "Attachments", data: nil, specialType: .Attachment))
             fields.append(Field(description: "Address", data: client.address, specialType: .Address))
         }
 
@@ -149,6 +165,8 @@ class ClientViewController : UITableViewController {
         let field = fields[section]
         if field.specialType == .Relationship {
             return relationships.count
+        } else if field.specialType == .Attachment {
+            return attachments.count
         } else {
             return 1
         }
@@ -163,6 +181,11 @@ class ClientViewController : UITableViewController {
             cell.accessoryType = .disclosureIndicator
             cell.textView.isUserInteractionEnabled = false
             cell.textView.text = relationship.relatedClientName
+        } else if field.specialType == .Attachment {
+            let attachment = attachments[indexPath.row]
+            cell.accessoryType = .disclosureIndicator
+            cell.textView.isUserInteractionEnabled = false
+            cell.textView.text = attachment.fileName
         } else {
             cell.selectionStyle = .none
             cell.textView.text = field.data
@@ -186,27 +209,50 @@ class ClientViewController : UITableViewController {
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard let indexPath = tableView.indexPathForSelectedRow else { return false }
-        return fields[indexPath.section].specialType == .Relationship
+        switch fields[indexPath.section].specialType {
+        case .Relationship, .Attachment:
+            return true
+        default:
+            return false
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mapDetailsSegue" {
             let mapDetailsController = segue.destination as! MapDetailsViewController
             mapDetailsController.setCoordinate(addressCoordinate!, name: client?.name)
-        } else if segue.identifier == "relatedClientSeque" {
+        } else if segue.identifier == "attachmentSegue" {
             guard let cell = sender as? UITableViewCell else { return }
 
             let indexPath = tableView.indexPath(for: cell)
+            let attachment = attachments[indexPath!.row]
 
-            let relationship = relationships[indexPath!.row]
-
-            let clientViewController = segue.destination as! ClientViewController
-            clientViewController.setClient(id: relationship.relatedClientId, type: relationship.relatedClientType)
-            clientViewController.title = relationship.relatedClientName
+            let clientViewController = segue.destination as! AttachmentViewController
+            clientViewController.attachmentId = attachment.id
+            clientViewController.title = attachment.fileName
         }
     }
 
     @IBAction private func openMapDetails(_ sender: Any) {
         performSegue(withIdentifier: "mapDetailsSegue", sender: mapView)
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch fields[indexPath.section].specialType {
+        case .Attachment:
+            if let cell = tableView.cellForRow(at: indexPath) {
+                performSegue(withIdentifier: "attachmentSegue", sender: cell)
+            }
+        case .Relationship:
+            let clientViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ClientViewController") as! ClientViewController
+
+            let relationship = relationships[indexPath.row]
+            clientViewController.setClient(id: relationship.relatedClientId, type: relationship.relatedClientType)
+            clientViewController.title = relationship.relatedClientName
+
+            navigationController?.pushViewController(clientViewController, animated: true)
+        default:
+            break
+        }
     }
 }

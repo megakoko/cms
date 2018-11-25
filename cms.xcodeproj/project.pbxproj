@@ -24,6 +24,7 @@
 		DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C152170751D004B1498 /* UserListViewController.swift */; };
 		DA7E6C182170752A004B1498 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C172170752A004B1498 /* User.swift */; };
 		DA7E6C1B2170D0EC004B1498 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */; };
+		DA8BF65721A9902900A0070B /* AttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8BF65621A9902900A0070B /* AttachmentViewController.swift */; };
 		DAA81073219FF6BE00F3D3A4 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA81072219FF6BE00F3D3A4 /* TaskTableViewCell.swift */; };
 		DAA81075219FFC6300F3D3A4 /* TaskTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA81074219FFC6300F3D3A4 /* TaskTableViewCellDelegate.swift */; };
 		DAA8107721A0003E00F3D3A4 /* TimesheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8107621A0003E00F3D3A4 /* TimesheetController.swift */; };
@@ -62,6 +63,7 @@
 		DA7E6C152170751D004B1498 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		DA7E6C172170752A004B1498 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		DA8BF65621A9902900A0070B /* AttachmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentViewController.swift; sourceTree = "<group>"; };
 		DAA81072219FF6BE00F3D3A4 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		DAA81074219FFC6300F3D3A4 /* TaskTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		DAA8107621A0003E00F3D3A4 /* TimesheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				DAD721DA21A4862400947F68 /* TimesheetFilterViewController.swift */,
 				DA2A966A216E498D000AE7F1 /* ClientListViewController.swift */,
 				DA2A966F216E5F70000AE7F1 /* ClientViewController.swift */,
+				DA8BF65621A9902900A0070B /* AttachmentViewController.swift */,
 				DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */,
 				DA7E6C152170751D004B1498 /* UserListViewController.swift */,
 				DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */,
@@ -280,6 +283,7 @@
 				DAA8107F21A198DA00F3D3A4 /* TimesheetTableViewCellDelegate.swift in Sources */,
 				DAA8107721A0003E00F3D3A4 /* TimesheetController.swift in Sources */,
 				DA1B07A521974E5100EDC797 /* UserListViewControllerDelegate.swift in Sources */,
+				DA8BF65721A9902900A0070B /* AttachmentViewController.swift in Sources */,
 				DADCCA70219C1A0B00D6CC43 /* Response.swift in Sources */,
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
 				DAD721DB21A4862400947F68 /* TimesheetFilterViewController.swift in Sources */,
