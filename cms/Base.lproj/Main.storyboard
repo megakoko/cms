@@ -676,7 +676,7 @@
                     <connections>
                         <outlet property="mapView" destination="nJa-0V-OIx" id="QWV-X0-pMg"/>
                         <segue destination="boR-4r-aeV" kind="show" identifier="mapDetailsSegue" id="3D0-eh-j0P"/>
-                        <segue destination="hjh-Ua-Ulb" kind="show" identifier="attachmentSegue" id="Pk0-rH-QaD"/>
+                        <segue destination="B4s-V2-rB9" kind="presentation" identifier="attachmentSegue" id="m4J-88-cKf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bnp-FR-FKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -905,6 +905,22 @@
             </objects>
             <point key="canvasLocation" x="3630" y="400"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ldl-SY-XWB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="raH-Eu-uyS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="B4s-V2-rB9" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UpS-77-OQ6">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hjh-Ua-Ulb" kind="relationship" relationship="rootViewController" id="kte-BA-mRJ"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="4110" y="1421"/>
+        </scene>
         <!--Attachment View Controller-->
         <scene sceneID="L5e-RK-3n1">
             <objects>
@@ -914,7 +930,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvo-OM-FXy">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -931,13 +947,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fgQ-zV-Sak"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tRH-Z7-9zC">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="EYu-oY-jds">
+                            <connections>
+                                <action selector="close:" destination="hjh-Ua-Ulb" id="x3P-af-Ubm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="ob5-iY-1Fs">
+                            <connections>
+                                <action selector="share:" destination="hjh-Ua-Ulb" id="FAg-ec-8v8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="rvo-OM-FXy" id="8sm-gV-FJe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRT-oe-NXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3901.5999999999999" y="1420.8395802098951"/>
+            <point key="canvasLocation" x="5191" y="1421"/>
         </scene>
         <!--New Client Table View Controller-->
         <scene sceneID="G1D-Be-Oe0">
@@ -1498,7 +1526,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l91-La-vMq"/>
+        <segue reference="gY3-E0-92N"/>
         <segue reference="ROg-BU-jmz"/>
     </inferredMetricsTieBreakers>
 </document>

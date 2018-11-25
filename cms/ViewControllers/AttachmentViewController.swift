@@ -47,4 +47,19 @@ class AttachmentViewController: UIViewController {
             }
         }
     }
+
+    
+    @IBAction func share(_ sender: Any) {
+        guard let attachmentUrl = webView.url else {
+            print("Attachment hasn't been loaded to the Web View yet")
+            return
+        }
+
+        let activityController = UIActivityViewController(activityItems: [attachmentUrl], applicationActivities: nil)
+        self.present(activityController, animated: true)
+    }
+
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
