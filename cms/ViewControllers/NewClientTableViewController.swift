@@ -9,7 +9,7 @@
 import UIKit
 import ContactsUI
 
-class NewClientTableViewController: UITableViewController, CNContactPickerDelegate {
+class NewClientTableViewController: UITableViewController, CNContactPickerDelegate, UITextFieldDelegate {
     @IBOutlet weak var clientTypeControl: UISegmentedControl!
 
     @IBOutlet weak var firstNameField: UITextField!
@@ -73,6 +73,24 @@ class NewClientTableViewController: UITableViewController, CNContactPickerDelega
         }
 
         return 45
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let index = clientTypeControl.selectedSegmentIndex
+        let isIndividual = clientTypes[index] == .individual
+
+        var fields = (isIndividual ? [firstNameField, middleNameField, surnameField] : [entityNameField])
+            + [emailField, telephoneField]
+
+        if let index = fields.firstIndex(of: textField),
+               index != (fields.count - 1) {
+            let nextField = fields[index + 1]
+            nextField?.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
     }
 
     @IBAction private func importFromContacts(_ sender: Any) {

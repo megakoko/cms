@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTaskViewController: UITableViewController, UserListViewControllerDelegate, ClientListViewControllerDelegate {
+class NewTaskViewController: UITableViewController, UserListViewControllerDelegate, ClientListViewControllerDelegate, UITextFieldDelegate {
     private var task: Task? = nil
 
     private var selectedAssigneeId: Int?
@@ -55,6 +55,17 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     func didSelect(clientId: Int?, clientName: String?) {
         selectedClientId = clientId
         clientNameLabel.text = clientName ?? noClientSelectionOption
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameField:
+            nameField.resignFirstResponder()
+        default:
+            return false
+        }
+        
+        return true
     }
 
     @IBAction private func done(_ sender: Any) {

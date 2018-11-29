@@ -906,7 +906,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Ldl-SY-XWB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="raH-Eu-uyS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="B4s-V2-rB9" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UpS-77-OQ6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -916,6 +915,7 @@
                         <segue destination="hjh-Ua-Ulb" kind="relationship" relationship="rootViewController" id="kte-BA-mRJ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="raH-Eu-uyS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4110" y="1421"/>
         </scene>
@@ -1052,6 +1052,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UhM-zG-nl9" id="ZEE-Xp-abn"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1074,6 +1077,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UhM-zG-nl9" id="Lad-t6-eLU"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1096,6 +1102,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UhM-zG-nl9" id="37I-h5-LuP"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1118,6 +1127,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UhM-zG-nl9" id="141-Lq-1TI"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1144,6 +1156,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UhM-zG-nl9" id="SOt-Qm-m3k"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1166,6 +1181,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UhM-zG-nl9" id="0VM-m7-Emq"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1283,6 +1301,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="O2z-JW-Ybf" id="U9Y-EK-jDb"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
