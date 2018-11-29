@@ -93,7 +93,12 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
         let id = entry.id
         guard let row = timesheetEntries.firstIndex(where: { $0.id == id }) else { return }
         let indexPath = IndexPath(row: row, section: 0)
-        tableView.reloadRows(at: [indexPath], with: .none)
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? TimesheetTableViewCell else {
+            return
+        }
+
+        cell.configure(for: timesheetEntries[indexPath.row], usingColorCoding: useColorCoding)
     }
     
     func recordTapped(_ cell: TimesheetTableViewCell) {

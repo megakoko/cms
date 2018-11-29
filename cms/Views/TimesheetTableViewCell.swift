@@ -12,6 +12,7 @@ class TimesheetTableViewCell: UITableViewCell {
     @IBOutlet weak var taskName: UILabel!
     @IBOutlet weak var recordingTime: UILabel!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var recordButtonShadow: UIView!
 
     var delegate: TimesheetTableViewCellDelegate?
 
@@ -37,6 +38,10 @@ class TimesheetTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        recordButtonShadow.alpha = 0.0
+        recordButtonShadow.layer.cornerRadius = recordButtonShadow.frame.width / 2
+        recordButtonShadow.clipsToBounds = true
+
         setRecording(false)
     }
 
@@ -44,8 +49,23 @@ class TimesheetTableViewCell: UITableViewCell {
         recordButton.isHidden = !recording
     }
 
-    @IBAction func recordClicked(_ sender: Any) {
+    @IBAction func recordTouchDown(_ sender: Any) {
+        UIView.animate(withDuration: 0.2) {
+            self.recordButtonShadow.alpha = 0.5
+        }
+    }
+
+    @IBAction func recordTouchUpInside(_ sender: Any) {
         delegate?.recordTapped(self)
+        UIView.animate(withDuration: 0.3) {
+            self.recordButtonShadow.alpha = 0.0
+        }
+    }
+
+    @IBAction func recordTouchUpOutside(_ sender: Any) {
+        UIView.animate(withDuration: 0.3) {
+            self.recordButtonShadow.alpha = 0.0
+        }
     }
 
     func configure(for entry: TimesheetEntry, usingColorCoding: Bool) {

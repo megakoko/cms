@@ -141,25 +141,7 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
         
         cell.delegate = self
 
-        let task = tasks[indexPath.row]
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy hh:mm"
-        
-        cell.name.text = task.name
-        cell.endDate.text = task.endDate == nil ? nil : (dateFormatter.string(from: task.endDate!))
-
-        if task.endDate != nil && task.endDate! <= Date() {
-            cell.endDate.textColor = UIColor.red
-        } else if task.endDateReminder != nil && task.endDateReminder! <= Date() {
-            cell.endDate.textColor = UIColor.orange
-        } else {
-            cell.endDate.textColor = UIColor.black
-        }
-        
-        let isRecording = (task.id == TimesheetController.shared.currentTimesheetEntry?.taskId)
-        cell.setRecording(isRecording)
-        cell.recordingTimeLabel.text = isRecording ? TimesheetController.shared.formatTimeInterval(interval: TimesheetController.shared.timeRecording) : nil
+        cell.setTask(tasks[indexPath.row])
         
         return cell
     }
@@ -239,6 +221,10 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
         guard let row = tasks.firstIndex(where: { $0.id == taskId }) else { return }
         let indexPath = IndexPath(row: row, section: 0)
         
-        tableView.reloadRows(at: [indexPath], with: .none)
+        guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else {
+            return
+        }
+
+        cell.setTask(tasks[indexPath.row])
     }
 }

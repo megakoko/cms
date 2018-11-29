@@ -47,6 +47,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z08-n9-IlN">
+                                            <rect key="frame" x="329" y="1" width="40" height="40"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="3j1-8e-S2M"/>
+                                                <constraint firstAttribute="width" constant="40" id="XWm-IZ-ViV"/>
+                                            </constraints>
+                                        </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Klr-wg-CEx">
                                             <rect key="frame" x="16" y="11" width="343" height="20"/>
                                             <subviews>
@@ -64,7 +72,9 @@
                                                     </constraints>
                                                     <state key="normal" image="Stop"/>
                                                     <connections>
-                                                        <action selector="recordClicked:" destination="BnF-XL-LWT" eventType="touchUpInside" id="TL1-kj-XmQ"/>
+                                                        <action selector="recordTouchDown:" destination="BnF-XL-LWT" eventType="touchDown" id="uT4-I4-955"/>
+                                                        <action selector="touchCancel:" destination="BnF-XL-LWT" eventType="touchCancel" id="EQo-y8-3xA"/>
+                                                        <action selector="touchedUp:" destination="BnF-XL-LWT" eventType="touchUpInside" id="iqr-Tx-srm"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -88,11 +98,13 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Z08-n9-IlN" firstAttribute="centerX" secondItem="OIj-TU-l3d" secondAttribute="centerX" id="Hcq-8T-Q3w"/>
                                         <constraint firstAttribute="bottom" secondItem="Sxo-97-RMq" secondAttribute="bottom" constant="12" id="a6W-9A-bTf"/>
                                         <constraint firstItem="Sxo-97-RMq" firstAttribute="leading" secondItem="lMB-rj-y73" secondAttribute="leading" constant="16" id="ap4-92-XhZ"/>
                                         <constraint firstAttribute="trailing" secondItem="Sxo-97-RMq" secondAttribute="trailing" constant="16" id="dL1-Lw-uDx"/>
                                         <constraint firstItem="Klr-wg-CEx" firstAttribute="leading" secondItem="lMB-rj-y73" secondAttribute="leading" constant="16" id="fID-u6-RqO"/>
                                         <constraint firstItem="Klr-wg-CEx" firstAttribute="top" secondItem="lMB-rj-y73" secondAttribute="top" constant="11" id="khW-ii-as1"/>
+                                        <constraint firstItem="Z08-n9-IlN" firstAttribute="centerY" secondItem="OIj-TU-l3d" secondAttribute="centerY" id="lGM-pM-vaw"/>
                                         <constraint firstItem="Sxo-97-RMq" firstAttribute="top" secondItem="Klr-wg-CEx" secondAttribute="bottom" constant="8" id="lyv-Xb-vXA"/>
                                         <constraint firstAttribute="trailing" secondItem="Klr-wg-CEx" secondAttribute="trailing" constant="16" id="rSh-4e-XCV"/>
                                     </constraints>
@@ -101,6 +113,7 @@
                                     <outlet property="endDate" destination="2dj-LO-EyU" id="Y8M-As-d7A"/>
                                     <outlet property="name" destination="kz9-gw-AS0" id="VuY-nE-TB1"/>
                                     <outlet property="recordButton" destination="OIj-TU-l3d" id="rb9-2J-Y7i"/>
+                                    <outlet property="recordButtonShadow" destination="Z08-n9-IlN" id="nmg-iq-Szc"/>
                                     <outlet property="recordingTimeLabel" destination="Nj1-tI-vtX" id="WRx-sa-Ufg"/>
                                     <segue destination="gZw-Pj-yyN" kind="show" id="ROg-BU-jmz">
                                         <segue key="commit" inheritsFrom="parent" id="yUe-bA-fIu"/>
@@ -152,6 +165,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7M6-Jn-3Rf">
+                                            <rect key="frame" x="330" y="10" width="40" height="40"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="9E0-qW-CVM"/>
+                                                <constraint firstAttribute="width" constant="40" id="a4q-Tf-RKP"/>
+                                            </constraints>
+                                        </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-0b-yfU">
                                             <rect key="frame" x="16" y="5" width="359" height="50"/>
                                             <subviews>
@@ -179,7 +200,9 @@
                                                             <rect key="frame" x="15" y="15" width="20" height="20"/>
                                                             <state key="normal" image="Stop"/>
                                                             <connections>
-                                                                <action selector="recordClicked:" destination="iii-g6-ZuX" eventType="touchUpInside" id="4Iy-b1-ie2"/>
+                                                                <action selector="recordTouchDown:" destination="iii-g6-ZuX" eventType="touchDown" id="ZzC-jf-DF0"/>
+                                                                <action selector="recordTouchUpInside:" destination="iii-g6-ZuX" eventType="touchUpInside" id="8Nh-I7-DSe"/>
+                                                                <action selector="recordTouchUpOutside:" destination="iii-g6-ZuX" eventType="touchUpOutside" id="y1K-77-xfl"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -196,13 +219,16 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="PfW-0b-yfU" firstAttribute="leading" secondItem="7k0-rl-huw" secondAttribute="leading" constant="16" id="JOo-oI-PQp"/>
+                                        <constraint firstItem="7M6-Jn-3Rf" firstAttribute="centerX" secondItem="nhv-oy-JLx" secondAttribute="centerX" id="ZhA-rV-y2G"/>
                                         <constraint firstItem="PfW-0b-yfU" firstAttribute="top" secondItem="7k0-rl-huw" secondAttribute="top" constant="5" id="fhf-vi-FvU"/>
                                         <constraint firstAttribute="bottom" secondItem="PfW-0b-yfU" secondAttribute="bottom" constant="6.5" id="gWc-6E-QHj"/>
+                                        <constraint firstItem="7M6-Jn-3Rf" firstAttribute="centerY" secondItem="nhv-oy-JLx" secondAttribute="centerY" id="gnY-yx-lW7"/>
                                         <constraint firstAttribute="trailing" secondItem="PfW-0b-yfU" secondAttribute="trailing" id="s3T-QX-6hm"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="recordButton" destination="nhv-oy-JLx" id="CKw-cz-ees"/>
+                                    <outlet property="recordButtonShadow" destination="7M6-Jn-3Rf" id="rJX-pb-g7A"/>
                                     <outlet property="recordingTime" destination="s3s-hV-CfK" id="7fi-1C-lhA"/>
                                     <outlet property="taskName" destination="CQI-T2-Gmk" id="HKG-YS-9TG"/>
                                 </connections>
@@ -1540,7 +1566,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Stop" width="40" height="40"/>
+        <image name="Stop" width="23" height="30"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
