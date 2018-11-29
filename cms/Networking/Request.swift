@@ -106,7 +106,7 @@ extension Request {
 
             return .url(["userId": "eq.1",
                          "start": "lt.\(endString)",
-                         "end": "gt.\(startString)",
+                         "or": "(end.is.null,end.gt.\(startString))",
                          "order": "start.desc"])
         case .currentTimesheetEntry:
             return .url(["userId": "eq.1",
