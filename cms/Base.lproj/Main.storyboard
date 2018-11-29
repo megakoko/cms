@@ -197,7 +197,11 @@
                                                     <rect key="frame" x="309" y="0.0" width="50" height="50"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhv-oy-JLx">
-                                                            <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                            <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="5ik-OV-uT5"/>
+                                                                <constraint firstAttribute="height" constant="40" id="SQg-iw-Dj0"/>
+                                                            </constraints>
                                                             <state key="normal" image="Stop"/>
                                                             <connections>
                                                                 <action selector="recordTouchDown:" destination="iii-g6-ZuX" eventType="touchDown" id="ZzC-jf-DF0"/>
@@ -207,22 +211,22 @@
                                                         </button>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="top" secondItem="Rar-mb-xi5" secondAttribute="top" constant="5" id="3nR-QH-0EB"/>
                                                         <constraint firstAttribute="width" constant="50" id="CKK-gQ-khN"/>
-                                                        <constraint firstAttribute="trailing" secondItem="nhv-oy-JLx" secondAttribute="trailing" constant="15" id="LZ4-6f-gFf"/>
-                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="leading" secondItem="Rar-mb-xi5" secondAttribute="leading" constant="15" id="X0Q-lw-3ic"/>
-                                                        <constraint firstAttribute="bottom" secondItem="nhv-oy-JLx" secondAttribute="bottom" constant="15" id="kXA-78-HTG"/>
-                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="top" secondItem="Rar-mb-xi5" secondAttribute="top" constant="15" id="qg2-Hl-FEi"/>
+                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="leading" secondItem="Rar-mb-xi5" secondAttribute="leading" constant="5" id="HKC-EJ-EPY"/>
+                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="centerX" secondItem="Rar-mb-xi5" secondAttribute="centerX" id="RdU-lF-y4b"/>
+                                                        <constraint firstItem="nhv-oy-JLx" firstAttribute="centerY" secondItem="Rar-mb-xi5" secondAttribute="centerY" id="f0R-4P-7AO"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="7M6-Jn-3Rf" firstAttribute="centerY" secondItem="nhv-oy-JLx" secondAttribute="centerY" id="H6s-74-qyS"/>
                                         <constraint firstItem="PfW-0b-yfU" firstAttribute="leading" secondItem="7k0-rl-huw" secondAttribute="leading" constant="16" id="JOo-oI-PQp"/>
-                                        <constraint firstItem="7M6-Jn-3Rf" firstAttribute="centerX" secondItem="nhv-oy-JLx" secondAttribute="centerX" id="ZhA-rV-y2G"/>
                                         <constraint firstItem="PfW-0b-yfU" firstAttribute="top" secondItem="7k0-rl-huw" secondAttribute="top" constant="5" id="fhf-vi-FvU"/>
                                         <constraint firstAttribute="bottom" secondItem="PfW-0b-yfU" secondAttribute="bottom" constant="6.5" id="gWc-6E-QHj"/>
-                                        <constraint firstItem="7M6-Jn-3Rf" firstAttribute="centerY" secondItem="nhv-oy-JLx" secondAttribute="centerY" id="gnY-yx-lW7"/>
+                                        <constraint firstItem="7M6-Jn-3Rf" firstAttribute="centerX" secondItem="nhv-oy-JLx" secondAttribute="centerX" id="p2P-6v-vZP"/>
                                         <constraint firstAttribute="trailing" secondItem="PfW-0b-yfU" secondAttribute="trailing" id="s3T-QX-6hm"/>
                                     </constraints>
                                 </tableViewCellContentView>
