@@ -16,7 +16,9 @@ class TaskViewController: UITableViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var endDateReminderLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var startDateReminderLabel: UILabel!
     @IBOutlet weak var assigneeLabel: UILabel!
     @IBOutlet weak var clientNameLabel: UILabel!
     @IBOutlet weak var clientNameCell: UITableViewCell!
@@ -50,10 +52,17 @@ class TaskViewController: UITableViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy 'at' hh:mm"
 
+        let formatDate: (Date?) -> String? = {
+            guard let date = $0 else { return nil }
+            return dateFormatter.string(from: date)
+        }
+
         nameLabel.text = task?.name
         statusLabel.text = task?.status
-        endDateLabel.text = task?.endDate != nil ? dateFormatter.string(from: (task?.endDate)!) : nil
-        startDateLabel.text = task?.startDate != nil ? dateFormatter.string(from: (task?.startDate)!) : nil
+        endDateLabel.text = formatDate(task?.endDate)
+        endDateReminderLabel.text = formatDate(task?.endDateReminder)
+        startDateLabel.text = formatDate(task?.startDate)
+        startDateReminderLabel.text = formatDate(task?.startDateReminder)
         assigneeLabel.text = task?.assignee
         clientNameLabel.text = task?.clientName
         clientNameCell.accessoryType = task?.clientId == nil ? .none : .disclosureIndicator

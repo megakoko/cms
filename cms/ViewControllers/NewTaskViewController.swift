@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTaskViewController: UITableViewController, UserListViewControllerDelegate, ClientListViewControllerDelegate, UITextFieldDelegate {
+class NewTaskViewController: UITableViewController, UserListViewControllerDelegate, ClientListViewControllerDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     private var task: Task? = nil
 
     private var selectedAssigneeId: Int?
@@ -17,11 +17,18 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     private var selectedClientId: Int?
     private let noClientSelectionOption = "No Client"
 
+    private var reminderTimePeriods = ["minute","hour","day","week","month"]
+    private var reminderTimePeriodDescription = ["Minute(s)","Hour(s)","Day(s)","Week(s)","Month(s)"]
+
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var endDateEnabled: UISwitch!
     @IBOutlet weak var endDatePicker: UIDatePicker!
+    @IBOutlet weak var endDateReminderEnabled: UISwitch!
+    @IBOutlet weak var endDateReminderPicker: UIPickerView!
     @IBOutlet weak var startDateEnabled: UISwitch!
     @IBOutlet weak var startDatePicker: UIDatePicker!
+    @IBOutlet weak var startDateReminderEnabled: UISwitch!
+    @IBOutlet weak var startDateReminderPicker: UIPickerView!
     @IBOutlet weak var assigneeLabel: UILabel!
     @IBOutlet weak var clientNameLabel: UILabel!
 
@@ -68,12 +75,45 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
         return true
     }
 
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0: return 100
+        case 1: return reminderTimePeriodDescription.count
+        default: return 0
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0: return String(row + 1)
+        case 1: return reminderTimePeriodDescription[row]
+        default: return nil
+        }
+    }
+
     @IBAction private func done(_ sender: Any) {
+        let hasEndReminder = endDateReminderEnabled.isEnabled && endDateReminderEnabled.isOn
+        let endReminderAmount = hasEndReminder ? (endDateReminderPicker.selectedRow(inComponent: 0) + 1) : nil
+        let endReminderTimePeriod = hasEndReminder ? (reminderTimePeriods[endDateReminderPicker.selectedRow(inComponent: 1)]) : nil
+
+        let hasStartReminder = startDateReminderEnabled.isEnabled && startDateReminderEnabled.isOn
+        let startReminderAmount = hasStartReminder ? (startDateReminderPicker.selectedRow(inComponent: 0) + 1) : nil
+        let startReminderTimePeriod = hasStartReminder ? (reminderTimePeriods[startDateReminderPicker.selectedRow(inComponent: 1)]) : nil
+
         task = Task(id: nil,
                     name: nameField.text ?? "",
                     endDate: endDateEnabled.isOn ? endDatePicker.date : nil,
                     endDateReminder: nil,
+                    endDateReminderAmount: endReminderAmount,
+                    endDateReminderTimePeriod: endReminderTimePeriod,
                     startDate: startDateEnabled.isOn ? startDatePicker.date : nil,
+                    startDateReminder: nil,
+                    startDateReminderAmount: startReminderAmount,
+                    startDateReminderTimePeriod: startReminderTimePeriod,
                     clientName: nil,
                     clientId: selectedClientId,
                     clientType: nil,
@@ -105,11 +145,29 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     }
 
     @IBAction private func onEndDateToggled(_ sender: Any) {
-        endDatePicker.isEnabled = endDateEnabled.isOn
+        let enabled = endDateEnabled.isOn
+        endDatePicker.isEnabled = enabled
+        endDateReminderEnabled.isEnabled = enabled
+        onEndReminderToggled(sender)
+    }
+
+    @IBAction func onEndReminderToggled(_ sender: Any) {
+        let enabled = endDateReminderEnabled.isEnabled && endDateReminderEnabled.isOn
+        endDateReminderPicker.isUserInteractionEnabled = enabled
+        endDateReminderPicker.alpha = enabled ? 1.0 : 0.4
     }
 
     @IBAction private func onStartDateToggled(_ sender: Any) {
-        startDatePicker.isEnabled = startDateEnabled.isOn
+        let enabled = startDateEnabled.isOn
+        startDatePicker.isEnabled = enabled
+        startDateReminderEnabled.isEnabled = enabled
+        onStartReminderToggled(sender)
+    }
+
+    @IBAction func onStartReminderToggled(_ sender: Any) {
+        let enabled = startDateReminderEnabled.isEnabled && startDateReminderEnabled.isOn
+        startDateReminderPicker.isUserInteractionEnabled = enabled
+        startDateReminderPicker.alpha = enabled ? 1.0 : 0.4
     }
 
     @IBAction private func chooseAssignee(_ sender: Any) {

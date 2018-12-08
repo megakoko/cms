@@ -12,8 +12,13 @@ struct Task : Codable {
     var id: Int?
     var name: String
     var endDate: Date?
-    let endDateReminder: Date?
+    var endDateReminder: Date?
+    var endDateReminderAmount: Int?
+    var endDateReminderTimePeriod: String?
     var startDate: Date?
+    var startDateReminder: Date?
+    var startDateReminderAmount: Int?
+    var startDateReminderTimePeriod: String?
     var clientName: String?
     var clientId: Int?
     var clientType: Client.ClientType?
