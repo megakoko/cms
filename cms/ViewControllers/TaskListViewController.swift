@@ -132,6 +132,10 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
         refreshData()
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
