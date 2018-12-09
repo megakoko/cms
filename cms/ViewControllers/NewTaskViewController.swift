@@ -11,8 +11,9 @@ import UIKit
 class NewTaskViewController: UITableViewController, UserListViewControllerDelegate, ClientListViewControllerDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     private var task: Task? = nil
 
-    private var selectedAssigneeId: Int?
+    private var selectedAssigneeId: Int? = LoginController.currentUserId
     private let noAssigneeSelectionOption = "No Assignee"
+    private let currentAssigneeOption = "Me"
 
     private var selectedClientId: Int?
     private let noClientSelectionOption = "No Client"
@@ -35,7 +36,7 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        assigneeLabel.text = noAssigneeSelectionOption
+        assigneeLabel.text = currentAssigneeOption
         clientNameLabel.text = noClientSelectionOption
         onEndDateToggled(endDatePicker)
         onStartDateToggled(startDatePicker)
@@ -56,7 +57,15 @@ class NewTaskViewController: UITableViewController, UserListViewControllerDelega
 
     func didSelect(userId: Int?, userName: String?) {
         selectedAssigneeId = userId
-        assigneeLabel.text = userName ?? noAssigneeSelectionOption
+        switch(userId)
+        {
+        case LoginController.currentUserId:
+            assigneeLabel.text = currentAssigneeOption
+        case nil:
+            assigneeLabel.text = noAssigneeSelectionOption
+        default:
+            assigneeLabel.text = userName
+        }
     }
 
     func didSelect(clientId: Int?, clientName: String?) {

@@ -134,7 +134,7 @@ extension Request {
         case .attachment(let id):
             return .url(["id": "eq.\(id)"])
         case .users:
-            return .url([:])
+            return .url(["order":"id"])
         case .avatars:
             return .url([:])
         case .taskNotification(let userId):
