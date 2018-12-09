@@ -14,8 +14,6 @@ class TaskListViewController: UITableViewController, TaskTableViewCellDelegate {
 
     static let listUpdateNotification = Notification.Name("listUpdateNotification")
 
-    private var userId = 1
-    
     private var recordingTimer: Timer?
 
     override func viewDidLoad() {

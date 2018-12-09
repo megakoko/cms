@@ -58,7 +58,7 @@ extension Request {
     private var parameters: RequestParameters {
         switch self {
         case .tasks:
-            return .url(["assigneeId": "eq.1",
+            return .url(["assigneeId": "eq.\(LoginController.currentUserId ?? 0)",
                          "status": "neq.completed",
                          "order": "endDate.desc"])
         case .task(let id):
@@ -104,12 +104,12 @@ extension Request {
             let startString = dateFormatter.string(from: start!)
             let endString = dateFormatter.string(from: end!)
 
-            return .url(["userId": "eq.1",
+            return .url(["userId": "eq.\(LoginController.currentUserId ?? 0)",
                          "start": "lt.\(endString)",
                          "or": "(end.is.null,end.gt.\(startString))",
                          "order": "start.desc"])
         case .currentTimesheetEntry:
-            return .url(["userId": "eq.1",
+            return .url(["userId": "eq.\(LoginController.currentUserId ?? 0)",
                          "end": "is.null"])
         case .newTimesheetEntry(let entry):
             return .body(encode(entry))
@@ -139,7 +139,7 @@ extension Request {
             return .url([:])
         case .taskNotification(let userId):
             return .url(["assigneeId": "eq.\(userId)",
-                "select": "tasksWithReminder"])
+                         "select": "tasksWithReminder"])
         }
     }
 

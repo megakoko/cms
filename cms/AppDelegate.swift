@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.registerForRemoteNotifications()
         }
 
-        taskNotificationController = TaskNotificationController(userId: 1)
+        taskNotificationController = TaskNotificationController()
 
         application.setMinimumBackgroundFetchInterval(TaskNotificationController.refreshInterval)
 

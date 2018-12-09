@@ -15,14 +15,11 @@ class TaskNotificationController {
 
     static let refreshInterval = 60.0
 
-    private var userId: Int
     private var numberOfOverdueTasks = 0
     private var dataTask: URLSessionDataTask? = nil
     private var refreshTimer: Timer? = nil
 
-    init(userId: Int) {
-        self.userId = userId
-
+    init() {
         NotificationCenter.default.addObserver(forName: TaskListViewController.listUpdateNotification, object: nil, queue: nil) {
             notification in
             self.stopRefreshing()
@@ -34,6 +31,11 @@ class TaskNotificationController {
         if dataTask != nil {
             dataTask?.cancel()
             dataTask = nil
+        }
+
+        guard let userId = LoginController.currentUserId else {
+            print("Failed to get task notifications: no user is logged in")
+            return
         }
 
         dataTask = NetworkManager.request(.taskNotification(userId: userId)) {
