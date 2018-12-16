@@ -47,6 +47,10 @@ class TimesheetTableViewController: UITableViewController, TimesheetTableViewCel
         }
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timesheetEntries.count
     }
