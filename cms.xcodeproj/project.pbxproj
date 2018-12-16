@@ -35,6 +35,7 @@
 		DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */; };
 		DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */; };
 		DAC6488621BD3D2C00F4A57E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC6488521BD3D2C00F4A57E /* LoginController.swift */; };
+		DAC9E94321C678A7007D2643 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9E94221C678A7007D2643 /* LogInViewController.swift */; };
 		DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */; };
 		DAD721DB21A4862400947F68 /* TimesheetFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD721DA21A4862400947F68 /* TimesheetFilterViewController.swift */; };
 		DADCCA6E219C116A00D6CC43 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADCCA6D219C116A00D6CC43 /* Request.swift */; };
@@ -75,6 +76,7 @@
 		DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
 		DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
 		DAC6488521BD3D2C00F4A57E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		DAC9E94221C678A7007D2643 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		DAD0711F218E06BA00931E42 /* NewClientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClientTableViewController.swift; sourceTree = "<group>"; };
 		DAD721DA21A4862400947F68 /* TimesheetFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetFilterViewController.swift; sourceTree = "<group>"; };
 		DADCCA6D219C116A00D6CC43 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		DA10A01D217230CB00C28463 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DAC9E94221C678A7007D2643 /* LogInViewController.swift */,
 				DA10A02B21732B6200C28463 /* TabViewController.swift */,
 				DA6C116C216CD04A00DAD2D0 /* TaskListViewController.swift */,
 				DA7E6C1A2170D0EC004B1498 /* TaskViewController.swift */,
@@ -289,6 +292,7 @@
 				DA1B07A521974E5100EDC797 /* UserListViewControllerDelegate.swift in Sources */,
 				DA8BF65721A9902900A0070B /* AttachmentViewController.swift in Sources */,
 				DADCCA70219C1A0B00D6CC43 /* Response.swift in Sources */,
+				DAC9E94321C678A7007D2643 /* LogInViewController.swift in Sources */,
 				DA7E6C162170751D004B1498 /* UserListViewController.swift in Sources */,
 				DAD721DB21A4862400947F68 /* TimesheetFilterViewController.swift in Sources */,
 				DA1B07A72197F68500EDC797 /* ClientListViewControllerDelegate.swift in Sources */,
