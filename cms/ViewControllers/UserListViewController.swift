@@ -134,4 +134,9 @@ class UserListViewController: UITableViewController {
     @IBAction private func cancelAssigneeSelection() {
         dismiss(animated: true)
     }
+
+    @IBAction func logOut(_ sender: Any) {
+        LoginController.logOut()
+        performSegue(withIdentifier: "loggedOutSegue", sender: self)
+    }
 }

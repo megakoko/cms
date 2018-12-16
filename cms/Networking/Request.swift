@@ -9,6 +9,7 @@
 import Foundation
 
 enum Request {
+    case logIn(userName: String, password: String)
     case tasks
     case task(id: Int)
     case newTask(Task)
@@ -46,7 +47,7 @@ extension Request {
             return "/clientrelationship"
         case .attachments, .attachment:
             return "/clientattachment"
-        case .users:
+        case .users, .logIn:
             return "/users"
         case .avatars:
             return "/avatars"
@@ -135,6 +136,9 @@ extension Request {
             return .url(["id": "eq.\(id)"])
         case .users:
             return .url(["order":"id"])
+        case .logIn(let userName, _):
+            return .url(["select": "id",
+                         "login": "eq.\(userName)"])
         case .avatars:
             return .url([:])
         case .taskNotification(let userId):
@@ -146,7 +150,7 @@ extension Request {
     private var method: HttpMethod {
         switch self {
         case .tasks, .task, .timesheetEntries, .currentTimesheetEntry, .clients,
-             .client, .relationships, .attachments, .attachment, .users, .avatars, .taskNotification:
+             .client, .relationships, .attachments, .attachment, .users, .logIn, .avatars, .taskNotification:
             return .get
         case .newTask, .newClient, .newTimesheetEntry:
             return .post
@@ -159,7 +163,7 @@ extension Request {
 
     private var singleEntity: Bool {
         switch self {
-        case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .attachment, .taskNotification:
+        case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .attachment, .taskNotification, .logIn:
             return true
         case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .currentTimesheetEntry,
              .clients, .newClient, .relationships, .attachments, .users, .avatars:
