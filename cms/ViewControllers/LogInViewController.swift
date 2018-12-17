@@ -28,7 +28,9 @@ class LogInViewController: UIViewController {
 
             if ok {
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "loggedInSegue", sender: self)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabViewController = storyboard.instantiateViewController(withIdentifier: "tabViewController")
+                    UIApplication.shared.keyWindow?.rootViewController = tabViewController
                 }
             } else {
 

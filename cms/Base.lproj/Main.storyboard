@@ -663,7 +663,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Users" id="W1S-32-0ho">
-                        <barButtonItem key="rightBarButtonItem" title="Log out" id="PGI-5L-NXu"/>
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="PGI-5L-NXu">
+                            <connections>
+                                <action selector="logOut:" destination="RgN-wG-hCG" id="bCI-Ju-vNc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mvv-hb-BBa">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1305,7 +1309,7 @@
         <!--Log In View Controller-->
         <scene sceneID="K6A-NC-5wJ">
             <objects>
-                <viewController id="9LD-Z2-KGD" customClass="LogInViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="9LD-Z2-KGD" customClass="LogInViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4AT-a0-hfA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1378,7 +1382,6 @@
                     <connections>
                         <outlet property="passwordField" destination="jdv-AO-5d2" id="H0a-mr-EHz"/>
                         <outlet property="userNameField" destination="t2s-bp-55L" id="SoY-1c-Ip0"/>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="loggedInSegue" id="SUu-3t-eHg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaA-LF-fqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1388,7 +1391,7 @@
         <!--Tab View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="TabViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabViewController" id="49e-Tb-3d3" customClass="TabViewController" customModule="cms" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>

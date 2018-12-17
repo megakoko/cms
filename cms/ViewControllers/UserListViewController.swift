@@ -137,6 +137,9 @@ class UserListViewController: UITableViewController {
 
     @IBAction func logOut(_ sender: Any) {
         LoginController.logOut()
-        performSegue(withIdentifier: "loggedOutSegue", sender: self)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+        UIApplication.shared.keyWindow?.rootViewController = tabViewController
     }
 }
