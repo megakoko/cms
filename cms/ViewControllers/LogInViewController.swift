@@ -12,8 +12,14 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
 
+    private let userNameKey = "userName"
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let userName = UserDefaults.standard.string(forKey: userNameKey) {
+            userNameField.text = userName
+        }
     }
     
     @IBAction func tryToLogIn(_ sender: Any) {
@@ -27,6 +33,8 @@ class LogInViewController: UIViewController {
             ok in
 
             if ok {
+                UserDefaults.standard.set(userName, forKey: self.userNameKey)
+
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tabViewController = storyboard.instantiateViewController(withIdentifier: "tabViewController")
