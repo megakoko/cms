@@ -134,7 +134,11 @@ class LogInViewController: UIViewController {
                     UIApplication.shared.keyWindow?.rootViewController = tabViewController
                 }
             } else {
-
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Failed to log in", message: "Please check internet connection and user credentials", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }
