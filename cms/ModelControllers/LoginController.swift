@@ -22,8 +22,8 @@ class LoginController {
             if let error = response?.error {
                 print("Failed to log in:", error)
                 handler(false)
-            } else if let data = response?.parsed([String:Int].self),
-                let userId = data["id"] {
+            } else if let data = response?.parsed(LoginData.self),
+                      let userId = data.userId {
                 LoginController.currentUserId = userId
                 handler(true)
             } else {
@@ -34,6 +34,14 @@ class LoginController {
     }
 
     class func logOut() {
+        guard let userId = currentUserId else { return }
+        NetworkManager.request(.logOut(userId: userId)) {
+            response in
+
+            if let error = response?.error {
+                print("Failed to log out from the DB: \(error)")
+            }
+        }
         currentUserId = nil
     }
 

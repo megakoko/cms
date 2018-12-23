@@ -10,6 +10,7 @@ import Foundation
 
 enum Request {
     case logIn(userName: String, password: String)
+    case logOut(userId: Int)
     case tasks
     case task(id: Int)
     case newTask(Task)
@@ -33,6 +34,8 @@ enum Request {
 extension Request {
     private var path: String {
         switch self {
+        case .logIn, .logOut:
+            return "/login"
         case .tasks:
             return "/tasks"
         case .task, .newTask, .updateTask, .deleteTask:
@@ -47,7 +50,7 @@ extension Request {
             return "/clientrelationship"
         case .attachments, .attachment:
             return "/clientattachment"
-        case .users, .logIn:
+        case .users:
             return "/users"
         case .avatars:
             return "/avatars"
@@ -58,6 +61,10 @@ extension Request {
 
     private var parameters: RequestParameters {
         switch self {
+        case .logIn(let userName, let userPassword):
+            return .body(encode(LoginData(userId: nil, userName: userName, userPassword: sha1(userPassword))))
+        case .logOut(let userId):
+            return .url(["userId": "eq.\(userId)"])
         case .tasks:
             return .url(["assigneeId": "eq.\(LoginController.currentUserId ?? 0)",
                          "status": "neq.completed",
@@ -136,9 +143,6 @@ extension Request {
             return .url(["id": "eq.\(id)"])
         case .users:
             return .url(["order":"id"])
-        case .logIn(let userName, _):
-            return .url(["select": "id",
-                         "login": "eq.\(userName)"])
         case .avatars:
             return .url([:])
         case .taskNotification(let userId):
@@ -150,13 +154,13 @@ extension Request {
     private var method: HttpMethod {
         switch self {
         case .tasks, .task, .timesheetEntries, .currentTimesheetEntry, .clients,
-             .client, .relationships, .attachments, .attachment, .users, .logIn, .avatars, .taskNotification:
+             .client, .relationships, .attachments, .attachment, .users, .avatars, .taskNotification:
             return .get
-        case .newTask, .newClient, .newTimesheetEntry:
+        case .logIn, .newTask, .newClient, .newTimesheetEntry:
             return .post
         case .updateTask, .updateTimesheetEntry:
             return .patch
-        case .deleteTask:
+        case .logOut, .deleteTask:
             return .delete
         }
     }
@@ -166,7 +170,7 @@ extension Request {
         case .task, .newTimesheetEntry, .updateTimesheetEntry, .client, .attachment, .taskNotification, .logIn:
             return true
         case .tasks, .deleteTask, .updateTask, .newTask, .timesheetEntries, .currentTimesheetEntry,
-             .clients, .newClient, .relationships, .attachments, .users, .avatars:
+             .clients, .newClient, .relationships, .attachments, .users, .avatars, .logOut:
             return false
         }
     }

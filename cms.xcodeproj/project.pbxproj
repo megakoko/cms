@@ -32,6 +32,8 @@
 		DAA8107B21A0672900F3D3A4 /* TimesheetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8107A21A0672900F3D3A4 /* TimesheetEntry.swift */; };
 		DAA8107D21A1986500F3D3A4 /* TimesheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8107C21A1986500F3D3A4 /* TimesheetTableViewCell.swift */; };
 		DAA8107F21A198DA00F3D3A4 /* TimesheetTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8107E21A198DA00F3D3A4 /* TimesheetTableViewCellDelegate.swift */; };
+		DAB2EA9621CFF104002D7041 /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB2EA9521CFF104002D7041 /* sha1.swift */; };
+		DAB2EA9821CFFF04002D7041 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB2EA9721CFFF04002D7041 /* LoginData.swift */; };
 		DAB5A6512184DD2100D3A626 /* MapDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */; };
 		DABDD62C2170FAB500B923B5 /* ClientViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */; };
 		DAC6488621BD3D2C00F4A57E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC6488521BD3D2C00F4A57E /* LoginController.swift */; };
@@ -73,6 +75,9 @@
 		DAA8107A21A0672900F3D3A4 /* TimesheetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetEntry.swift; sourceTree = "<group>"; };
 		DAA8107C21A1986500F3D3A4 /* TimesheetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetTableViewCell.swift; sourceTree = "<group>"; };
 		DAA8107E21A198DA00F3D3A4 /* TimesheetTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		DAB2EA9421CFCB5D002D7041 /* cms-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cms-Bridging-Header.h"; sourceTree = "<group>"; };
+		DAB2EA9521CFF104002D7041 /* sha1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sha1.swift; sourceTree = "<group>"; };
+		DAB2EA9721CFFF04002D7041 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		DAB5A6502184DD2100D3A626 /* MapDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailsViewController.swift; sourceTree = "<group>"; };
 		DABDD62A2170FAB500B923B5 /* ClientViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewCell.swift; sourceTree = "<group>"; };
 		DAC6488521BD3D2C00F4A57E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 		DA10A01E217230F700C28463 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DAB2EA9721CFFF04002D7041 /* LoginData.swift */,
 				DA10A0202172323500C28463 /* Task.swift */,
 				DAA8107A21A0672900F3D3A4 /* TimesheetEntry.swift */,
 				DA10A024217233C700C28463 /* Client.swift */,
@@ -186,6 +192,8 @@
 				DA10A01F2172313600C28463 /* Views */,
 				DA6C116A216CD04A00DAD2D0 /* AppDelegate.swift */,
 				DA6C1170216CD04A00DAD2D0 /* Main.storyboard */,
+				DAB2EA9421CFCB5D002D7041 /* cms-Bridging-Header.h */,
+				DAB2EA9521CFF104002D7041 /* sha1.swift */,
 				DA6C1173216CD04B00DAD2D0 /* Assets.xcassets */,
 				DA6C1175216CD04B00DAD2D0 /* LaunchScreen.storyboard */,
 				DA6C1178216CD04B00DAD2D0 /* Info.plist */,
@@ -299,6 +307,7 @@
 				DADCCA6E219C116A00D6CC43 /* Request.swift in Sources */,
 				DAA81075219FFC6300F3D3A4 /* TaskTableViewCellDelegate.swift in Sources */,
 				DAD07120218E06BA00931E42 /* NewClientTableViewController.swift in Sources */,
+				DAB2EA9821CFFF04002D7041 /* LoginData.swift in Sources */,
 				DA10A0212172323500C28463 /* Task.swift in Sources */,
 				DA2A9670216E5F70000AE7F1 /* ClientViewController.swift in Sources */,
 				DAEDA96F21A6FD2100BFEC4F /* TimesheetFilterTableViewControllerDelegate.swift in Sources */,
@@ -311,6 +320,7 @@
 				DA7E6C1B2170D0EC004B1498 /* TaskViewController.swift in Sources */,
 				DA1B07A221973DD200EDC797 /* NewTaskViewController.swift in Sources */,
 				DA6C116D216CD04A00DAD2D0 /* TaskListViewController.swift in Sources */,
+				DAB2EA9621CFF104002D7041 /* sha1.swift in Sources */,
 				DA7E6C182170752A004B1498 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +405,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/megakoko/work/iOS/cms/cms/cms-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -449,6 +460,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/megakoko/work/iOS/cms/cms/cms-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
