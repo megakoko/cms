@@ -9,7 +9,7 @@
 import UIKit
 import LocalAuthentication
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -117,7 +117,6 @@ class LogInViewController: UIViewController {
     @IBAction func tryToLogIn(_ sender: Any) {
         guard let userName = userNameField.text,
             let password = passwordField.text else {
-
             return
         }
 
@@ -141,5 +140,19 @@ class LogInViewController: UIViewController {
                 }
             }
         }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case userNameField:
+            passwordField.becomeFirstResponder()
+        case passwordField:
+            passwordField.resignFirstResponder()
+            tryToLogIn(self)
+        default:
+            return false
+        }
+
+        return true
     }
 }

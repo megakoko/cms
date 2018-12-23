@@ -1340,6 +1340,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
                                                 <connections>
                                                     <action selector="onCredentialsChanged" destination="9LD-Z2-KGD" eventType="editingChanged" id="Dab-Qc-J8z"/>
+                                                    <outlet property="delegate" destination="9LD-Z2-KGD" id="xbE-vU-cmg"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -1363,6 +1364,7 @@
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                                         <connections>
                                                             <action selector="onCredentialsChanged" destination="9LD-Z2-KGD" eventType="editingChanged" id="0YD-ED-DB9"/>
+                                                            <outlet property="delegate" destination="9LD-Z2-KGD" id="VSg-BP-ucJ"/>
                                                         </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOT-c5-qGT">
@@ -1406,7 +1408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaA-LF-fqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1434.375" y="401.40845070422534"/>
+            <point key="canvasLocation" x="-1421" y="432"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="yl2-sM-qoP">
