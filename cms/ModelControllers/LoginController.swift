@@ -9,7 +9,7 @@
 import Foundation
 
 class LoginController {
-    static private(set) var currentUserId: Int? = 1
+    static private(set) var currentUserId: Int? = nil
 
     private init() {
         
