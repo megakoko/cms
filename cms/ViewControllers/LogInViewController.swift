@@ -19,6 +19,7 @@ class LogInViewController: UIViewController {
 
         if let userName = UserDefaults.standard.string(forKey: userNameKey) {
             userNameField.text = userName
+            passwordField.text = LoginController.password(for: userName)
         }
     }
     
@@ -34,6 +35,7 @@ class LogInViewController: UIViewController {
 
             if ok {
                 UserDefaults.standard.set(userName, forKey: self.userNameKey)
+                LoginController.savePassword(password, for: userName)
 
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)

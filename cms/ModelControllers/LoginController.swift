@@ -36,4 +36,30 @@ class LoginController {
     class func logOut() {
         currentUserId = nil
     }
+
+    class func savePassword(_ password: String, for userName: String) {
+        let passwordData = password.data(using: String.Encoding.utf8)!
+        var query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                    kSecAttrAccount as String: userName]
+        SecItemDelete(query as CFDictionary)
+
+        query[kSecValueData as String] = passwordData
+        let status = SecItemAdd(query as CFDictionary, nil)
+        guard status == errSecSuccess else { return print("save error") }
+    }
+
+    class func password(for userName: String) -> String? {
+        let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                    kSecAttrAccount as String: userName,
+                                    kSecMatchLimit as String: kSecMatchLimitOne,
+                                    kSecReturnData as String: kCFBooleanTrue]
+
+
+        var retrivedData: AnyObject? = nil
+        let _ = SecItemCopyMatching(query as CFDictionary, &retrivedData)
+
+
+        guard let data = retrivedData as? Data else { return nil }
+        return String(data: data, encoding: String.Encoding.utf8)
+    }
 }
