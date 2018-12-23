@@ -35,7 +35,7 @@
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string></string>
 	</array>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
@@ -47,6 +47,8 @@
 			<false/>
 		</dict>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Application requires access to Face ID to log into your account</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
